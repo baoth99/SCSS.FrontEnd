@@ -24,7 +24,7 @@ import {
 const AdminNavbar = (props) => {
   const user = useSelector(state => state.Auth.user);
 
-  const {name} = user.profile;
+  const {name, picture} = user.profile;
 
   return (
     <>
@@ -55,8 +55,7 @@ const AdminNavbar = (props) => {
                     <img
                       alt="..."
                       src={
-                        require("../../assets/img/theme/team-4-800x800.jpg")
-                          .default
+                        picture
                       }
                     />
                   </span>
