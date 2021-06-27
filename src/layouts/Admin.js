@@ -6,10 +6,10 @@ import { Container } from "reactstrap";
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
-
+import Profile from '../views/examples/Profile';
 //import routes from "routes.js";
-
 import AdminRoutes from '../routes/AdminRoutes';
+
 const Admin = (props) => {
   const mainContent = React.useRef(null);
   const location = useLocation();
@@ -67,7 +67,8 @@ const Admin = (props) => {
         />
         <Switch>
           {getRoutes(AdminRoutes)}
-          <Redirect from="*" to="/admin/dashboard" />
+          <Route path="/admin/user-profile" component={Profile}/>
+          <Redirect from="*" to="/admin/dashboard" />       
         </Switch>
         <Container fluid>
           <AdminFooter />

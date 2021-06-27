@@ -1,4 +1,13 @@
+import {SCSS_STORAGE} from '../../utils/constants/AuthConstants';
 
-export const LoadAccount = () => {
 
+export const LoadAccountInfo = () => {
+    let accountFromLocal = localStorage.getItem(SCSS_STORAGE);
+    let account = JSON.parse(accountFromLocal);
+    return account;
+}
+
+
+export const SaveAccountInfor = (account) => {
+    localStorage.setItem(SCSS_STORAGE, JSON.stringify(account));
 }

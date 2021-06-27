@@ -26,6 +26,11 @@ const AdminNavbar = (props) => {
 
   const {name, picture} = user.profile;
 
+  const SignOut = () => {
+    localStorage.clear();
+    SignoutRedirect()
+  }
+
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -87,7 +92,7 @@ const AdminNavbar = (props) => {
                   <span>Support</span>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem onClick={() => SignoutRedirect()}>
+                <DropdownItem onClick={() => SignOut()}>
                   <i className="ni ni-user-run" />
                   <span>Đăng xuất</span>
                 </DropdownItem>

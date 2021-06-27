@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 
 import {
     Card,
@@ -11,15 +11,51 @@ import {
     Button,
   } from "reactstrap";
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 import ComboBox from '../Commons/ComboBox';
-
 import { BsArrowClockwise, BsSearch, BsXCircle } from "react-icons/bs";
 
+import {GENDER, STATUS,ROLE} from '../../utils/constants/CommonConstants';
+import {initialUserFormState} from '../../variables/InitialStateData';
+import {ChangeUserSearchForm, ClearUserSearchForm} from '../../redux/actions/FormAction';
+
+import { useDispatch } from 'react-redux';
+//import {EnqueSnackBar, CloseSnackBar} from '../../redux/actions/ModalAction';
+
 const UserForm = () => {
-    const [startDate, setStartDate] = useState(new Date());
+
+    const dispatch = useDispatch();
+
+    const [UserFormState, setUserFormState] = useState(() => initialUserFormState);
+
+    const OnHandleChange = (evt) => {
+        let name = evt.name;
+        setUserFormState({
+            ...UserFormState,
+            [name]: evt.value
+        })
+    }
+
+    const SearchUsers = () => {
+        console.log(UserFormState);
+        dispatch(ChangeUserSearchForm({...UserFormState}));
+        // const notiDialog = {
+        //     message: 'Demo Account now',
+        //     options: {
+        //         variant: 'success',
+        //     },
+        // }
+        // dispatch(EnqueSnackBar(notiDialog));
+    }
+
+
+    const ReFreshTable = () => {
+        
+    }
+
+    const ClearForm = () => {
+       setUserFormState(initialUserFormState);
+    }
 
     return (
         <Row className="mt-5">
@@ -28,21 +64,23 @@ const UserForm = () => {
                     <CardBody>
                         <Form>
                         <h6 className="heading-small text-muted mb-4">
-                            User
+                            Người Dùng
                         </h6>
                         <div className="pl-lg-4">
                             <Row>
-                                <Col lg="3">
+                            <Col lg="3">
                                     <FormGroup>
                                         <label
                                             className="form-control-label"
                                             htmlFor="input-username"
                                         >
-                                            Tài Khoản
+                                            Số Điện Thoại
                                         </label>
                                         <Input
                                             className="form-control-alternative"
-                                            id="input-username"
+                                            value={UserFormState.phone}
+                                            name="phone"
+                                            onChange={(e) => OnHandleChange(e.target)}                                            
                                             type="text"
                                         />
                                     </FormGroup>
@@ -57,7 +95,9 @@ const UserForm = () => {
                                         </label>
                                         <Input
                                             className="form-control-alternative"
-                                            id="input-username"
+                                            value={UserFormState.name}
+                                            name="name"
+                                            onChange={(e) => OnHandleChange(e.target)}
                                             type="text"
                                         />
                                     </FormGroup>
@@ -72,22 +112,9 @@ const UserForm = () => {
                                         </label>
                                         <Input
                                             className="form-control-alternative"
-                                            id="input-username"
-                                            type="text"
-                                        />
-                                    </FormGroup>
-                                </Col>
-                                <Col lg="3">
-                                    <FormGroup>
-                                        <label
-                                            className="form-control-label"
-                                            htmlFor="input-username"
-                                        >
-                                            Số Điện Thoại
-                                        </label>
-                                        <Input
-                                            className="form-control-alternative"
-                                            id="input-username"
+                                            value={UserFormState.email}
+                                            name="email"
+                                            onChange={(e) => OnHandleChange(e.target)}                                          
                                             type="text"
                                         />
                                     </FormGroup>
@@ -102,32 +129,13 @@ const UserForm = () => {
                                         </label>
                                         <Input
                                             className="form-control-alternative"
-                                            id="input-username"
+                                            value={UserFormState.address}
+                                            name="address"
+                                            onChange={(e) => OnHandleChange(e.target)}
                                             type="text"
                                         />
                                     </FormGroup>
-                                </Col> 
-                                <Col lg="3">
-                                    <FormGroup>
-                                        <label
-                                            className="form-control-label"
-                                            htmlFor="input-username"
-                                        >
-                                            Sinh Nhật
-                                        </label>
-                                        <div className="alternative">
-                                            <DatePicker
-                                                dateFormat="dd/MM/yyyy"
-                                                className="form-control"
-                                                selected={startDate}
-                                                isClearable
-                                                placeholderText="Please choose datetime !"
-                                                onChange={(date) => setStartDate(date)}
-                                                />
-                                        </div>
-                                        
-                                    </FormGroup>
-                                </Col>
+                                </Col>                                 
                                 <Col lg="3">
                                     <FormGroup>
                                         <label
@@ -138,7 +146,9 @@ const UserForm = () => {
                                         </label>
                                         <Input
                                             className="form-control-alternative"
-                                            id="input-username"
+                                            value={UserFormState.idCard}
+                                            name="idCard"
+                                            onChange={(e) => OnHandleChange(e.target)}
                                             type="text"
                                         />
                                     </FormGroup>
@@ -152,7 +162,11 @@ const UserForm = () => {
                                             Giới Tính
                                         </label>
                                         <div className="alternative">
-                                            <ComboBox list='asb' leftRight={60} topBottom={10}/>
+                                            <ComboBox list={GENDER} leftRight={30} 
+                                                    topBottom={10} onSelect={(val) => setUserFormState({
+                                                        ...UserFormState,
+                                                        gender: parseInt(val)
+                                                    })} defaultVal={UserFormState.gender}/>
                                         </div>   
                                     </FormGroup>
                                 </Col>
@@ -165,7 +179,11 @@ const UserForm = () => {
                                             Quyền
                                         </label>
                                         <div className="alternative">
-                                            <ComboBox list='asb' leftRight={60} topBottom={10}/>
+                                            <ComboBox list={ROLE} leftRight={30} 
+                                                    topBottom={10} onSelect={(val) => setUserFormState({
+                                                        ...UserFormState,
+                                                        role: parseInt(val)
+                                                    })} defaultVal={UserFormState.role} />
                                         </div>   
                                     </FormGroup>
                                 </Col>
@@ -178,7 +196,11 @@ const UserForm = () => {
                                             Trạng Thái
                                         </label>
                                         <div className="alternative">
-                                            <ComboBox list='asb' leftRight={60} topBottom={10}/>
+                                            <ComboBox list={STATUS} leftRight={30} 
+                                                    topBottom={10} onSelect={(val) => setUserFormState({
+                                                        ...UserFormState,
+                                                        status: parseInt(val)
+                                                    })} defaultVal={UserFormState.status}/>
                                         </div>   
                                     </FormGroup>
                                 </Col>
@@ -192,21 +214,26 @@ const UserForm = () => {
                         <div className="pl-lg-4">
                             <Row>
                                 <Col lg="3">
-                                    <Button className="my-4" color="primary" type="button" size="lg" block>
+                                    <Button className="my-4" color="primary" 
+                                            type="button" size="lg" block
+                                            onClick={() => SearchUsers()}>
                                         <BsSearch/>
                                         &nbsp;
                                         Tìm Kiếm
                                     </Button>
                                 </Col>
                                 <Col lg="3">
-                                    <Button className="my-4" color="primary" type="button" size="lg" block>
+                                    <Button className="my-4" color="primary" type="button" size="lg" block
+                                            onClick={() => ReFreshTable()}>
                                         <BsArrowClockwise/>
                                         &nbsp;
                                         Làm Mới
                                     </Button>
                                 </Col>
                                 <Col lg="3">
-                                    <Button className="my-4" color="primary" type="button" size="lg" block>
+                                    <Button className="my-4" color="primary" 
+                                            type="button" size="lg" block
+                                            onClick={() => ClearForm()}>
                                         <BsXCircle/>
                                         &nbsp;
                                         Xóa
@@ -218,7 +245,7 @@ const UserForm = () => {
                 </Card>
             </div>
         </Row>
-    );
+    )
 }
 
 export default UserForm;

@@ -1,0 +1,2 @@
+export const CHANGE_USERFORM = "CHANGE_USERFORM";
+export const CLEAR_USERFORM = "CLEAR_USERFORM";

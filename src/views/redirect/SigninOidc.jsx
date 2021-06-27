@@ -5,7 +5,6 @@ import {SigninRedirectCallback} from '../../services/AuthService';
 
 const SigninOidc = () => {
     const history = useHistory();
-
     useEffect(() => {
         async function signinAsync() {
             await SigninRedirectCallback();

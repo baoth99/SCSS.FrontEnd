@@ -5,6 +5,7 @@ import Tables from "../views/examples/Tables";
 import Icons from "../views/examples/Icons";
 import ScrapCategory from '../views/scrap-categorys/ScrapCategory';
 import User from '../views/users/User';
+import UserDetail from '../views/users/UserDetail';
 import Transaction from '../views/transactions/Transaction';
 
 var AdminRoutes = [
@@ -23,7 +24,7 @@ var AdminRoutes = [
       layout: "/admin",
     },
     {
-      path: "/scrapcategory",
+      path: "/scrap-category",
       name: "Quản lí loại phế liệu",
       icon: "ni ni-collection text-green",
       component: ScrapCategory,
@@ -48,13 +49,6 @@ var AdminRoutes = [
       name: "Maps",
       icon: "ni ni-pin-3 text-orange",
       component: Maps,
-      layout: "/admin",
-    },
-    {
-      path: "/user-profile",
-      name: "User Profile",
-      icon: "ni ni-single-02 text-yellow",
-      component: Profile,
       layout: "/admin",
     },
     {

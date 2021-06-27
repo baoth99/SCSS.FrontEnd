@@ -1,7 +1,11 @@
-import {STORE_ACCOUNT, SIGNED_OUT} from '../../utils/constants/ActionConstants'
+import {STORE_ACCOUNT, STORE_ACCOUNT_ERROR, SIGNED_OUT} from '../../utils/constants/ActionConstants'
+import {LoadAccountInfo} from '../../utils/storage/AuthStorage'
+import userManager from '../../services/AuthService';
+
+const account = LoadAccountInfo();
 
 const initialState = {
-    user : null
+    user : account
 }
 
 export default function AuthReducer(state = initialState, action)  {
@@ -11,6 +15,9 @@ export default function AuthReducer(state = initialState, action)  {
                 ...state,
                 user: action.payload
             }
+        }
+        case STORE_ACCOUNT_ERROR:{
+            
         }
         case SIGNED_OUT: {
             //remove session storage and local storage

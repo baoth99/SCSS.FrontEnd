@@ -1,41 +1,22 @@
 import React from 'react';
 
-import {
-    Badge,
-    Card,
-    CardHeader,
-    CardFooter,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Media,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Progress,
-    Table,
-    Container,
-    Row,
-    UncontrolledTooltip,
-  } from "reactstrap";
 
 //core components
 import Header from "../../components/Headers/Header";
-import UserForm from '../../components/Users/UserForm';
-import UserTable from '../../components/Users/UserTable';
+import UserDashboard from './UserDashboard';
+import {Switch, useLocation} from 'react-router-dom';
+import {GetUserRoutes} from '../../routes/SystemRoutes';
 
 const User = () => {
+    const location = useLocation();
     return (
         <>
             <Header />
-            {/* Page content */}
-
-            <Container className="mt--7" fluid>
-                <UserForm/>
-                {/* Table */}
-                <UserTable/>
-            </Container>
+            {location.pathname === "/admin/users" ? (<UserDashboard/>) : null}       
+            <Switch>
+                {GetUserRoutes()}
+            </Switch>
+            
         </>
     );
 }

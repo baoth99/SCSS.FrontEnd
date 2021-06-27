@@ -6,7 +6,7 @@ import {SigninRedirect} from '../services/AuthService';
 
 const ProtectedRoute = () => {
     const account = useSelector(state => state.Auth.user);
-    return account != null ? (<Route path="/admin" render={(props) => <AdminLayout {...props} />} />) : SigninRedirect()
+    return account != null ? (<Route path="/" render={(props) => <AdminLayout {...props} />} />) : SigninRedirect()
 }
 
 export default ProtectedRoute
