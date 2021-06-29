@@ -2,7 +2,7 @@ import {SIGNED_OUT, STORE_ACCOUNT, STORE_ACCOUNT_ERROR} from '../../utils/consta
 import {SetAuthHeader} from '../../api/AxiosHeader'
 
 export const StoreAccount = (account) => {
-    SetAuthHeader(account.access_token);
+    SetAuthHeader(account.access_token, account.profile.sub);
     return {
         type: STORE_ACCOUNT,
         payload: account

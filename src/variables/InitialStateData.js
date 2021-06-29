@@ -23,8 +23,8 @@ export const initialUserFormState = {
 
 export const initialSCCreateFormState = {
     name: "",
-    unit: 0,
-    image: "",
+    unit: '',
+    image: null,
     description: ""
 }
 

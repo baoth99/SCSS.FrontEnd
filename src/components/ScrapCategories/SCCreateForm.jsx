@@ -1,31 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Card,
-        CardBody,Row,Col,
-        Form,FormGroup,Input } from 'reactstrap';
+        CardBody,Row,Col,FormGroup,Input, FormFeedback } from 'reactstrap';
+import { AvForm, AvField, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation';
+
+
+import {RenderComboBox} from '../../helpers/CommonHelper';
+import {Unit} from '../../api/ApiEndpoint';
+import {ApiGetNoParameters} from '../../api/ApiCaller';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {HideSCCreate} from '../../redux/actions/ModalAction';
 
-import ComboBox from '../../components/Commons/ComboBox';
 import {initialSCCreateFormState} from '../../variables/InitialStateData';
+import {CreateNewSC} from '../../redux/actions/SCAction';
+
 
 const noImage = require("../../assets/img/theme/no_image.png").default;
-
-const SeedData = [
-    {
-        key: 1,
-        val: "Kg"
-    },
-    {
-        key: 2,
-        val :"Gam"
-    },
-    {
-        key: 3,
-        val :"Tấn"
-    }
-]
 
 
 const SCCreateForm = () => {
@@ -33,6 +24,21 @@ const SCCreateForm = () => {
     const dispatch = useDispatch();
 
     const [ImgBase64, setImgBase64] = useState(noImage);
+    const [UnitList, setUnitList] = useState([]);
+    
+    useEffect(() => {
+        async function GetUnit() {
+            await ApiGetNoParameters(Unit).then(x => {
+                if (x.status == '200') {
+                    setUnitList(x.data.resData);
+                }
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+        GetUnit();
+    }, [])
+
 
     const [FormData, setFormData] = useState(() => initialSCCreateFormState);
 
@@ -44,6 +50,13 @@ const SCCreateForm = () => {
         })
     }
 
+    const RefreshImage = () => {
+        setImgBase64(noImage);
+        setFormData({
+            ...FormData,
+            image: null
+        })
+    }
 
 
     const ChangeImage = (files) => {
@@ -53,47 +66,72 @@ const SCCreateForm = () => {
             setImgBase64(srcData);
         }
         fileReader.readAsDataURL(files[0]);
+        setFormData({
+            ...FormData,
+            image: files[0]
+        });
     }
 
-    const OnHandleCreate = () => {
+    const OnHandleCreate = (e) => {
+        e.preventDefault();
+        // Validate
+        if (FormData.name === '' || FormData.unit === '' || FormData.name.length > 50) {
+            return;
+        }
         console.log(FormData);
+
+        dispatch(
+            CreateNewSC({...FormData})
+        )
+        setFormData(initialSCCreateFormState);
     }
 
 
 
     const ClearForm = () => {
         setImgBase64(noImage);
+        setFormData(initialSCCreateFormState);
         dispatch(HideSCCreate());
     }
 
     return (
         <div>
             <Modal isOpen={IsShow} className="modal-lg modal-dialog-centered">
-                <ModalHeader>Tạo Mới Loại Phế Liệu</ModalHeader>
+                <AvForm onSubmit={(e) => OnHandleCreate(e) }>
+                <ModalHeader toggle={() => ClearForm()} >Tạo Mới Loại Phế Liệu</ModalHeader>
                 <ModalBody>
                     <Row>
                         <div className="col">
                             <Card className="shadow">
-                                <CardBody>
-                                    <Form>
+                                <CardBody>                                   
                                         <div className="pl-lg-4">
                                             <Row>
                                                 <Col lg="8">
-                                                    <FormGroup>
+                                                    <AvGroup>
                                                         <label
                                                             className="form-control-label"
                                                             htmlFor="input-username"
                                                         >
                                                             Tên Loại Phế Liệu
                                                         </label>
-                                                        <Input
-                                                            className="form-control-alternative"
+                                                        <AvInput
+                                                            //className="form-control-alternative"
                                                             name="name"
-                                                            onChange={(e) => OnHandleChange(e.target)}
+                                                            //invalid={FormData.name.length > 50}
+                                                            onChange={(e) => {
+                                                                OnHandleChange(e.target);
+                                                            }}
                                                             value={FormData.name}
                                                             type="text"
+                                                            required 
                                                         />
-                                                    </FormGroup>
+                                                        <AvFeedback>
+                                                            Vui lòng nhập tên phế liệu                                                         
+                                                        </AvFeedback>
+                                                        {/* <FormFeedback invalid>
+                                                            {FormData.name.length > 50 ? "Quá số lượng kí tự cho phép" : ""}
+                                                        </FormFeedback> */}
+                                                    </AvGroup>
                                                 </Col>
                                                 <Col lg="3" className="ml-1">
                                                     <FormGroup>
@@ -103,13 +141,20 @@ const SCCreateForm = () => {
                                                         >
                                                             Đơn vị
                                                         </label>
+                                                        
                                                         <div className="alternative">
-                                                            <ComboBox list={SeedData} leftRight={50} 
-                                                                    topBottom={10} onSelect={(val) => setFormData({
-                                                                        ...FormData,
-                                                                        unit: parseInt(val)
-                                                                    })} defaultVal={FormData.unit}/>
-                                                        </div>   
+                                                            <AvField type="select" name="select" 
+                                                                 value={FormData.unit}
+                                                                 onChange={(e) => setFormData({
+                                                                     ...FormData,
+                                                                     unit : e.target.value
+                                                                 })}
+                                                                 errorMessage = "Vui lòng chọn đơn vị"
+                                                                 required>
+                                                                <option value=''>----------</option>
+                                                               {RenderComboBox(UnitList)}
+                                                            </AvField>
+                                                        </div>
                                                     </FormGroup>
                                                 </Col>
                                                 <Col lg="4">
@@ -132,7 +177,7 @@ const SCCreateForm = () => {
                                                     <FormGroup>
                                                         
                                                         <button type="button" className="btn btn-outline-light btn-sm"
-                                                                onClick={() => setImgBase64(noImage)}>
+                                                                onClick={() => RefreshImage()}>
                                                             Làm Lại
                                                         </button>
                                                         <div className="alternative mt-1">
@@ -165,17 +210,18 @@ const SCCreateForm = () => {
                                                 </Col>
                                             </Row>
                                         </div>
-                                    </Form>
+                                    
                                 </CardBody>
                             </Card>
                         </div>
                     </Row>
                 </ModalBody>
                 <ModalFooter>
-                <Button color="primary" onClick={() => OnHandleCreate()}>Tạo Mới</Button>
-                <Button color="danger" onClick={() => setFormData(initialSCCreateFormState)}>Xóa</Button>{' '}
-                <Button color="secondary" onClick={() => ClearForm()}>Hủy</Button>
+                <Button color="primary" type="submit">Tạo Mới</Button>
+                <Button color="danger" type="button" onClick={() => setFormData(initialSCCreateFormState)}>Xóa</Button>
+                <Button color="secondary" type="button" onClick={() => ClearForm()}>Hủy</Button>
                 </ModalFooter>
+                </AvForm>
             </Modal>
         </div>
     );

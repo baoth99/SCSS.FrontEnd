@@ -1,6 +1,6 @@
 import {SEARCH_SC_SUCCESS, SEARCH_SC,
         GET_SC_DETAIL, GET_SC_DETAIL_SUCCESS,
-        CREATE_NEW_SC} from '../../utils/constants/ActionConstants';
+        CREATE_NEW_SC, REMOVE_SC} from '../../utils/constants/ActionConstants';
 
 import {initialDataSCTable} from '../../variables/InitialStateData';
 
@@ -30,6 +30,12 @@ export const SCTableReducer = (state = initialDataSCTable, action) => {
         case GET_SC_DETAIL_SUCCESS: {
             return {
                 data: action.payload
+            }
+        }
+        case REMOVE_SC: {
+            return {
+                id: action.payload.id,
+                history: action.payload.history
             }
         }
         default:{

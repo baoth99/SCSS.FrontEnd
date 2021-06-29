@@ -9,6 +9,7 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 import Profile from '../views/examples/Profile';
 //import routes from "routes.js";
 import AdminRoutes from '../routes/AdminRoutes';
+import ConfirmDialog from '../components/Commons/ConfirmDialog';
 
 const Admin = (props) => {
   const mainContent = React.useRef(null);
@@ -74,6 +75,7 @@ const Admin = (props) => {
           <AdminFooter />
         </Container>
       </div>
+      <ConfirmDialog/>
     </>
   );
 };

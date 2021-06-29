@@ -45,9 +45,7 @@ const UserDetail = () => {
                         </Col>
                     </Row>
                     <CardHeader className="text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                        <div className="d-flex justify-content-between">
-                        
-                        </div>
+                        <div className="d-flex justify-content-between"></div>
                     </CardHeader>
                     <CardBody className="pt-0 pt-md-4">
                         <Row>

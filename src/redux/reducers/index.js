@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import AuthReducer from './AuthReducer';
 import LoadingReducer from './LoadingReducer';
-import SCCreateModalReducer from './SCCreateModalReducer';
+import {SCCreateModalReducer,
+        ConfirmDialogReducer} from './ModalReducer';
 import NotiStackReducer from './NotiStackReducer';
 import {SCSearchFormReducer,
         UserSearchFormReducer} from './FormReducer';
@@ -16,5 +17,6 @@ export default combineReducers({
     SCSearchForm: SCSearchFormReducer,
     UserSearchForm: UserSearchFormReducer,
     DataSC: SCTableReducer,
-    DataUser: UserTableReducer
+    DataUser: UserTableReducer,
+    ConfirmDialog: ConfirmDialogReducer
 })

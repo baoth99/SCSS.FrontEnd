@@ -52,7 +52,7 @@ const App = () => {
                     <BrowserRouter>
                         <Switch>                   
                             <Route path="/signin-oidc" component={SigninOidc}/>
-                            <Route path="/signin-oidc" component={SignoutOidc}/>
+                            <Route path="/signout-oidc" component={SignoutOidc}/>
                             <ProtectedRoute/>
                             <Redirect from="/" to="/admin/dashboard" />                      
                         </Switch>

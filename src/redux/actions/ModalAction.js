@@ -1,5 +1,6 @@
 import {SHOW_SCCREATE_MODAL, HIDE_SCCREATE_MODAL,
-        ENQUEUE_SNACKBAR, REMOVE_SNACKBAR} from '../../utils/constants/ActionConstants';
+        ENQUEUE_SNACKBAR, REMOVE_SNACKBAR, 
+        SHOW_CONFIRM_DIALOG, HIDE_CONFIRM_DIALOG} from '../../utils/constants/ActionConstants';
 
 export const ShowSCCreate = () => {
     return {
@@ -12,6 +13,25 @@ export const HideSCCreate = () => {
         type : HIDE_SCCREATE_MODAL
     }
 }
+
+export const ShowConfirmDialog = (title, message, action) => {
+    return {
+        type: SHOW_CONFIRM_DIALOG,
+        payload: {
+            showModal: true,
+            title: title,
+            message: message,
+            action: action
+        }
+    }
+}
+
+export const HideConfirmDialog = () => {
+    return {
+        type: HIDE_CONFIRM_DIALOG,
+    }
+}
+
 
 
 
