@@ -1,179 +1,176 @@
-import {SearchSC, SearchSCSuccess} from '../redux/actions/SCAction';
+import {SearchSCSuccess, GetSCDetailSuccess, SearchSC} from '../redux/actions/SCAction';
 import {ShowLoading, HideLoading} from '../redux/actions/LoadingAction';
 import {EnqueSnackBar, HideSCCreate,
         HideConfirmDialog} from '../redux/actions/ModalAction';
+import {RedirectToNoInternet} from './UtilSaga'
+import {BadRequestRoute} from '../utils/constants/RouteConstants';
 
 import {SEARCH_SC, SEARCH_SC_SUCCESS, 
-        CREATE_NEW_SC, REMOVE_SC} from '../utils/constants/ActionConstants'
-import {STATUS} from '../utils/constants/HttpConstant';
-import {DataInvalid, SystemException, OtherException} from '../utils/constants/SystemMessageConstant';
-import {CREATE_SC_SUCCESS_MESSAGE, SYSTEM_EXCEPTION} from '../utils/constants/MessageConstants';
+        CREATE_NEW_SC, REMOVE_SC,
+        GET_SC_DETAIL, UPDATE_SC } from '../utils/constants/ActionConstants';
 
-import { call, put, takeEvery, takeLatest, fork, take, delay } from 'redux-saga/effects';
+import {SCDashboardRoute} from '../utils/constants/RouteConstants';
+
+import { call, put, takeEvery, select, takeLatest, take, delay } from 'redux-saga/effects';
 
 import {initialSCSearchFormState} from '../variables/InitialStateData';
 
-import {ApiPost} from '../api/ApiCaller';
-import {CreateNewSC} from '../api/ApiEndpoint';
+import {ApiPost, ApiGet, ApiDelete, ApiPutWithBody} from '../api/ApiCaller';
+import {CreateNewSC, SearchSCEndpoint, GetSCDetailEndpoint, GetImage, RemoveSCEndpoint, EditSCEndpoint} from '../api/ApiEndpoint';
+import {GetImageToShow} from '../helpers/CommonHelper';
+import {Notification} from '../utils/constants/MessageConstants';
 
-
-
-
-const SeedData = [
-    {
-        id: "891c6f75-6e81-47ad-be38-26db9613b4b0",
-        name: "Sắt",
-        unit: "Kí",
-        createdBy: "Tran Hoai Bao",
-        createdTime: "20/09/2019"
-    },
-    {
-        id: "fa05d333-d9b9-46a1-885c-c11d7d9470ba",
-        name: "Giấy",
-        unit: "Kí",
-        createdBy: "Tran Hoai Bao",
-        createdTime: "20/09/2019"
-    },
-    {
-        id: "4448fc09-83c9-41e3-ba60-0bdb388fb82a",
-        name: "Đồ nhựa",
-        unit: "Kí",
-        createdBy: "Tran Hoai Bao",
-        createdTime: "20/09/2019"
-    },
-    {
-        id: "fb50e469-8b1e-4fde-9494-8d7a2f2e00ad",
-        name: "Đồ Đồng",
-        unit: "Kí",
-        createdBy: "Tran Hoai Bao",
-        createdTime: "20/09/2019"
-    },
-    {
-        id: "891c6f75-6e81-47ad-be38-26db9613b4b0",
-        name: "Sắt",
-        unit: "Kí",
-        createdBy: "Tran Hoai Bao",
-        createdTime: "20/09/2019"
-    },
-    {
-        id: "fa05d333-d9b9-46a1-885c-c11d7d9470ba",
-        name: "Giấy",
-        unit: "Kí",
-        createdBy: "Tran Hoai Bao",
-        createdTime: "20/09/2019"
-    },
-    {
-        id: "4448fc09-83c9-41e3-ba60-0bdb388fb82a",
-        name: "Đồ nhựa",
-        unit: "Kí",
-        createdBy: "Tran Hoai Bao",
-        createdTime: "20/09/2019"
-    }
-]
-
-function* FetchData() {
-    console.log('FetchData')
-}
+import {push} from 'connected-react-router';
 
 
 function* SearchSCSaga({payload}) {
+    console.log("SearchSCSaga");
     yield put(ShowLoading());
     const data = payload;
+    console.log(data);
+    try {
+        const response = yield call(ApiGet, SearchSCEndpoint, data);
+        const resData = response.data.resData;
+        const totalRecord = response.data.total;
 
-    yield put(SearchSCSuccess([...SeedData], 30));
+        yield put(SearchSCSuccess(resData, totalRecord));
+    } catch (error) {
+        yield RedirectToNoInternet(error);
+    }
 
-
-    yield delay(1000);
     yield put(HideLoading());
 }
 
 function* RemoveSCSaga({payload}) {
     yield put(ShowLoading());
-    console.log(payload.id);
+    const id = payload.id;
+    
+    try {
+        const response = yield call(ApiDelete,RemoveSCEndpoint,{id});
+        const data = response.data;
+        yield put(HideConfirmDialog());
+
+        if (data.isSuccess) {
+            const notiDialog = Notification('Xóa Loại Phế Liệu Thành Công','success');
+            yield put(EnqueSnackBar(notiDialog));
+        } else {
+            const notiDialog = Notification("Có Lỗi Trong Quá Trình Xóa Loại Phế Liệu", "fail");
+            yield put(EnqueSnackBar(notiDialog));
+        }
+
+    } catch (error) {
+        console.log(error);
+        yield RedirectToNoInternet(error);
+        yield put(push(BadRequestRoute));
+    }
+
     yield put(HideConfirmDialog());
-    yield delay(1000);
     yield put(HideLoading());
 
-    // redirect to /admin/scrap-category
-    payload.history.push('/admin/scrap-category');
-
-    // show message
-    const notiDialog = {
-        message: 'Xóa thành công',
-        options: {
-            variant: 'success',
-        },
+    if (payload.detail) {
+        yield put(push(SCDashboardRoute));       
+    } else {
+        yield put(SearchSC(initialSCSearchFormState));
     }
-    yield put(EnqueSnackBar(notiDialog));
-
 }
 
 function* CreateSCSaga({payload}) {
     yield put(ShowLoading());
     
-    console.log(payload);
-
     var formData = new FormData();
     formData.append('Name', payload.name);
     formData.append('Unit',  payload.unit == '' ? '00000000-0000-0000-0000-000000000000' : payload.unit);
     formData.append('Image', payload.image);
     formData.append('Description', payload.description);
-
-    console.log(formData);
     
-    const response = yield call(ApiPost, CreateNewSC ,formData);
+    try {
+        const response = yield call(ApiPost, CreateNewSC ,formData);
+        const data = response.data;
 
-    const data = response.data;
-    console.log(data);
-    // switch (response.status) {
-    //     case STATUS.OK: {
-    //         if (!data.isSuccess && data.statusCode == STATUS.BAD_REQUEST) {
-    //             switch (data.msgCode) {
-    //                 case DataInvalid:{
-    //                     if(data.resData != null) {
-    //                         return data.resData
-    //                     } else {
-    //                         return SYSTEM_EXCEPTION;
-    //                     }
-    //                 }
-    //                 case SystemException:{
-    //                     return SYSTEM_EXCEPTION;
-    //                 }
-    //                 case OtherException: {
-    //                     return SYSTEM_EXCEPTION;
-    //                 }
-    //                 default:
-    //                     break;
-    //             }
-    //         }
-    //     }
-    //     case STATUS.BAD_REQUEST: {
-
-    //     }
-    //     case STATUS.NOTFOUND: {
-
-    //     }
-    //     case STATUS.INTERVAL_SERVER_ERROR: {
-
-    //     }
-    //     case STATUS.UNAUTHORIZED: {
-
-    //     }
-    //     default:
-    //         break;
-    // }   
-    yield delay(1000);
+        if (data.isSuccess) {
+            yield put(HideSCCreate());
+            const notiDialog = Notification("Tạo Mới Loại Phế Liệu Thành Công", "success");
+            yield put(EnqueSnackBar(notiDialog));
+            yield put(SearchSC(initialSCSearchFormState));
+        } else {
+            const notiDialog = Notification("Có Lỗi Trong Quá Trình Tạo Mới Loại Phế Liệu", "fail");
+            yield put(EnqueSnackBar(notiDialog));
+        }
+    } catch (error) {
+        yield RedirectToNoInternet(error);
+        yield put(push(SCDashboardRoute));      
+    }
     yield put(HideLoading());
-
-    //yield put(HideSCCreate());
-    //yield put(EnqueSnackBar(notiDialog));
-
 }
 
+function* GetSCDetail({payload}) {
+    yield put(ShowLoading());
+    const id = payload.id;
+    try {
+        const response = yield call(ApiGet, GetSCDetailEndpoint, {id}); 
+        console.log(response.data);
+        if(!response.data.isSuccess) {
+            throw "Invalid";
+        }
+
+        const resData = response.data.resData;      
+        let imageUrl = resData.image;
+        if (imageUrl != "") {
+            const imgResponse = yield call(ApiGet, GetImage, {image: imageUrl});
+            let imageData = imgResponse.data.resData;
+            let imageExtension = imageData.extension;
+            let imageBase64 = imageData.base64;
+            const imgBase64 = GetImageToShow(imageExtension, imageBase64);
+            resData.image = imgBase64;
+        }      
+        console.log(resData);
+        yield put(GetSCDetailSuccess({...resData}));
+    } catch (error) {
+        yield RedirectToNoInternet(error);
+        yield put(push(SCDashboardRoute));
+    }
+    yield put(HideLoading());
+}
+
+function* UpdateSC({payload}) {
+    yield put(ShowLoading());
+    try {
+        console.log(payload);
+        
+        var formData = new FormData();
+        formData.append('Id', payload.id)
+        formData.append('Name', payload.name);
+        formData.append('Unit',  payload.unit == '' ? '00000000-0000-0000-0000-000000000000' : payload.unit);
+        formData.append('ImageFile', payload.image);
+        formData.append('IsDeleteImg', payload.isDeleteImg);
+        formData.append('Description', payload.description);
+        const response = yield call(ApiPutWithBody, EditSCEndpoint, formData)
+        const data = response.data;
+
+        if (data.isSuccess) {
+            const notiDialog = Notification('Cập Nhật Loại Phế Liệu Thành Công','success');
+            yield put(EnqueSnackBar(notiDialog));
+        } else {
+            const notiDialog = Notification("Có Lỗi Trong Quá Trình Cập Nhật Loại Phế Liệu", "fail");
+            yield put(EnqueSnackBar(notiDialog));
+        }
+
+    } catch (error) {
+        console.log(error);
+        yield RedirectToNoInternet(error);
+        yield put(push(BadRequestRoute));
+    }
+
+    yield put(HideLoading());
+    yield put(push(SCDashboardRoute));
+
+}
 
 export default function* SCSaga () {
     //yield fork(FetchData);
     yield takeEvery(SEARCH_SC, SearchSCSaga);
     yield takeEvery(CREATE_NEW_SC, CreateSCSaga);
     yield takeEvery(REMOVE_SC, RemoveSCSaga);
+    yield takeEvery(GET_SC_DETAIL, GetSCDetail);
+    yield takeEvery(UPDATE_SC, UpdateSC);
 }

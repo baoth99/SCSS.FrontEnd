@@ -2,8 +2,13 @@ import {PAGING} from '../utils/constants/CommonConstants';
 
 
 export const initialDataSCTable = {
-    // list: [],
-    // total: 0
+
+}
+
+export const initialUnitSearchFormState = {
+    name: "",
+    page : 1, 
+    pageSize: PAGING
 }
 
 export const initialUserFormState = {
@@ -16,9 +21,7 @@ export const initialUserFormState = {
     role: 0,
     status: 0,
     page : 1, 
-    pageSize: PAGING, 
-    sortField: 'Name', 
-    isSortDesc: false
+    pageSize: PAGING
 };
 
 export const initialSCCreateFormState = {
@@ -30,10 +33,8 @@ export const initialSCCreateFormState = {
 
 export const initialSCSearchFormState = {
     name: "",
-    unit: 0,
+    unit: "",
     description: "",
     page : 1, 
-    pageSize: PAGING, 
-    sortField: 'Name', 
-    isSortDesc: false
+    pageSize: PAGING
 }

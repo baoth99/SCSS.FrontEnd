@@ -33,7 +33,6 @@ const initialConfirmDialogState = {
 export function ConfirmDialogReducer(state = initialConfirmDialogState, action) {
     switch (action.type) {
         case SHOW_CONFIRM_DIALOG: {
-            console.log(action.payload);
             return {
                 ...action.payload,
                 //showModal: true

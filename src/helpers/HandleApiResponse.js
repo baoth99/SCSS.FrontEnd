@@ -4,6 +4,8 @@ import {ACTIVE, SYSTEM_EXCEPTION} from '../utils/constants/MessageConstants';
 import {STATUS} from '../utils/constants/HttpConstant';
 
 
+
+
 export const ResponseOK = (data) => {
     if (!data.isSuccess && data.statusCode == STATUS.BAD_REQUEST) {
         switch (data.msgCode) {

@@ -1,6 +1,8 @@
 import {CHANGE_SCSEARCHFORM, CLEAR_SCSEARCHFORM, 
-        CHANGE_USERSEARCHFORM, CLEAR_USERSEARCHFORM} from '../../utils/constants/ActionFormConstant';
-import {initialSCSearchFormState, initialUserFormState} from '../../variables/InitialStateData';
+        CHANGE_USERSEARCHFORM, CLEAR_USERSEARCHFORM,
+        CHANGE_UNITSEARCHFORM, CLEAR_UNITSEARCHFORM} from '../../utils/constants/ActionFormConstant';
+import {initialSCSearchFormState, initialUserFormState, initialUnitSearchFormState} from '../../variables/InitialStateData';
+
 
 
 export const SCSearchFormReducer = (state = initialSCSearchFormState, action) => {
@@ -37,5 +39,22 @@ export const UserSearchFormReducer = (state = initialUserFormState, action) => {
         }
         default:
             return state;
+    }
+}
+
+export const UnitSearchFormReducer = (state = initialUnitSearchFormState, action) => {
+    switch (action.type) {
+        case CHANGE_UNITSEARCHFORM: {
+            return {
+                ...action.payload
+            }
+        }
+        case CLEAR_UNITSEARCHFORM: {
+            return {
+                ...initialUnitSearchFormState
+            }
+        }
+        default:
+           return state; 
     }
 }

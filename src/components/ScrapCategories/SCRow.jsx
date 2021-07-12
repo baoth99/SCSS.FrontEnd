@@ -7,15 +7,26 @@ import {
     DropdownToggle,
     Media
   } from "reactstrap";
-
+import {useDispatch} from 'react-redux'
+import {RemoveSC} from '../../redux/actions/SCAction';
+import {ShowConfirmDialog} from '../../redux/actions/ModalAction';
 
 const SCRow = ({id, stt, name, unit, createdBy, createdTime}) => {
+    const dispatch = useDispatch();
 
     const history = useHistory();
     const path = "/admin/scrap-category/" + id;
 
     const GoToUserDetail = () => {
         history.push(path);
+    }
+
+    const RemoveSCAction = () => {
+        const title = `Xác Nhận Xóa ${name}`;
+        const message = `Bạn muốn xóa ${name}`;
+        dispatch(
+            ShowConfirmDialog(title, message, RemoveSC(id, false))
+        );
     }
 
     return (
@@ -73,7 +84,7 @@ const SCRow = ({id, stt, name, unit, createdBy, createdTime}) => {
                     Chi Tiết
                 </DropdownItem>
                 <DropdownItem
-                    onClick={(e) => e.preventDefault()}
+                    onClick={() => RemoveSCAction()}
                 >
                     Xóa
                 </DropdownItem>

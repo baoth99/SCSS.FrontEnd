@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, Route, Switch, Redirect } from "react-router-dom";
+import { useLocation, Route, Switch, Redirect, Router } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
 // core components
@@ -10,6 +10,10 @@ import Profile from '../views/examples/Profile';
 //import routes from "routes.js";
 import AdminRoutes from '../routes/AdminRoutes';
 import ConfirmDialog from '../components/Commons/ConfirmDialog';
+import NoInternetConnection from '../views/errors/NoInternetConnection';
+import BadRequest from '../views/errors/BadRequest';
+// routes
+import {BadRequestRoute,NoInternetConnetionRoute} from '../utils/constants/RouteConstants'
 
 const Admin = (props) => {
   const mainContent = React.useRef(null);
@@ -46,7 +50,7 @@ const Admin = (props) => {
         return AdminRoutes[i].name;
       }
     }
-    return "Brand";
+    return "";
   };
 
 
@@ -66,11 +70,13 @@ const Admin = (props) => {
           {...props}
           brandText={getBrandText(props.location.pathname)}
         />
-        <Switch>
-          {getRoutes(AdminRoutes)}
-          <Route path="/admin/user-profile" component={Profile}/>
-          <Redirect from="*" to="/admin/dashboard" />       
-        </Switch>
+          <Switch>
+            {getRoutes(AdminRoutes)}
+            <Route path="/admin/user-profile" component={Profile}/>
+            <Route path={NoInternetConnetionRoute} component={NoInternetConnection}/>
+            <Route path={BadRequestRoute} component={BadRequest}/>
+            <Redirect from="*" to="/admin/dashboard" />       
+          </Switch>
         <Container fluid>
           <AdminFooter />
         </Container>

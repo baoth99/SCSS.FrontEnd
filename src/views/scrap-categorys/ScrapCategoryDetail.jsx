@@ -1,42 +1,91 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useParams} from "react-router-dom";
-import {RenderComboBox} from '../../helpers/CommonHelper';
 
-import {useDispatch} from 'react-redux'
-import { useHistory } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux'
 
-import {RemoveSC} from '../../redux/actions/SCAction';
+import {RemoveSC, GetSCDetail, UpdateSC} from '../../redux/actions/SCAction';
 import {ShowConfirmDialog} from '../../redux/actions/ModalAction';
 
-import {
-    Card,
-    CardHeader,
-    CardBody,
-    Container,
-    Row,
-    Col,
-    Input,
-    CardFooter,
-    Button,
-    FormFeedback
-  } from "reactstrap";
+import {Card, CardHeader, CardBody, Container, Row, Col, Input, CardFooter, Button } from "reactstrap";
 import { AvForm, AvField, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation';
 
+import {RenderComboBox} from '../../helpers/CommonHelper';
+
 const noImage = require("../../assets/img/theme/no_image.png").default;
+
 
 
 const ScrapCategoryDetail = () => {
     let { id } = useParams();
     const dispatch = useDispatch();
+    const dataSC = useSelector(state => state.DataSC);
+    const unitList = useSelector(state => state.FetchUnit);
+
+    const {createdBy, createdTime} = dataSC;
+
     const [IsDisable, setIsDisable] = useState(true);
-    const history = useHistory();
+
+    const initialSCState = {
+        name: dataSC.name,
+        unit: dataSC.unit,
+        description: dataSC.description,
+        image: dataSC.image
+    }
+
+    useEffect(() => {
+        dispatch(GetSCDetail(id));
+    }, []);
+
+
+    const OnHandleSubmit = (e) => {
+        e.preventDefault();
+        let name = document.getElementById('sc-detail-name').value;
+        let unit = document.getElementById('sc-detail-unit').value;
+        let description = document.getElementById('sc-detail-description').value;
+        let imageList = document.getElementById('sc-detail-select-image').files;
+
+        let isShowImg = document.getElementById('sc-detail-image');
+
+
+        if (name === "" || unit === "") {
+            return;
+        } else {
+            console.log(imageList);
+            const image = imageList[0];
+            const isDeleteImg = isShowImg.src === noImage ? true : false;
+
+            dispatch(
+                UpdateSC({id, name, unit, image, isDeleteImg, description})
+            );
+        }       
+    }
+    
+
+    const onHandleImgChange = (files) => {
+        let imageSelected = files[0];
+        let image = document.getElementById('sc-detail-image');
+        let fileReader = new FileReader();
+        fileReader.onload = function(fileLoaderEvent) {
+            let srcData = fileLoaderEvent.target.result;
+            image.src = srcData
+        }
+        fileReader.readAsDataURL(imageSelected);
+    }
+
+
+    const RemoveImage = () => {
+        let image = document.getElementById('sc-detail-image');
+        image.src = noImage;
+
+        let selectImage = document.getElementById('sc-detail-select-image');
+        selectImage.value = "";
+    }
 
     const Remove = () => {
-        const title = "Xác Nhận Xóa -Sắt-";
-        const message = "Bạn muốn xóa Sắt";
-        //const push = history.push('/admin/scrap-category')
+        const title = `Xác Nhận Xóa ${dataSC.name}`;
+        const message = `Bạn muốn xóa ${dataSC.name}`;
         dispatch(
-            ShowConfirmDialog(title, message, RemoveSC(id, history))
+            ShowConfirmDialog(title, message, RemoveSC(id, true))
         );
     }
 
@@ -44,7 +93,7 @@ const ScrapCategoryDetail = () => {
         <Container className="mt--7" fluid>
             <Row className="mt-5">
                 <div className="col">
-                    <AvForm>
+                    <AvForm onSubmit={(e) => OnHandleSubmit(e) }>
                         <Card className="bg-secondary shadow">
                             <CardHeader className="bg-white border-0">
                                 <Row className="align-items-center">
@@ -74,10 +123,10 @@ const ScrapCategoryDetail = () => {
                                                         Tên Loại Phế Liệu
                                                     </label>
                                                     <AvInput
-                                                        //className="form-control-alternative"
+                                                        id="sc-detail-name"
                                                         name="name"
                                                         //invalid={FormData.name.length > 50}
-                                                        value={id}
+                                                        value={initialSCState.name}
                                                         disabled={IsDisable}
                                                         type="text"
                                                         required 
@@ -94,12 +143,15 @@ const ScrapCategoryDetail = () => {
                                                         Đơn vị
                                                     </label>
                                                     <div className="alternative">
-                                                        <AvField type="select" name="select" 
+                                                        <AvField type="select" 
+                                                                id="sc-detail-unit"
+                                                                name="unit" 
                                                                 disabled={IsDisable}
-                                                                value={0}
+                                                                value={initialSCState.unit}
                                                                 errorMessage = "Vui lòng chọn đơn vị"
                                                                 required>
                                                             <option value=''>----------</option>
+                                                            {RenderComboBox(unitList)}
                                                         </AvField>
                                                     </div>
                                                 </AvGroup>
@@ -112,11 +164,12 @@ const ScrapCategoryDetail = () => {
                                                     </label>
                                                     <AvInput
                                                         className="form-control-alternative"
+                                                        id="sc-detail-description"
                                                         disabled={IsDisable}
-                                                        name="name"
+                                                        name="description"
                                                         style={{height: '150px'}}
                                                         //invalid={FormData.name.length > 50}
-                                                        value={id}
+                                                        value={initialSCState.description == null ? "" : initialSCState.description}
                                                         type="textarea"
                                                     />
                                                 </AvGroup>
@@ -133,7 +186,7 @@ const ScrapCategoryDetail = () => {
                                                         className="form-control-alternative"
                                                         name="createdBy"
                                                         //invalid={FormData.name.length > 50}
-                                                        value="Tran Hoai Bao"
+                                                        value={createdBy}
                                                         type="text"
                                                         disabled={true} 
                                                     />
@@ -148,7 +201,7 @@ const ScrapCategoryDetail = () => {
                                                     <AvInput
                                                         className="form-control-alternative"
                                                         name="createdTime"
-                                                        value="20/10/2020 12:10:32 AM"
+                                                        value={createdTime}
                                                         type="text"
                                                         disabled={true} 
                                                     />
@@ -162,20 +215,30 @@ const ScrapCategoryDetail = () => {
                                                     >
                                                         Hình Ảnh
                                                     </label>
+                                                    <button type="button" 
+                                                            style={{float: 'right'}} 
+                                                            disabled={IsDisable}
+                                                            onClick={() => RemoveImage()}
+                                                            className="btn btn-outline-danger btn-sm">
+                                                                Xóa Ảnh
+                                                    </button>
                                                     <div className="form-control-alternative mt-1">
-                                                                <img
-                                                                    alt="..."
-                                                                    className="rounded"
-                                                                    style={{width: '100%', height: '250px'}}
-                                                                    src={noImage}
-                                                                    />
+                                                        <img
+                                                            alt="..."
+                                                            id="sc-detail-image"
+                                                            className="rounded"
+                                                            style={{width: '100%', height: '250px'}}
+                                                            src={initialSCState.image != "" ? initialSCState.image : noImage}
+                                                            />
                                                     </div>
                                                     <Input 
                                                         className="form-control-alternative mt-3"
+                                                        id="sc-detail-select-image"
+                                                        onChange={(e) => onHandleImgChange(e.target.files)}
                                                         disabled={IsDisable}
                                                         type="file"
                                                         accept="image/png, image/gif, image/jpeg"
-                                                        />
+                                                        />                                              
                                                 </AvGroup>
                                             </Col>                                 
                                         </Row>
@@ -186,7 +249,7 @@ const ScrapCategoryDetail = () => {
                                     <Row>
                                         <Col lg="4">
                                             <Button className="my-4" color="primary" 
-                                            type="button" size="lg" disabled={IsDisable} 
+                                            type="submit" size="lg" disabled={IsDisable} 
                                             block>
                                                 Lưu Lại
                                             </Button>

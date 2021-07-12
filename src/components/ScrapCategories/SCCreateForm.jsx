@@ -6,8 +6,6 @@ import { AvForm, AvField, AvGroup, AvInput, AvFeedback } from 'availity-reactstr
 
 
 import {RenderComboBox} from '../../helpers/CommonHelper';
-import {Unit} from '../../api/ApiEndpoint';
-import {ApiGetNoParameters} from '../../api/ApiCaller';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {HideSCCreate} from '../../redux/actions/ModalAction';
@@ -21,23 +19,12 @@ const noImage = require("../../assets/img/theme/no_image.png").default;
 
 const SCCreateForm = () => {
     const IsShow = useSelector(state => state.SCCreateModal.showModal);
+    const unitList = useSelector(state => state.FetchUnit);
+
     const dispatch = useDispatch();
 
     const [ImgBase64, setImgBase64] = useState(noImage);
-    const [UnitList, setUnitList] = useState([]);
     
-    useEffect(() => {
-        async function GetUnit() {
-            await ApiGetNoParameters(Unit).then(x => {
-                if (x.status == '200') {
-                    setUnitList(x.data.resData);
-                }
-            }).catch(err => {
-                console.log(err)
-            })
-        }
-        GetUnit();
-    }, [])
 
 
     const [FormData, setFormData] = useState(() => initialSCCreateFormState);
@@ -126,7 +113,7 @@ const SCCreateForm = () => {
                                                             required 
                                                         />
                                                         <AvFeedback>
-                                                            Vui lòng nhập tên phế liệu                                                         
+                                                            Vui lòng nhập tên loại phế liệu                                                         
                                                         </AvFeedback>
                                                         {/* <FormFeedback invalid>
                                                             {FormData.name.length > 50 ? "Quá số lượng kí tự cho phép" : ""}
@@ -152,7 +139,7 @@ const SCCreateForm = () => {
                                                                  errorMessage = "Vui lòng chọn đơn vị"
                                                                  required>
                                                                 <option value=''>----------</option>
-                                                               {RenderComboBox(UnitList)}
+                                                               {RenderComboBox(unitList)}
                                                             </AvField>
                                                         </div>
                                                     </FormGroup>
@@ -171,7 +158,7 @@ const SCCreateForm = () => {
                                                             accept="image/png, image/gif, image/jpeg"
                                                             onChange={(e) => ChangeImage(e.target.files)}
                                                         />
-                                                    </FormGroup>
+                                                    </FormGroup>                                                 
                                                 </Col>
                                                 <Col lg="7" className="ml-4">
                                                     <FormGroup>

@@ -7,7 +7,7 @@ import SCSearchForm from '../../components/ScrapCategories/SCSearchForm';
 import SCTable from '../../components/ScrapCategories/SCTable';
 
 import {SearchSC} from '../../redux/actions/SCAction';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {initialSCSearchFormState} from '../../variables/InitialStateData';
 
 const SrapCategoryDashboard = () => {

@@ -1,5 +1,4 @@
 
-
 export const RenderComboBox = (list) => {
     let result = null;
     if(!Array.isArray(list)) {
@@ -11,4 +10,10 @@ export const RenderComboBox = (list) => {
         })
     }
     return result;
+}
+
+export const GetImageToShow = (extension, base64) => {
+    //data:image/png;base64,
+    const data = "data:image/" + extension.toLowerCase() + ";base64," + base64;
+    return data;
 }

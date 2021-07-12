@@ -1,12 +1,11 @@
 import Index from "../views/Index";
-import Profile from "../views/examples/Profile";
 import Maps from "../views/examples/Maps.js";
 import Tables from "../views/examples/Tables";
 import Icons from "../views/examples/Icons";
 import ScrapCategory from '../views/scrap-categorys/ScrapCategory';
 import User from '../views/users/User';
-import UserDetail from '../views/users/UserDetail';
 import Transaction from '../views/transactions/Transaction';
+import Unit from '../views/unit/Unit'
 
 var AdminRoutes = [
     {
@@ -19,7 +18,7 @@ var AdminRoutes = [
     {
       path: "/users",
       name: "Quản lí người dùng",
-      icon: "ni ni-badge text-blue",
+      icon: "ni ni-badge text-orange",
       component: User,
       layout: "/admin",
     },
@@ -33,8 +32,15 @@ var AdminRoutes = [
     {
       path: "/transaction",
       name: "Quản lí giao dịch",
-      icon: "ni ni-money-coins text-green",
+      icon: "ni ni-money-coins text-red",
       component: Transaction,
+      layout: "/admin",
+    },
+    {
+      path: "/unit",
+      name: "Quản lí đơn vị",
+      icon: "ni ni-ungroup text-black",
+      component: Unit,
       layout: "/admin",
     },
     {

@@ -1,18 +1,9 @@
 import React, {useState} from 'react';
 
-import {
-    Card,
-    CardBody,
-    CardFooter,
-    Row,
-    Col,
-    Form,
-    FormGroup,
-    Input,
-    Button,
-  } from "reactstrap";
+import {Card, CardBody, CardFooter, Row, Col, Button} from "reactstrap";
+import { AvForm, AvField, AvGroup, AvInput } from 'availity-reactstrap-validation';
+import {RenderComboBox} from '../../helpers/CommonHelper';
 
-import ComboBox from '../Commons/ComboBox';
 import { BsArrowClockwise, BsSearch, BsXCircle } from "react-icons/bs";
 import {useDispatch, useSelector} from 'react-redux';
 import {ChangeSCSearchForm, ClearSCSearchForm} from '../../redux/actions/FormAction';
@@ -37,7 +28,7 @@ const SeedData = [
 
 const SCSearchForm = () => {
     const dispatch = useDispatch();
-    //const formData = useSelector(state => state.SCSearchForm)
+    const unitList = useSelector(state => state.FetchUnit);
 
     const [formData, setFormData] = useState(() => initialSCSearchFormState)
 
@@ -82,101 +73,103 @@ const SCSearchForm = () => {
     return (
         <Row className="mt-5">
             <div className="col">
-                <Card className="shadow">
-                    <CardBody>
-                        <Form>
-                            <div className="pl-lg-4">
-                                <Row>
-                                    <Col lg="4">
-                                        <FormGroup>
-                                            <label
-                                                className="form-control-label"
-                                                htmlFor="input-username"
-                                            >
-                                                Tên Loại Phế Liệu
-                                            </label>
-                                            <Input
-                                                className="form-control-alternative"
-                                                name="name"
-                                                type="text"
-                                                value={formData.name}
-                                                onChange={(e) => OnHandleChange(e.target)}
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                    <Col lg="5">
-                                        <FormGroup>
-                                            <label
-                                                className="form-control-label"
-                                                htmlFor="input-username"
-                                            >
-                                                Miêu Tả
-                                            </label>
-                                            <Input
-                                                className="form-control-alternative"
-                                                name="description"
-                                                value={formData.description}
-                                                onChange={(e) => OnHandleChange(e.target)}
-                                                type="text"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                    <Col lg="3">
-                                        <FormGroup>
-                                            <label
-                                                className="form-control-label"
-                                                htmlFor="input-username"
-                                            >
-                                                Đơn vị
-                                            </label>
-                                            <div className="alternative">
-                                                <ComboBox list={SeedData} leftRight={30} 
-                                                        topBottom={10} onSelect={(val) => setFormData({
-                                                            ...formData,
-                                                            unit: parseInt(val)
-                                                        })} 
-                                                        defaultVal={formData.unit}/>
-                                            </div>   
-                                        </FormGroup>
-                                     </Col>
-                                </Row>
-                            </div>
-                        </Form>
-                    </CardBody>
-                    <CardFooter>
-                        <div className="pl-4">
-                                <Row>
-                                    <Col lg="3">
-                                        <Button className="my-4" color="primary" 
-                                                type="button" size="lg" block
-                                                onClick={() => SearchData()}>
-                                            <BsSearch/>
-                                            &nbsp;
-                                            Tìm Kiếm
-                                        </Button>
-                                    </Col>
-                                    <Col lg="3">
-                                        <Button className="my-4" color="primary" type="button" size="lg" block
-                                                onClick={() => Refresh()}>
-                                            <BsArrowClockwise/>
-                                            &nbsp;
-                                            Làm Mới
-                                        </Button>
-                                    </Col>
-                                    <Col lg="3">
-                                        <Button className="my-4" color="primary" 
-                                                type="button" size="lg" 
-                                                onClick={() => ClearForm()}
-                                                block>
-                                            <BsXCircle/>
-                                            &nbsp;
-                                            Xóa
-                                        </Button>
-                                    </Col>
-                                </Row>
-                            </div>
-                    </CardFooter>
-                </Card>
+                <AvForm>
+                    <Card className="shadow">
+                        <CardBody>
+                                <div className="pl-lg-4">
+                                    <Row>
+                                        <Col lg="4">
+                                            <AvGroup>
+                                                <label
+                                                    className="form-control-label"
+                                                    htmlFor="input-username"
+                                                >
+                                                    Tên Loại Phế Liệu
+                                                </label>
+                                                <AvInput
+                                                    className="form-control-alternative"
+                                                    name="name"
+                                                    type="text"
+                                                    value={formData.name}
+                                                    onChange={(e) => OnHandleChange(e.target)}
+                                                />
+                                            </AvGroup>
+                                        </Col>
+                                        <Col lg="5">
+                                            <AvGroup>
+                                                <label
+                                                    className="form-control-label"
+                                                    htmlFor="input-username"
+                                                >
+                                                    Miêu Tả
+                                                </label>
+                                                <AvInput
+                                                    className="form-control-alternative"
+                                                    name="description"
+                                                    value={formData.description}
+                                                    onChange={(e) => OnHandleChange(e.target)}
+                                                    type="textarea"
+                                                />
+                                            </AvGroup>
+                                        </Col>
+                                        <Col lg="3">
+                                            <AvGroup>
+                                                <label
+                                                    className="form-control-label"
+                                                    htmlFor="input-username"
+                                                >
+                                                    Đơn vị
+                                                </label>
+                                                <div className="alternative">
+                                                <AvField type="select" 
+                                                        name="unit" 
+                                                        className="form-control-alternative"
+                                                        value={formData.unit}
+                                                        onChange={(e) => OnHandleChange(e.target)}>
+                                                            <option value=''>----------</option>
+                                                            {RenderComboBox(unitList)}
+                                                </AvField>
+                                                </div>   
+                                            </AvGroup>
+                                        </Col>
+                                    </Row>
+                                </div>
+                        </CardBody>
+                        <CardFooter>
+                            <div className="pl-4">
+                                    <Row>
+                                        <Col lg="3">
+                                            <Button className="my-4" color="primary" 
+                                                    type="button" size="lg" block
+                                                    onClick={() => SearchData()}>
+                                                <BsSearch/>
+                                                &nbsp;
+                                                Tìm Kiếm
+                                            </Button>
+                                        </Col>
+                                        <Col lg="3">
+                                            <Button className="my-4" color="primary" type="button" size="lg" block
+                                                    onClick={() => Refresh()}>
+                                                <BsArrowClockwise/>
+                                                &nbsp;
+                                                Làm Mới
+                                            </Button>
+                                        </Col>
+                                        <Col lg="3">
+                                            <Button className="my-4" color="primary" 
+                                                    type="button" size="lg" 
+                                                    onClick={() => ClearForm()}
+                                                    block>
+                                                <BsXCircle/>
+                                                &nbsp;
+                                                Xóa
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                                </div>
+                        </CardFooter>
+                    </Card>
+                </AvForm>
             </div>
         </Row>
     );

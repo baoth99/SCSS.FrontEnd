@@ -1,4 +1,4 @@
-import React, {useEffect, createRef} from 'react';
+import React, {createRef} from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import { Provider } from 'react-redux';
@@ -25,6 +25,12 @@ import { SnackbarProvider } from 'notistack';
 import NotifierSnack from './components/Commons/NotifierSnack';
 import { MdCancel } from "react-icons/md";
 
+
+import { ConnectedRouter } from 'connected-react-router';
+import history from './routes/History';
+
+
+
 const App = () => {
 
     const notistackRef = createRef();
@@ -35,6 +41,7 @@ const App = () => {
 
     return (
         <Provider store={Store}>
+            
             <AuthProvider userManager={UserManager} store={Store}>
                 <SnackbarProvider 
                     ref={notistackRef}
@@ -50,17 +57,20 @@ const App = () => {
                     )}
                     >
                     <BrowserRouter>
-                        <Switch>                   
-                            <Route path="/signin-oidc" component={SigninOidc}/>
-                            <Route path="/signout-oidc" component={SignoutOidc}/>
-                            <ProtectedRoute/>
-                            <Redirect from="/" to="/admin/dashboard" />                      
-                        </Switch>
-                        <NotifierSnack />
-                        <GlobalLoading/>
+                        <ConnectedRouter history={history}>
+                            <Switch>                   
+                                <Route path="/signin-oidc" component={SigninOidc}/>
+                                <Route path="/signout-oidc" component={SignoutOidc}/>
+                                <ProtectedRoute/>
+                                <Redirect from="/" to="/admin/dashboard" />                      
+                            </Switch>                 
+                            <NotifierSnack />
+                            <GlobalLoading/>
+                        </ConnectedRouter>
                     </BrowserRouter>
                 </SnackbarProvider>
             </AuthProvider>
+            
         </Provider>
     );
 }

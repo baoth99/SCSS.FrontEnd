@@ -5,18 +5,29 @@ import {SCCreateModalReducer,
         ConfirmDialogReducer} from './ModalReducer';
 import NotiStackReducer from './NotiStackReducer';
 import {SCSearchFormReducer,
-        UserSearchFormReducer} from './FormReducer';
+        UserSearchFormReducer,
+        UnitSearchFormReducer} from './FormReducer';
 import {SCTableReducer} from './SCReducer';
 import {UserTableReducer} from './UserReducer';
-        
-export default combineReducers({
+import UnitReducer from './UnitReducer';
+import {FetchUnitReducer} from './FetchDataReducer';
+
+import { connectRouter } from 'connected-react-router';
+
+const RootReducer = (history) => combineReducers({
     Auth: AuthReducer,
     Loading: LoadingReducer,
     SCCreateModal: SCCreateModalReducer,
     NotiStack: NotiStackReducer,
     SCSearchForm: SCSearchFormReducer,
     UserSearchForm: UserSearchFormReducer,
+    UnitSearchForm: UnitSearchFormReducer,
     DataSC: SCTableReducer,
     DataUser: UserTableReducer,
-    ConfirmDialog: ConfirmDialogReducer
-})
+    DataUnit: UnitReducer,
+    ConfirmDialog: ConfirmDialogReducer,
+    FetchUnit: FetchUnitReducer,
+    router: connectRouter(history),
+});
+
+export default RootReducer;

@@ -33,8 +33,6 @@ export const HideConfirmDialog = () => {
 }
 
 
-
-
 export const EnqueSnackBar = (notification) => {
     const key = notification.options && notification.options.key;
     return {

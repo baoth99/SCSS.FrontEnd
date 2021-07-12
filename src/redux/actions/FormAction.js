@@ -1,5 +1,7 @@
 import {CHANGE_SCSEARCHFORM, CLEAR_SCSEARCHFORM,
-        CHANGE_USERSEARCHFORM, CLEAR_USERSEARCHFORM} from '../../utils/constants/ActionFormConstant';
+        CHANGE_USERSEARCHFORM, CLEAR_USERSEARCHFORM,
+        CHANGE_UNITSEARCHFORM, CLEAR_UNITSEARCHFORM} from '../../utils/constants/ActionFormConstant';
+
 
 // User Search Form
 export const ChangeUserSearchForm = (data) => {
@@ -27,5 +29,19 @@ export const ChangeSCSearchForm = (data) => {
 export const ClearSCSearchForm = () => {
     return {
         type: CLEAR_SCSEARCHFORM
+    }
+}
+
+// Unit Search Form
+export const ChangeUnitSearchForm = (data) => {
+    return {
+        type: CHANGE_UNITSEARCHFORM,
+        payload: data
+    }
+}
+
+export const ClearUnitSearchForm = () => {
+    return {
+        type: CLEAR_UNITSEARCHFORM
     }
 }

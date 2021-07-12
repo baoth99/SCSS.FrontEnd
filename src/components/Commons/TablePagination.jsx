@@ -19,17 +19,15 @@ const TablePagination = ({total, dataState, action, formAction}) => {
     }
     let paging = Math.floor(total/PAGING);
 
-    console.log(data.page);
-
     const renderPaginationItem = () => {
         let result = [];
-        for (let i = 1; i <= paging; i++) {
+        for (let i = 0; i <= paging; i++) {
             result[i] = (
-                <PaginationItem key={i} className={data.page === i ? "active" : ""}>
+                <PaginationItem key={i} className={data.page === i + 1 ? "active" : ""}>
                         <PaginationLink
-                            onClick={() => PagingTable(i)}
+                            onClick={() => PagingTable(i + 1)}
                         >
-                            {i}
+                            {i + 1}
                         </PaginationLink>
                 </PaginationItem>
             )        
@@ -88,7 +86,7 @@ const TablePagination = ({total, dataState, action, formAction}) => {
                 {renderPaginationItem()}
 
 
-                <PaginationItem className={data.page === paging ? "disabled" : ""}>
+                <PaginationItem className={data.page === paging + 1 || data.page === 0 ? "disabled" : ""}>
                 <PaginationLink
                     onClick={() => ChangePage(data.page, true)}
                 >

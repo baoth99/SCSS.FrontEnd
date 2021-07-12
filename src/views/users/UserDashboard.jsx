@@ -5,8 +5,6 @@ import UserForm from '../../components/Users/UserForm';
 import UserTable from '../../components/Users/UserTable';
 
 const UserDashboard = () => {
-    
-    
     return (
         <Container className="mt--7" fluid>
                 <UserForm/>

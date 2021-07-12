@@ -7,6 +7,9 @@ export const HIDE_LOADING = 'HIDE_LOADING';
 export const SHOW_CONFIRM_DIALOG = "SHOW_CONFIRM_DIALOG";
 export const HIDE_CONFIRM_DIALOG = "HIDE_CONFIRM_DIALOG";
 
+export const FETCH_UNIT = "FETCH_UNIT";
+export const FETCH_UNIT_SUCCESS = "FETCH_UNIT_SUCCESS";
+
 
 export const STORE_ACCOUNT = 'STORE_ACCOUNT';
 export const STORE_ACCOUNT_ERROR = "STORE_ACCOUNT_ERROR";
@@ -28,7 +31,14 @@ export const REMOVE_SNACKBAR = 'REMOVE_SNACKBAR';
 
 export const SEARCH_SC = "SEARCH_SC";
 export const SEARCH_SC_SUCCESS = "SEARCH_SC_SUCCESS";
+export const UPDATE_SC = "UPDATE_SC"
 export const GET_SC_DETAIL = "GET_SC_DETAIL";
 export const GET_SC_DETAIL_SUCCESS = "GET_SC_DETAIL_SUCCESS";
 export const CREATE_NEW_SC = "CREATE_NEW_SC";
-export const REMOVE_SC = "REMOVE_SC";
+export const REMOVE_SC = "REMOVE_SC";;
+
+
+export const SEARCH_UNIT = "SEARCH_UNIT";
+export const REMOVE_UNIT = "REMOVE_UNIT";
+export const SEARCH_UNIT_SUCCESS = "SEARCH_UNIT_SUCCESS";
+export const CREATE_NEW_UNIT = "CREATE_NEW_UNIT"

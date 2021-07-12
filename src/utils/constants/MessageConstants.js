@@ -1,4 +1,11 @@
-
+export const Notification = (message, status) => {
+    return {
+        message: message,
+        options: {
+            variant: status,
+        }
+    }
+}
 
 export const NOT_APPROVE = "Đợi Chấp Thuận";
 export const ACTIVE = "Đang Hoạt Động";

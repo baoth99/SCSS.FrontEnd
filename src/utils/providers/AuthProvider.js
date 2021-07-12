@@ -16,9 +16,9 @@ const AuthProvider = ({ userManager: manager, store, children }) => {
         }
 
         const onAccessTokenExpired = () => {
+            console.log(`Access token expired`)
             localStorage.clear();
             SignoutRedirect();
-            console.log(`Access token expired`)
         }
 
         const onUserSignedOut = () => {

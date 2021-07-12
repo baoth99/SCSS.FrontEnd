@@ -1,19 +1,32 @@
 import {SEARCH_SC, SEARCH_SC_SUCCESS,
         GET_SC_DETAIL, GET_SC_DETAIL_SUCCESS,
-        CREATE_NEW_SC, REMOVE_SC} from '../../utils/constants/ActionConstants';
+        CREATE_NEW_SC, REMOVE_SC, UPDATE_SC} from '../../utils/constants/ActionConstants';
 
-export const RemoveSC= (id, history) => {
+export const RemoveSC= (id, detail) => {
     return {
         type: REMOVE_SC,
         payload: {
             id: id,
-            history: history
+            detail: detail
         }
     }
 }
 
+export const UpdateSC = ({id, name, unit, image, isDeleteImg, description}) => {
+    return {
+        type: UPDATE_SC,
+        payload: {
+            id: id,
+            name: name,
+            unit: unit,
+            image: image,
+            isDeleteImg: isDeleteImg,
+            description: description
+        }
+    }
+}
 
-export const SearchSC = ({name, description, unit, page, pageSize, sortField, isSortDesc}) => {
+export const SearchSC = ({name, description, unit, page, pageSize}) => {
     return {
         type: SEARCH_SC,
         payload: {
@@ -21,9 +34,7 @@ export const SearchSC = ({name, description, unit, page, pageSize, sortField, is
             description: description,
             unit: unit,
             page: page,
-            pageSize: pageSize,
-            sortField: sortField,
-            isSortDesc: isSortDesc
+            pageSize: pageSize
         }
     }
 }
@@ -60,14 +71,15 @@ export const GetSCDetail = (id) => {
     }
 }
 
-export const GetSCDetailSuccess = (id, name, imageUrl, unit, description, createdBy, createdTime) => {
+
+export const GetSCDetailSuccess = ({id, name, image, unitId, description, createdBy, createdTime}) => {
     return {
-        type: GET_SC_DETAIL,
+        type: GET_SC_DETAIL_SUCCESS,
         payload: {
             id: id,
             name: name,
-            imageUrl: imageUrl,
-            unit: unit,
+            image: image,
+            unit: unitId,
             description: description,
             createdBy: createdBy,
             createdTime: createdTime

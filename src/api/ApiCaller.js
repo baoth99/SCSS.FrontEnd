@@ -17,6 +17,14 @@ export const ApiGet = async (endpoint, parameters) => {
     });
 }
 
+export const ApiDelete = async (endpoint, parameters) => {
+    return await axios({
+        method: METHOD.DELETE,
+        url: BaseUrl.WebApi + API_VERSION.API_V1 + endpoint,
+        params: parameters 
+    });
+}
+
 export const ApiPost = async (endpoint, body) => {
     return await axios({
         method: METHOD.POST,
