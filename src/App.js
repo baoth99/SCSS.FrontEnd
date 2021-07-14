@@ -8,26 +8,26 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/scss/argon-dashboard-react.scss";
 
 
-import ProtectedRoute from './routes/ProtectedRoute';
+import ProtectedRoute from './Infrastucture/routes/ProtectedRoute';
 
-import SigninOidc from './views/redirect/SigninOidc';
-import SignoutOidc from './views/redirect/SignoutOidc';
+import SigninOidc from './Presentation/views/redirect/SigninOidc';
+import SignoutOidc from './Presentation/views/redirect/SignoutOidc';
 
-import AuthProvider from './utils/providers/AuthProvider';
+import AuthProvider from './Infrastucture/utils/providers/AuthProvider';
 
-import UserManager from './services/AuthService';
+import UserManager from './Infrastucture/services/AuthService';
 
-import Store from './redux/stores/ApplicationStore';
-import GlobalLoading from 'components/Loadings/GlobalLoading';
+import Store from './Application/redux/stores/ApplicationStore';
+import GlobalLoading from './Presentation/components/Loadings/GlobalLoading';
 import Collapse from '@material-ui/core/Collapse';
 import { SnackbarProvider } from 'notistack';
 
-import NotifierSnack from './components/Commons/NotifierSnack';
+import NotifierSnack from './Presentation/components/Commons/NotifierSnack';
 import { MdCancel } from "react-icons/md";
 
 
 import { ConnectedRouter } from 'connected-react-router';
-import history from './routes/History';
+import history from './Infrastucture/routes/History';
 
 
 
