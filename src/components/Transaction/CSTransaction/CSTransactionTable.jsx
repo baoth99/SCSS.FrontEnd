@@ -10,7 +10,9 @@ import {
 import {CS_TRANSACTION_COLUMN} from '../../../utils/constants/CommonConstants';
 import TransactionColumn from '../TransactionColumn';
 import CSTransactionRow from './CSTransactionRow';
-
+import TablePagination from '../../Commons/TablePagination';
+import {SearchCSTransaction} from '../../../redux/actions/TransactionAction';
+import {ChangeCSTransactionSearchForm} from '../../../redux/actions/FormAction';
 
 const SeedData = [
     {
@@ -99,6 +101,8 @@ const ShowCSTransactions = (data) => {
 
 
 const CSTransactionTable = () => {
+    const formData = state => state.CSTransactionSearchForm;
+
     return (
         <Row className="mt-4">
             <div className="col">
@@ -116,6 +120,7 @@ const CSTransactionTable = () => {
                             {ShowCSTransactions(SeedData)}
                         </tbody>
                     </Table>
+                    <TablePagination total={40} dataState={formData} action={SearchCSTransaction} formAction={ChangeCSTransactionSearchForm}/>
                 </Card>
             </div>
         </Row>

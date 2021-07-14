@@ -18,7 +18,7 @@ const TablePagination = ({total, dataState, action, formAction}) => {
         return null;
     }
     let paging = Math.floor(total/PAGING);
-
+    
     const renderPaginationItem = () => {
         let result = [];
         for (let i = 0; i <= paging; i++) {

@@ -8,7 +8,7 @@ import {
   } from "reactstrap";
 
 
-const DCTransactionRow = ({stt, id, transactionCode, dealerName, dealerPhone, collectorName, collectorPhone, transactionTime, totalQuantity, totalPrice}) => {
+const DCTransactionRow = ({stt, id, transactionCode, dealerName, dealerPhone, collectorName, collectorPhone, transactionTime, totalPrice}) => {
     return (
         <tr onDoubleClick={() => alert(id)} style={{cursor: 'pointer'}}>
             <th scope="row">
@@ -57,13 +57,6 @@ const DCTransactionRow = ({stt, id, transactionCode, dealerName, dealerPhone, co
                 <Media>
                     <span className="mb-0 text-sm">
                         {transactionTime}
-                    </span>
-                </Media>
-            </td>
-            <td>
-                <Media>
-                    <span className="mb-0 text-sm">
-                       {totalQuantity}
                     </span>
                 </Media>
             </td>

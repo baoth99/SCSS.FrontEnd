@@ -43,6 +43,7 @@ const SCSearchForm = () => {
     }
 
     const SearchData = () => {
+        console.log(formData);
         dispatch(
             ChangeSCSearchForm({
                 ...formData
@@ -57,9 +58,7 @@ const SCSearchForm = () => {
     const Refresh = () => {
         setFormData(initialSCSearchFormState)
         dispatch(
-            ChangeSCSearchForm({
-                ...initialSCSearchFormState
-            })
+            ClearSCSearchForm()
         );
         dispatch(
             SearchSC({...initialSCSearchFormState})
@@ -95,20 +94,20 @@ const SCSearchForm = () => {
                                                 />
                                             </AvGroup>
                                         </Col>
-                                        <Col lg="5">
+                                        <Col lg="4">
                                             <AvGroup>
                                                 <label
                                                     className="form-control-label"
                                                     htmlFor="input-username"
                                                 >
-                                                    Miêu Tả
+                                                    Người Tạo
                                                 </label>
                                                 <AvInput
                                                     className="form-control-alternative"
-                                                    name="description"
-                                                    value={formData.description}
+                                                    name="createdBy"
+                                                    type="text"
+                                                    value={formData.createdBy}
                                                     onChange={(e) => OnHandleChange(e.target)}
-                                                    type="textarea"
                                                 />
                                             </AvGroup>
                                         </Col>
@@ -132,6 +131,24 @@ const SCSearchForm = () => {
                                                 </div>   
                                             </AvGroup>
                                         </Col>
+                                        <Col lg="5">
+                                            <AvGroup>
+                                                <label
+                                                    className="form-control-label"
+                                                    htmlFor="input-username"
+                                                >
+                                                    Miêu Tả
+                                                </label>
+                                                <AvInput
+                                                    className="form-control-alternative"
+                                                    name="description"
+                                                    value={formData.description}
+                                                    onChange={(e) => OnHandleChange(e.target)}
+                                                    type="textarea"
+                                                />
+                                            </AvGroup>
+                                        </Col>
+                                        
                                     </Row>
                                 </div>
                         </CardBody>

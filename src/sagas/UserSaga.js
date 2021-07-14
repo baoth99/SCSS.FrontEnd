@@ -1,12 +1,17 @@
 import {SearchUser, SearchUserSuccess} from '../redux/actions/UserAction';
 import {ShowLoading, HideLoading} from '../redux/actions/LoadingAction';
-
+import {SEARCH_USER} from '../utils/constants/ActionConstants'
 import { call, put, takeEvery, takeLatest, fork, take, delay } from 'redux-saga/effects';
 
-export function* SearchUserSaga({payload}) {
+function* SearchUserSaga({payload}) {
     yield put(ShowLoading());
-    const data = payload;
-    
+    console.log(payload)
 
     yield put(HideLoading());
+}
+
+
+export default function* UserSaga() {
+    console.log("User Saga is running !");
+    yield takeEvery(SEARCH_USER, SearchUserSaga);
 }

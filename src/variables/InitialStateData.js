@@ -5,6 +5,37 @@ export const initialDataSCTable = {
 
 }
 
+export const initialDCTransactionSearchFormState = {
+    transactionCode: "",
+    dealerName: "",
+    dealerPhone: "",
+    dealAddress: "",
+    collectorName: "",
+    collectorPhone: "",
+    fromDate: "",
+    toDate: "",
+    fromTime: "",
+    toTime: "",
+    page : 1, 
+    pageSize: PAGING
+}
+
+export const initialCSTransactionSearchFormState = {
+    transactionCode: "",
+    sellerName: "",
+    sellerPhone: "",
+    sellerAddress: "",
+    collectorName: "",
+    collectorPhone: "",
+    fromDate: "",
+    toDate: "",
+    fromTime: "",
+    toTime: "",
+    page : 1, 
+    pageSize: PAGING
+}
+
+
 export const initialUnitSearchFormState = {
     name: "",
     page : 1, 
@@ -26,7 +57,7 @@ export const initialUserFormState = {
 
 export const initialSCCreateFormState = {
     name: "",
-    unit: '',
+    unit: "",
     image: null,
     description: ""
 }
@@ -34,6 +65,7 @@ export const initialSCCreateFormState = {
 export const initialSCSearchFormState = {
     name: "",
     unit: "",
+    createdBy: "" ,
     description: "",
     page : 1, 
     pageSize: PAGING

@@ -9,8 +9,9 @@ import {
 import {DC_TRANSACTION_COLUMN} from '../../../utils/constants/CommonConstants'
 import TransactionColumn from '../TransactionColumn';
 import DCTransactionRow from './DCTransactionRow';
-
-
+import TablePagination from '../../Commons/TablePagination';
+import {SearchDCTransaction} from '../../../redux/actions/TransactionAction';
+import {ChangeDCTransactionSearchForm} from '../../../redux/actions/FormAction';
 const SeedData = [
     {
         id: "6f71d3da-0ee5-4a49-885d-d222c06a5ee7",
@@ -94,8 +95,7 @@ const ShowDCTransactions = (data) => {
                     id={val.id} transactionCode={val.transactionCode} 
                     dealerName={val.dealerName} dealerPhone={val.dealerPhone}
                     collectorName={val.collectorName} collectorPhone={val.collectorPhone}
-                    transactionTime={val.transactionTime} 
-                    totalQuantity={val.totalQuantity} totalPrice={val.totalPrice}
+                    transactionTime={val.transactionTime}  totalPrice={val.totalPrice}
                     />
             )
         })
@@ -104,6 +104,8 @@ const ShowDCTransactions = (data) => {
 }
 
 const DCTransactionTable = () => {
+    const formData = state => state.DCTransactionSearchForm;
+
     return (
         <Row className="mt-4">
             <div className="col">
@@ -121,6 +123,7 @@ const DCTransactionTable = () => {
                             {ShowDCTransactions(SeedData)}
                         </tbody>
                     </Table>
+                    <TablePagination total={40} dataState={formData} action={SearchDCTransaction} formAction={ChangeDCTransactionSearchForm}/>
                 </Card>
             </div>
         </Row>

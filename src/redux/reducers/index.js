@@ -6,12 +6,14 @@ import {SCCreateModalReducer,
 import NotiStackReducer from './NotiStackReducer';
 import {SCSearchFormReducer,
         UserSearchFormReducer,
-        UnitSearchFormReducer} from './FormReducer';
+        UnitSearchFormReducer,
+        DCTransactionSearchFormReducer,
+        CSTransactionSearchFormReducer} from './FormReducer';
 import {SCTableReducer} from './SCReducer';
 import {UserTableReducer} from './UserReducer';
 import UnitReducer from './UnitReducer';
 import {FetchUnitReducer} from './FetchDataReducer';
-
+import {DCTransactionTableReducer, CSTransactionTableReducer} from './TransactionReducer'
 import { connectRouter } from 'connected-react-router';
 
 const RootReducer = (history) => combineReducers({
@@ -22,9 +24,13 @@ const RootReducer = (history) => combineReducers({
     SCSearchForm: SCSearchFormReducer,
     UserSearchForm: UserSearchFormReducer,
     UnitSearchForm: UnitSearchFormReducer,
+    DCTransactionSearchForm: DCTransactionSearchFormReducer,
+    CSTransactionSearchForm: CSTransactionSearchFormReducer,
     DataSC: SCTableReducer,
     DataUser: UserTableReducer,
     DataUnit: UnitReducer,
+    DataDCTransaction: DCTransactionTableReducer,
+    DataCSTransaction: CSTransactionTableReducer,
     ConfirmDialog: ConfirmDialogReducer,
     FetchUnit: FetchUnitReducer,
     router: connectRouter(history),

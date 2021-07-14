@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 
 
-import {Card, CardBody, CardFooter, Row, Col, Button} from "reactstrap";
+import {Card, CardBody, Row, Col, Button} from "reactstrap";
 import { AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation';
 import { BsArrowClockwise, BsSearch, BsXCircle } from "react-icons/bs";
 import {initialUnitSearchFormState} from '../../variables/InitialStateData';
 import {useDispatch} from 'react-redux';
 import {ChangeUnitSearchForm, ClearUnitSearchForm} from '../../redux/actions/FormAction';
-import {SearchUnit, CreateNewUnit} from '../../redux/actions/UnitAction';
+import {SearchUnit} from '../../redux/actions/UnitAction';
 
 const UnitSearchForm = () => {
     const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const UnitSearchForm = () => {
     const Refresh = () => {
         setFormData(initialUnitSearchFormState);
         dispatch(
-            ChangeUnitSearchForm(initialUnitSearchFormState)
+            ClearUnitSearchForm()
         )
         dispatch(
             SearchUnit(initialUnitSearchFormState)

@@ -1,6 +1,6 @@
 import {SEARCH_USER, SEARCH_USER_SUCCESS, GET_USER_DETAIL, GET_USER_DETAIL_SUCCESS} from '../../utils/constants/ActionConstants';
 
-export const SearchUser = ({phone, name, email, address, idCard, gender, role, status, page, pageSize, sortField, isSortDesc}) => {
+export const SearchUser = ({phone, name, email, address, idCard, gender, role, status, page, pageSize}) => {
     return {
         type: SEARCH_USER,
         payload: {
@@ -12,9 +12,7 @@ export const SearchUser = ({phone, name, email, address, idCard, gender, role, s
             gender: gender,
             role: role, status,
             page: page,
-            page: pageSize,
-            sortField: sortField,
-            isSortDesc: isSortDesc
+            page: pageSize
         }
     }
 }

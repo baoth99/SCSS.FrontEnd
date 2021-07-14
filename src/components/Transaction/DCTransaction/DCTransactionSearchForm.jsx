@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {
     Card,
@@ -8,11 +8,50 @@ import {
     Row,
     Button
   } from "reactstrap";
-
-  import { AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation';
-
+import {useDispatch} from 'react-redux';
+import { AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation';
 import { BsArrowClockwise, BsSearch, BsXCircle } from "react-icons/bs";
+import {initialDCTransactionSearchFormState} from '../../../variables/InitialStateData';
+import {ChangeDCTransactionSearchForm, ClearDCTransactionSearchForm} from '../../../redux/actions/FormAction';
+import {SearchDCTransaction} from '../../../redux/actions/TransactionAction'
+
 const DCTransactionSearchForm = () => {
+
+    const [FormData, setFormData] = useState(() => initialDCTransactionSearchFormState);
+    const dispatch = useDispatch();
+
+    const OnHandleChange = (evt) => {
+        let name = evt.name;
+        setFormData({
+            ...FormData,
+            [name]: evt.value
+        })
+    }
+
+    const OnHandleSearch = () => {
+        dispatch(
+            ChangeDCTransactionSearchForm({...FormData})
+        );
+        dispatch(
+            SearchDCTransaction({...FormData})
+        );
+
+    }
+
+    const OnHandleRefresh = () => {
+        setFormData(initialDCTransactionSearchFormState);
+        dispatch(
+            ClearDCTransactionSearchForm()
+        );
+        dispatch(
+            SearchDCTransaction(initialDCTransactionSearchFormState)
+        );
+    }
+
+    const OnHandleClearForm = () => {
+        setFormData(initialDCTransactionSearchFormState)
+    }
+
     return (
         <Row className="mt-3">
             <div className="col">
@@ -34,8 +73,10 @@ const DCTransactionSearchForm = () => {
                                         </label>
                                         <AvInput
                                             className="form-control-alternative"
-                                            name="name"
                                             type="text"
+                                            name="transactionCode"
+                                            onChange={(e) => OnHandleChange(e.target)}
+                                            value={FormData.transactionCode}
                                         />
                                     </AvGroup>
                                 </Col>
@@ -49,8 +90,10 @@ const DCTransactionSearchForm = () => {
                                         </label>
                                         <AvInput
                                             className="form-control-alternative"
-                                            name="name"
                                             type="text"
+                                            name="dealerName"
+                                            onChange={(e) => OnHandleChange(e.target)}
+                                            value={FormData.dealerName}
                                         />
                                     </AvGroup>
                                 </Col>
@@ -64,8 +107,10 @@ const DCTransactionSearchForm = () => {
                                         </label>
                                         <AvInput
                                             className="form-control-alternative"
-                                            name="name"
-                                            type="text"
+                                            type="number"
+                                            name="dealerPhone"
+                                            onChange={(e) => OnHandleChange(e.target)}
+                                            value={FormData.dealerPhone}
                                         />
                                     </AvGroup>
                                 </Col>
@@ -79,8 +124,10 @@ const DCTransactionSearchForm = () => {
                                         </label>
                                         <AvInput
                                             className="form-control-alternative"
-                                            name="name"
                                             type="textarea"
+                                            name="dealAddress"
+                                            onChange={(e) => OnHandleChange(e.target)}
+                                            value={FormData.dealAddress}
                                         />
                                     </AvGroup>
                                 </Col>
@@ -94,8 +141,10 @@ const DCTransactionSearchForm = () => {
                                         </label>
                                         <AvInput
                                             className="form-control-alternative"
-                                            name="name"
                                             type="text"
+                                            name="collectorName"
+                                            onChange={(e) => OnHandleChange(e.target)}
+                                            value={FormData.collectorName}
                                         />
                                     </AvGroup>
                                 </Col>
@@ -109,8 +158,10 @@ const DCTransactionSearchForm = () => {
                                         </label>
                                         <AvInput
                                             className="form-control-alternative"
-                                            name="name"
-                                            type="text"
+                                            type="number"
+                                            name="collectorPhone"
+                                            onChange={(e) => OnHandleChange(e.target)}
+                                            value={FormData.collectorPhone}
                                         />
                                     </AvGroup>
                                 </Col>
@@ -124,8 +175,10 @@ const DCTransactionSearchForm = () => {
                                         </label>
                                         <AvInput
                                             className="form-control-alternative"
-                                            name="name"
                                             type="date"
+                                            name="fromDate"
+                                            onChange={(e) => OnHandleChange(e.target)}
+                                            value={FormData.fromDate}
                                         />
                                     </AvGroup>
                                 </Col>
@@ -139,8 +192,10 @@ const DCTransactionSearchForm = () => {
                                         </label>
                                         <AvInput
                                             className="form-control-alternative"
-                                            name="name"
                                             type="date"
+                                            name="toDate"
+                                            onChange={(e) => OnHandleChange(e.target)}
+                                            value={FormData.toDate}
                                         />
                                     </AvGroup>
                                 </Col>
@@ -154,8 +209,10 @@ const DCTransactionSearchForm = () => {
                                         </label>
                                         <AvInput
                                             className="form-control-alternative"
-                                            name="name"
                                             type="time"
+                                            name="fromTime"
+                                            onChange={(e) => OnHandleChange(e.target)}
+                                            value={FormData.fromTime}
                                         />
                                     </AvGroup>
                                 </Col>
@@ -169,8 +226,10 @@ const DCTransactionSearchForm = () => {
                                         </label>
                                         <AvInput
                                             className="form-control-alternative"
-                                            name="name"
                                             type="time"
+                                            name="toTime"
+                                            onChange={(e) => OnHandleChange(e.target)}
+                                            value={FormData.toTime}
                                         />
                                     </AvGroup>
                                 </Col>
@@ -183,7 +242,9 @@ const DCTransactionSearchForm = () => {
                             <Row>
                                 <Col lg="3">
                                     <Button className="my-4" color="primary" 
-                                            type="button" size="lg" block>
+                                            type="button" size="lg"
+                                            onClick={() => OnHandleSearch()}
+                                            block>
                                         <BsSearch/>
                                         &nbsp;
                                         Tìm Kiếm
@@ -192,6 +253,7 @@ const DCTransactionSearchForm = () => {
                                 <Col lg="3">
                                     <Button className="my-4" color="primary" 
                                             type="button" size="lg" 
+                                            onClick={() => OnHandleRefresh()}
                                             block>
                                         <BsArrowClockwise/>
                                         &nbsp;
@@ -201,6 +263,7 @@ const DCTransactionSearchForm = () => {
                                 <Col lg="3">
                                     <Button className="my-4" color="primary" 
                                             type="button" size="lg" 
+                                            onClick={() => OnHandleClearForm()}
                                             block>
                                         <BsXCircle/>
                                         &nbsp;

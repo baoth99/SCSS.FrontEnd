@@ -26,13 +26,14 @@ export const UpdateSC = ({id, name, unit, image, isDeleteImg, description}) => {
     }
 }
 
-export const SearchSC = ({name, description, unit, page, pageSize}) => {
+export const SearchSC = ({name, description, unit, createdBy , page, pageSize}) => {
     return {
         type: SEARCH_SC,
         payload: {
             name: name,
             description: description,
             unit: unit,
+            createdBy: createdBy,
             page: page,
             pageSize: pageSize
         }

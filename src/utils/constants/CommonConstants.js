@@ -24,19 +24,18 @@ export const MALE_NUM = 1;
 export const FEMALE_NUM = 2;
 
 export const DC_TRANSACTION_COLUMN = [
-    'Số Thứ Tự',
-    'Mã Giao Dịch',
-    'Tên Chủ Vựa',
-    'Số ĐT Chủ Vựa',
-    'Tên Người Thu Gom',
-    'Số ĐT Người Thu Gom',
-    'Thời Điểm Giao Dịch',
-    'Tổng Số Lượng',
-    'Tổng Giá'
+    "STT",
+    "Mã Giao Dịch",
+    "Tên Chủ Vựa",
+    "Số ĐT Chủ Vựa",
+    "Tên Người Thu Gom",
+    "Số ĐT Người Thu Gom",
+    "Thời Điểm Giao Dịch",
+    "Tổng Giá"
 ]
 
 export const CS_TRANSACTION_COLUMN = [
-    'Số Thứ Tự',
+    'STT',
     'Mã Giao Dịch',
     'Tên Người Bán',
     'Số ĐT Người Bán',
