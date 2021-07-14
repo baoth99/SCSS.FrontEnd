@@ -7,11 +7,8 @@ import "assets/scss/argon-dashboard-react.scss";
 import ProtectedRoute from './Infrastucture/routes/ProtectedRoute';
 import SigninOidc from './Presentation/views/redirect/SigninOidc';
 import SignoutOidc from './Presentation/views/redirect/SignoutOidc';
-
 import AuthProvider from './Infrastucture/utils/providers/AuthProvider';
-
 import UserManager from './Infrastucture/services/AuthService';
-
 import Store from './Application/redux/stores/ApplicationStore';
 import GlobalLoading from './Presentation/components/Loadings/GlobalLoading';
 import Collapse from '@material-ui/core/Collapse';
