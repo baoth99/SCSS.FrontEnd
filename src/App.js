@@ -19,13 +19,10 @@ import { ConnectedRouter } from 'connected-react-router';
 import history from './Infrastucture/routes/History';
 
 const App = () => {
-
     const notistackRef = createRef();
-
     const onClickDismiss = key => () => { 
         notistackRef.current.closeSnackbar(key);
     }
-
     return (
         <Provider store={Store}>
             
