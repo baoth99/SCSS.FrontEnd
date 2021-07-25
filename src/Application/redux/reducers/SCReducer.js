@@ -39,7 +39,7 @@ export const SCTableReducer = (state = initialDataSCTable, action) => {
         }
         case REMOVE_SC: {
             return {
-                id: action.payload.id,
+                ...state
             }
         }
         default:{

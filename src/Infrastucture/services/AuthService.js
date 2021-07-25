@@ -13,19 +13,19 @@ const config = {
 const userManager = new UserManager(config)
 
 
-export const SigninRedirect = () => {
-    return userManager.signinRedirect().then(x => {
+export const SigninRedirect = async () => {
+    return await userManager.signinRedirect().then(x => {
         console.log(x)
     }).catch(err => {
         console.log(err);
     })
 }
 
-export const SigninRedirectCallback = () => {
-    return userManager.signinRedirectCallback();
+export const SigninRedirectCallback = async () => {
+    return await userManager.signinRedirectCallback();
 }
 
-export const SignoutRedirect = () => {
+export const SignoutRedirect =  () => {
     userManager.clearStaleState()
     userManager.removeUser()
     return userManager.signoutRedirect()

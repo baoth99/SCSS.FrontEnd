@@ -10,20 +10,6 @@ import {ChangeSCSearchForm, ClearSCSearchForm} from '../../../Application/redux/
 import {initialSCSearchFormState} from '../../../Infrastucture/utils/variables/InitialStateData';
 import {SearchSC} from '../../../Application/redux/actions/SCAction';
 
-const SeedData = [
-    {
-        key: 1,
-        val: "Kg"
-    },
-    {
-        key: 2,
-        val :"Gam"
-    },
-    {
-        key: 3,
-        val :"Tấn"
-    }
-]
 
 
 const SCSearchForm = () => {
@@ -43,7 +29,6 @@ const SCSearchForm = () => {
     }
 
     const SearchData = () => {
-        console.log(formData);
         dispatch(
             ChangeSCSearchForm({
                 ...formData
@@ -120,14 +105,14 @@ const SCSearchForm = () => {
                                                     Đơn vị
                                                 </label>
                                                 <div className="alternative">
-                                                <AvField type="select" 
-                                                        name="unit" 
-                                                        className="form-control-alternative"
-                                                        value={formData.unit}
-                                                        onChange={(e) => OnHandleChange(e.target)}>
-                                                            <option value=''>----------</option>
-                                                            {RenderComboBox(unitList)}
-                                                </AvField>
+                                                    <AvField type="select" 
+                                                            name="unit" 
+                                                            className="form-control-alternative"
+                                                            value={formData.unit}
+                                                            onChange={(e) => OnHandleChange(e.target)}>
+                                                                <option value=''>----------</option>
+                                                                {RenderComboBox(unitList)}
+                                                    </AvField>
                                                 </div>   
                                             </AvGroup>
                                         </Col>

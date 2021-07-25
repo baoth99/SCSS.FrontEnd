@@ -113,7 +113,7 @@ const Sidebar = (props) => {
             >
               <DropdownItem>Action</DropdownItem>
               <DropdownItem>Another action</DropdownItem>
-              <DropdownItem divider />
+              <DropdownItem divider />Ư
               <DropdownItem>Something else here</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>

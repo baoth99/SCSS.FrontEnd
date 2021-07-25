@@ -2,7 +2,7 @@ import React from 'react';
 
 
 //core components
-import Header from "../../components/Headers/Header";
+import ScreenHeader from "../../components/Headers/ScreenHeader";
 import UserDashboard from './UserDashboard';
 import {Switch, useLocation} from 'react-router-dom';
 import {GetUserRoutes} from '../../../Infrastucture/routes/SystemRoutes';
@@ -11,7 +11,8 @@ const User = () => {
     const location = useLocation();
     return (
         <>
-            <Header />
+            <ScreenHeader />
+            {/* Page content */}   
             {location.pathname === "/admin/users" ? (<UserDashboard/>) : null}       
             <Switch>
                 {GetUserRoutes()}

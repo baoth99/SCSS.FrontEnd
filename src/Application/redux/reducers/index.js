@@ -8,10 +8,15 @@ import {SCSearchFormReducer,
         UserSearchFormReducer,
         UnitSearchFormReducer,
         DCTransactionSearchFormReducer,
-        CSTransactionSearchFormReducer} from './FormReducer';
+        CSTransactionSearchFormReducer,
+        BookingSearchFormReducer,
+        DCFeedbackSearchFormReducer,
+        CSFeedbackSearchFormReducer} from './FormReducer';
 import {SCTableReducer} from './SCReducer';
 import {UserTableReducer} from './UserReducer';
 import UnitReducer from './UnitReducer';
+import BookingReducer from './BookingReducer';
+import {DCFeedbackListReducer, CSFeedbackListReducer} from './FeedbackReducer';
 import {FetchUnitReducer} from './FetchDataReducer';
 import {DCTransactionTableReducer, CSTransactionTableReducer} from './TransactionReducer'
 import { connectRouter } from 'connected-react-router';
@@ -26,11 +31,17 @@ const RootReducer = (history) => combineReducers({
     UnitSearchForm: UnitSearchFormReducer,
     DCTransactionSearchForm: DCTransactionSearchFormReducer,
     CSTransactionSearchForm: CSTransactionSearchFormReducer,
+    BookingSearchForm: BookingSearchFormReducer,
+    DCFeedbackSearchForm: DCFeedbackSearchFormReducer,
+    CSFeedbackSearchForm: CSFeedbackSearchFormReducer,
     DataSC: SCTableReducer,
     DataUser: UserTableReducer,
     DataUnit: UnitReducer,
     DataDCTransaction: DCTransactionTableReducer,
     DataCSTransaction: CSTransactionTableReducer,
+    DataDCFeedback :DCFeedbackListReducer,
+    DataCSFeedback: CSFeedbackListReducer,
+    DataBooking: BookingReducer,
     ConfirmDialog: ConfirmDialogReducer,
     FetchUnit: FetchUnitReducer,
     router: connectRouter(history),

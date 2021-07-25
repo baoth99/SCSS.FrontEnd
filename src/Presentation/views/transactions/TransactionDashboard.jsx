@@ -1,27 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Card,
     CardBody,
     Row,
     Nav, NavItem, NavLink,
     TabContent, TabPane,
-    Col,
     Container
   } from "reactstrap";
 
 import classnames from 'classnames';
-
+import {useDispatch} from 'react-redux'
 import DCTransactionTab from './DCTransactionTab';
 import CSTransactionTab from './CSTransactionTab';
+import {SearchDCTransaction, SearchCSTransaction} from '../../../Application/redux/actions/TransactionAction';
+import {initialDCTransactionSearchFormState,
+        initialCSTransactionSearchFormState} from '../../../Infrastucture/utils/variables/InitialStateData';
 
 const TransactionDashboard = () => {
 
+    const dispatch = useDispatch();    
     const [activeTab, setActiveTab] = useState('1');
+    useEffect(() => {
+        dispatch(
+            SearchDCTransaction({...initialDCTransactionSearchFormState}),
+            SearchCSTransaction({...initialCSTransactionSearchFormState})
+        )
+    }, []);
 
     const toggle = tab => {
         if(activeTab !== tab) setActiveTab(tab);
     }
-
+    
     return (
         <Container className="mt--7" fluid>
             <Row className="mt-5">

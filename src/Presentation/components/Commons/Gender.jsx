@@ -6,9 +6,9 @@ const Gender = ({gender}) => {
     return (
         <Media>
             <span className="mb-0 text-sm">                
-                {gender ? <BiMale/> : <BiFemale/>}
+                {gender === 1 ? <BiMale/> : <BiFemale/>}
                 &nbsp;
-                {gender ? MALE : FEMALE}
+                {gender === 1 ? MALE : FEMALE}
             </span>
         </Media>
     );

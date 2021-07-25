@@ -86,7 +86,7 @@ const DCTransactionSearchForm = () => {
                                             className="form-control-label"
                                             htmlFor="input-username"
                                         >
-                                            Tên Chủ Vựa
+                                            Tên Vựa
                                         </label>
                                         <AvInput
                                             className="form-control-alternative"

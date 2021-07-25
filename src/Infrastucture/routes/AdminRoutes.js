@@ -5,7 +5,10 @@ import Icons from "../../Presentation/views/examples/Icons";
 import ScrapCategory from '../../Presentation/views/scrap-categorys/ScrapCategory';
 import User from '../../Presentation/views/users/User';
 import Transaction from '../../Presentation/views/transactions/Transaction';
-import Unit from '../../Presentation/views/unit/Unit'
+import Unit from '../../Presentation/views/unit/Unit';
+import Booking from '../../Presentation/views/booking/Booking';
+import Feedback from '../../Presentation/views/feedback/Feedback';
+import Finance from '../../Presentation/views/finance/Finance';
 
 var AdminRoutes = [
     {
@@ -30,10 +33,24 @@ var AdminRoutes = [
       layout: "/admin",
     },
     {
+      path: "/booking",
+      name: "Quản lí đặt lịch",
+      icon: "ni ni-bullet-list-67 text-blue",
+      component: Booking,
+      layout: "/admin",
+    },
+    {
       path: "/transaction",
       name: "Quản lí giao dịch",
-      icon: "ni ni-money-coins text-red",
+      icon: "ni ni-archive-2 text-orange",
       component: Transaction,
+      layout: "/admin",
+    },
+    {
+      path: "/feedback",
+      name: "Ý kiến phản hồi",
+      icon: "ni ni-chat-round text-yellow",
+      component: Feedback,
       layout: "/admin",
     },
     {
@@ -41,6 +58,13 @@ var AdminRoutes = [
       name: "Quản lí đơn vị",
       icon: "ni ni-ungroup text-black",
       component: Unit,
+      layout: "/admin",
+    },
+    {
+      path: "/finance",
+      name: "Quản lí tài chính",
+      icon: "ni ni-money-coins text-red",
+      component: Finance,
       layout: "/admin",
     },
     {

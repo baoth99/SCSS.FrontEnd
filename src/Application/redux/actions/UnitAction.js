@@ -1,10 +1,13 @@
 import {SEARCH_UNIT, SEARCH_UNIT_SUCCESS, CREATE_NEW_UNIT, REMOVE_UNIT} from '../../../Infrastucture/utils/constants/ActionConstants';
 
-export const SearchUnit = ({name ,page, pageSize}) => {
+export const SearchUnit = ({name , fromDate, toDate, createdBy, page, pageSize}) => {
     return {
         type: SEARCH_UNIT,
         payload: {
             name: name,
+            fromDate: fromDate,
+            toDate: toDate,
+            createdBy: createdBy,
             page: page,
             pageSize: pageSize
         }

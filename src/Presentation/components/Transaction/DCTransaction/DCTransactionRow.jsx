@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import {
     DropdownMenu,
     DropdownItem,
@@ -9,8 +10,15 @@ import {
 
 
 const DCTransactionRow = ({stt, id, transactionCode, dealerName, dealerPhone, collectorName, collectorPhone, transactionTime, totalPrice}) => {
+    const history = useHistory();
+    const path = "/admin/transaction/DC/" + id;
+
+    const GoToTransactionDetai = () => {
+        history.push(path);
+    }
+
     return (
-        <tr onDoubleClick={() => alert(id)} style={{cursor: 'pointer'}}>
+        <tr onDoubleClick={() => GoToTransactionDetai()} style={{cursor: 'pointer'}}>
             <th scope="row">
                 <Media>
                     <span className="mb-0 text-sm">
@@ -79,7 +87,7 @@ const DCTransactionRow = ({stt, id, transactionCode, dealerName, dealerPhone, co
                     <i className="fas fa-ellipsis-v" />
                     </DropdownToggle>
                     <DropdownMenu className="dropdown-menu-arrow" right>
-                    <DropdownItem onClick={() => alert(id)}>
+                    <DropdownItem onClick={() => GoToTransactionDetai()}>
                         Chi Tiết
                     </DropdownItem>
                     </DropdownMenu>

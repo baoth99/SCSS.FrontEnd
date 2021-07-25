@@ -13,7 +13,7 @@ import CSTransactionRow from './CSTransactionRow';
 import TablePagination from '../../Commons/TablePagination';
 import {SearchCSTransaction} from '../../../../Application/redux/actions/TransactionAction';
 import {ChangeCSTransactionSearchForm} from '../../../../Application/redux/actions/FormAction';
-
+import {useSelector} from 'react-redux';
 const SeedData = [
     {
         id: "6f71d3da-0ee5-4a49-885d-d222c06a5ee7",
@@ -102,6 +102,7 @@ const ShowCSTransactions = (data) => {
 
 const CSTransactionTable = () => {
     const formData = state => state.CSTransactionSearchForm;
+    const DCTransactionData = useSelector(state => state.DataCSTransaction);
 
     return (
         <Row className="mt-4">
@@ -117,10 +118,10 @@ const CSTransactionTable = () => {
                     <Table className="align-items-center table-hover" responsive>
                         <TransactionColumn list={CS_TRANSACTION_COLUMN}/>
                         <tbody>
-                            {ShowCSTransactions(SeedData)}
+                            {ShowCSTransactions(DCTransactionData.list)}
                         </tbody>
                     </Table>
-                    <TablePagination total={40} dataState={formData} action={SearchCSTransaction} formAction={ChangeCSTransactionSearchForm}/>
+                    <TablePagination total={DCTransactionData.total} dataState={formData} action={SearchCSTransaction} formAction={ChangeCSTransactionSearchForm}/>
                 </Card>
             </div>
         </Row>

@@ -2,11 +2,68 @@ import {CHANGE_SCSEARCHFORM, CLEAR_SCSEARCHFORM,
         CHANGE_USERSEARCHFORM, CLEAR_USERSEARCHFORM,
         CHANGE_UNITSEARCHFORM, CLEAR_UNITSEARCHFORM,
         CHANGE_DC_TRANSACTION_SEARCHFORM, CLEAR_DC_TRANSACTION_SEARCHFORM,
-        CHANGE_CS_TRANSACTION_SEARCHFORM, CLEAR_CS_TRANSACTION_SEARCHFORM} from '../../../Infrastucture/utils/constants/ActionFormConstant';
+        CHANGE_CS_TRANSACTION_SEARCHFORM, CLEAR_CS_TRANSACTION_SEARCHFORM,
+        CHANGE_BOOKING_SEARCHFORM, CLEAR_BOOKING_SEARCHFORM,
+        CHANGE_DC_FEEDBACK_SEARCHFORM, CLEAR_DC_FEEDBACK_SEARCHFORM,
+        CHANGE_CS_FEEDBACK_SEARCHFORM, CLEAR_CS_FEEDBACK_SEARCHFORM} from '../../../Infrastucture/utils/constants/ActionFormConstant';
 import {initialSCSearchFormState, initialUserFormState, 
         initialUnitSearchFormState, initialDCTransactionSearchFormState,
-        initialCSTransactionSearchFormState} from '../../../Infrastucture/utils/variables/InitialStateData';
+        initialCSTransactionSearchFormState, 
+        initialBookingSearchFormState,
+        initialDCFeedbackSearchFormState,
+        initialCSFeedbackSearchFormState} from '../../../Infrastucture/utils/variables/InitialStateData';
 
+
+export const DCFeedbackSearchFormReducer = (state = initialDCFeedbackSearchFormState, action) => {
+    switch (action.type) {
+        case CHANGE_DC_FEEDBACK_SEARCHFORM: {
+            return {
+                ...action.payload
+            }
+        }
+        case CLEAR_DC_FEEDBACK_SEARCHFORM: {
+            return {
+                ...initialDCFeedbackSearchFormState
+            }
+        }
+        default:
+            return state;
+    }
+}
+
+export const CSFeedbackSearchFormReducer = (state = initialCSFeedbackSearchFormState, action) => {
+    switch (action.type) {
+        case CHANGE_CS_FEEDBACK_SEARCHFORM: {
+            return {
+                ...action.payload
+            }
+        }
+        case CLEAR_CS_FEEDBACK_SEARCHFORM: {
+            return {
+                ...initialCSFeedbackSearchFormState
+            }
+        }
+        default:
+            return state;
+    }
+}
+
+export const BookingSearchFormReducer = (state = initialBookingSearchFormState, action) => {
+    switch (action.type) {
+        case CHANGE_BOOKING_SEARCHFORM: {
+            return {
+                ...action.payload
+            }
+        }
+        case CLEAR_BOOKING_SEARCHFORM: {
+            return {
+                ...initialBookingSearchFormState
+            }
+        }       
+        default:
+            return state;
+    }
+}
 
 
 export const CSTransactionSearchFormReducer = (state = initialCSTransactionSearchFormState, action) => {

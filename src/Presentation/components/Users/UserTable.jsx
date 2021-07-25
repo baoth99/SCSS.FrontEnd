@@ -18,6 +18,7 @@ const SeedData = [
         id: "5c8d1031-851b-4c33-85f0-2bb2b558841d",
         name: "Trần Hoài Bảo",
         phone: "0939872902",
+        gender: 1,
         status: 1,
         role: 2,
         totalPoint: 43
@@ -26,6 +27,7 @@ const SeedData = [
         id: "5e5b319b-f5f0-4cd3-9da3-b888200a0638",
         name: "Trần Đức Tiến",
         phone: "0939872902",
+        gender: 1,
         status: 2,
         role: 3,
         totalPoint: 43
@@ -34,6 +36,7 @@ const SeedData = [
         id: "2d6a1280-e752-416b-9b4a-a9f1430c3ab9",
         name: "Phạm Trung Hiếu",
         phone: "0939872902",
+        gender: 1,
         status: 3,
         role: 3,
         totalPoint: 43
@@ -42,6 +45,7 @@ const SeedData = [
         id: "5c50e1d8-0e05-4c3f-8730-70ce3ec46772",
         name: "Vũ Xuân Thiên",
         phone: "0939872902",
+        gender: 1,
         status: 1,
         role: 4,
         totalPoint: 43
@@ -50,6 +54,7 @@ const SeedData = [
         id: "70d0fdb9-ebe9-41a7-87ca-8898c34e1ffa",
         name: "Trần Đức Bo",
         phone: "0939872902",
+        gender: 2,
         status: 1,
         role: 2,
         totalPoint: 43
@@ -62,7 +67,7 @@ const ShowUser = (data) => {
         result = data.map((val, index) => {
             return (
                 <UserRow key={index} stt={index} id={val.id} 
-                        name={val.name} phone={val.phone} 
+                        name={val.name} phone={val.phone} gender={val.gender}
                         status={val.status} role={val.role} totalPoint={val.totalPoint}/>
             )
         })

@@ -30,7 +30,7 @@ export default function UnitRow({stt, id,  name, createdTime, createdBy}) {
     }
 
     const RemoveUnitAction = () => {
-        const title = `Xác Nhận Xóa Đơn Vị ${name}`;
+        const title = `Xác Nhận Xóa Đơn Vị`;
         const message = `Bạn muốn xóa đơn vị ${name}`;
         dispatch(
             ShowConfirmDialog(title, message, RemoveUnit(id))

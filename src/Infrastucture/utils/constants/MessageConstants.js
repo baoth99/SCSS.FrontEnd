@@ -7,6 +7,14 @@ export const Notification = (message, status) => {
     }
 }
 
+export const PENDING_BOOKING_MESSAGE = "Đang Chờ";
+export const CANCELBYSELLER_BOOKING_MESSAGE = "Người Bán Hủy";
+export const NOBODY_APPROVE_BOOKING_MESSAGE = "Không Ai Chấp Nhận";
+export const APPROVED_BOOKING_MESSAGE = "Đã Được Nhận";
+export const COMPLETED_BOOKING_MESSAGE = "Đã Hoàn Thành";
+
+
+
 export const NOT_APPROVE = "Đợi Chấp Thuận";
 export const ACTIVE = "Đang Hoạt Động";
 export const BANNING = "Đang Bị Khóa";

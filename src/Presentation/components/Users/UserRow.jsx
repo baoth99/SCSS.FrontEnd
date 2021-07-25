@@ -9,7 +9,7 @@ import {
     Media
   } from "reactstrap";
 
-import { useHistory, withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { BsPersonLinesFill } from "react-icons/bs";
 
@@ -19,7 +19,7 @@ import Role from '../Commons/Role';
 import UserStatusButton from './UserStatusButton';
 
 
-const UserRow = ({stt, id, name, phone, status, role, totalPoint}) => {
+const UserRow = ({stt, id, name, phone, gender, status, role, totalPoint}) => {
 
     const history = useHistory();
     const path = "/admin/users/" + id;
@@ -53,7 +53,7 @@ const UserRow = ({stt, id, name, phone, status, role, totalPoint}) => {
                 </Media>
             </td>
             <td>
-                <Gender gender={true}/>
+                <Gender gender={gender}/>
             </td>
             <td>
                 <UserStatus status={status}/>

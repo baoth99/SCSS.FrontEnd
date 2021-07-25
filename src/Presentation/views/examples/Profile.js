@@ -6,6 +6,7 @@ import {
   Card,
   CardHeader,
   CardBody,
+  CardFooter,
   FormGroup,
   Form,
   Input,
@@ -13,6 +14,10 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import {RenderComboBox} from '../../../Infrastucture/helpers/CommonHelper';
+import {GENDER} from '../../../Infrastucture/utils/constants/CommonConstants'
+import { AvForm, AvField, AvGroup, AvInput } from 'availity-reactstrap-validation';
+
 // core components
 import UserHeader from "../../components/Headers/UserHeader.js";
 
@@ -89,20 +94,26 @@ const Profile = () => {
             <Card className="bg-secondary shadow">
               <CardHeader className="bg-white border-0">
                 <Row className="align-items-center">
-                  <Col xs="8">
+                  <Col xs="9">
                     <h3 className="mb-0">Tài khoản của tôi</h3>
                   </Col>
+                  {/* <Col xs="3">
+                    <button type="button" 
+                            className="btn btn-outline-danger"
+                            style={{float: 'right'}}
+                            onClick={() => setIsNonEdited(!IsNonEdited)}>Mở Khóa</button>
+                  </Col> */}
                 </Row>
               </CardHeader>
+              <AvForm>
               <CardBody>
-                <Form>
                   <h6 className="heading-small text-muted mb-4">
                    Thông tin người dùng
                   </h6>
                   <div className="pl-lg-4">
                     <Row>
                       <Col lg="6">
-                        <FormGroup>
+                        <AvGroup>
                           <label
                             className="form-control-label"
                             htmlFor="input-username"
@@ -117,27 +128,10 @@ const Profile = () => {
                             disabled={true}
                             type="text"
                           />
-                        </FormGroup>
+                        </AvGroup>
                       </Col>
                       <Col lg="6">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-email"
-                          >
-                            Email 
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            id="input-email"
-                            defaultValue={email}
-                            disabled={IsNonEdited}
-                            type="email"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="6">
-                        <FormGroup>
+                        <AvGroup>
                           <label
                             className="form-control-label"
                             htmlFor="input-email"
@@ -151,10 +145,74 @@ const Profile = () => {
                             type="text"
                             disabled={IsNonEdited}
                           />
-                        </FormGroup>
+                        </AvGroup>
+                      </Col>                     
+                    </Row>
+                    <Row>
+                      <Col lg="6">
+                        <AvGroup>
+                          <label
+                            className="form-control-label"
+                            htmlFor="input-city"
+                          >
+                            Sinh Nhật
+                          </label>
+                          <AvInput
+                            className="form-control-alternative"
+                            value={birthdate}
+                            disabled={IsNonEdited}
+                            name="birthDate"
+                            type="date"
+                          />
+                        </AvGroup>
                       </Col>
                       <Col lg="6">
-                        <FormGroup>
+                        <AvGroup>
+                          <label
+                            className="form-control-label"
+                            htmlFor="input-country"
+                          >
+                            Giới Tính
+                          </label>
+                          <AvField type="select" 
+                                    name="gender" 
+                                    className="form-control-alternative"
+                                    disabled={IsNonEdited}
+                                    value={gender}
+                                    onChange={(e) => console.log(e.target.value)}>
+                                        <option value={0}>----------</option>
+                                        {RenderComboBox(GENDER)}
+                            </AvField>
+                        </AvGroup>
+                      </Col>
+                    </Row>
+                  </div>
+                  <hr className="my-4" />
+                  {/* Address */}
+                  <h6 className="heading-small text-muted mb-4">
+                   Thông Tin Liên Lạc
+                  </h6>
+                  <div className="pl-lg-4">
+                    <Row>
+                    <Col lg="6">
+                        <AvGroup>
+                          <label
+                            className="form-control-label"
+                            htmlFor="input-email"
+                          >
+                            Email 
+                          </label>
+                          <Input
+                            className="form-control-alternative"
+                            id="input-email"
+                            defaultValue={email}
+                            disabled={IsNonEdited}
+                            type="email"
+                          />
+                        </AvGroup>
+                      </Col>
+                      <Col lg="6">
+                        <AvGroup>
                           <label
                             className="form-control-label"
                             htmlFor="input-email"
@@ -165,77 +223,13 @@ const Profile = () => {
                             className="form-control-alternative"
                             id="input-email"
                             placeholder={phone_number}
-                            type="email"
+                            type="number"
                             disabled={IsNonEdited}
                           />
-                        </FormGroup>
+                        </AvGroup>
                       </Col>
-                    </Row>
-                    <Row>
-                      <Col lg="4">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-city"
-                          >
-                            Sinh Nhật
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue={birthdate}
-                            disabled={IsNonEdited}
-                            id="input-city"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="4">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-country"
-                          >
-                            Giới Tính
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue={gender}
-                            disabled={IsNonEdited}  
-                            id="input-country"
-                            placeholder="Country"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="4">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-country"
-                          >
-                            Quyền
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            id="input-postal-code"
-                            defaultValue={role}
-                            placeholder="Role"
-                            disabled={true}
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                  </div>
-                  <hr className="my-4" />
-                  {/* Address */}
-                  <h6 className="heading-small text-muted mb-4">
-                    Contact information
-                  </h6>
-                  <div className="pl-lg-4">
-                    <Row>
                       <Col md="12">
-                        <FormGroup>
+                        <AvGroup>
                           <label
                             className="form-control-label"
                             htmlFor="input-address"
@@ -248,82 +242,26 @@ const Profile = () => {
                             id="input-address"
                             placeholder="Home Address"
                             disabled={IsNonEdited}
-                            type="text"
+                            type="textarea"
                           />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col lg="4">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-city"
-                          >
-                            City
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="New York"
-                            id="input-city"
-                            placeholder="City"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="4">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-country"
-                          >
-                            Country
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="United States"
-                            id="input-country"
-                            placeholder="Country"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="4">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-country"
-                          >
-                            Postal code
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            id="input-postal-code"
-                            placeholder="Postal code"
-                            type="number"
-                          />
-                        </FormGroup>
+                        </AvGroup>
                       </Col>
                     </Row>
                   </div>
-                  <hr className="my-4" />
-                  {/* Description */}
-                  <h6 className="heading-small text-muted mb-4">About me</h6>
-                  <div className="pl-lg-4">
-                    <FormGroup>
-                      <label>About Me</label>
-                      <Input
-                        className="form-control-alternative"
-                        placeholder="A few words about you ..."
-                        rows="4"
-                        defaultValue="A beautiful Dashboard for Bootstrap 4. It is Free and
-                        Open Source."
-                        type="textarea"
-                      />
-                    </FormGroup>
-                  </div>
-                </Form>
               </CardBody>
+              </AvForm>
+              {/* <CardFooter>
+                <div className="pl-4">
+                  <Row>
+                    <Col lg="3">
+                        <Button className="my-4" color="primary" 
+                                type="button" size="lg" block>
+                            Lưu Lại
+                        </Button>
+                    </Col>
+                  </Row>
+                </div>
+              </CardFooter> */}
             </Card>
           </Col>
         </Row>

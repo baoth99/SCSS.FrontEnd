@@ -28,12 +28,12 @@ const AuthProvider = ({ userManager: manager, store, children }) => {
         // events for user
         userManager.current.events.addUserLoaded(onUserLoaded)
         userManager.current.events.addAccessTokenExpired(onAccessTokenExpired)
-        userManager.current.events.addUserSignedOut(onUserSignedOut)
+        //userManager.current.events.addUserSignedOut(onUserSignedOut)
        
         return function cleanUp() {
             userManager.current.events.removeUserLoaded(onUserLoaded);
             userManager.current.events.removeAccessTokenExpired(onAccessTokenExpired)
-            userManager.current.events.removeUserSignedOut(onUserSignedOut)
+            //userManager.current.events.removeUserSignedOut(onUserSignedOut)
         };
     }, [manager, store]);
     

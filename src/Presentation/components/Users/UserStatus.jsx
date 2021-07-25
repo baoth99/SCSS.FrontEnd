@@ -8,12 +8,8 @@ import {ACTIVE_NUM, BANNING_NUM,NOT_APPROVE_NUM,
 
 import {ACTIVE, NOT_APPROVE, BANNING} from '../../../Infrastucture/utils/constants/MessageConstants';
 
-const StatusState = (message, style) => {
-    return {
-        message : message,
-        style : style
-    }
-}
+import {StatusState} from '../../../Infrastucture/utils/variables/InitialStateData';
+
 const UserStatus = ({status}) => {
     const [AccountStatus, setAccountStatus] = useState(() => StatusState("Không Xác Định", "bg-dark"));
 

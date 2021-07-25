@@ -1,6 +1,14 @@
 export const PAGING = 7;
 
 
+export const PENDING_BOOKING = 1;
+export const CANCELBYSELLER_BOOKING = 2;
+export const NOBODY_APPROVE_BOOKING = 3;
+export const APPROVED_BOOKING = 4;
+export const COMPLETED_BOOKING = 5;
+
+
+
 export const NOT_APPROVE_NUM = 1;
 export const ACTIVE_NUM = 2;
 export const BANNING_NUM = 3;
@@ -16,6 +24,13 @@ export const BANNING_STYLE = "bg-danger";
 export const BLOCK_ACCOUNT_STYLE = "btn btn-danger";
 export const UNBLOCK_ACCOUNT_STYLE = "btn btn-success";
 export const APPROVE_ACCOUNT_STYLE = "btn btn-info";
+
+export const PENDING_BOOKING_STYLE = "bg-primary";
+export const CANCELBYSELLER_BOOKING_STYLE = "bg-danger";
+export const NOBODY_APPROVE_BOOKING_STYLE = "bg-warning";
+export const APPROVED_BOOKING_STYLE = "bg-info";
+export const COMPLETED_BOOKING_STYLE = "bg-success";
+
 
 export const MALE = "Nam";
 export const FEMALE = "Nữ";
@@ -55,6 +70,31 @@ export const GENDER = [
         val :FEMALE
     }
 ]
+
+
+export const BOOKING_STATUS = [
+    {
+        key: PENDING_BOOKING,
+        val: "Đang Chờ"
+    },
+    {
+        key: CANCELBYSELLER_BOOKING,
+        val: "Người Bán Hủy"
+    },
+    {
+        key: NOBODY_APPROVE_BOOKING,
+        val: "Không Ai Chấp Nhận"
+    },
+    {
+        key: APPROVED_BOOKING,
+        val: "Đã Chấp Thuận"
+    },
+    {
+        key: COMPLETED_BOOKING,
+        val: "Đã Hoàn Thành"
+    }
+];
+
 
 export const STATUS = [
     {

@@ -7,11 +7,12 @@ import {useDispatch} from 'react-redux';
 import SCCreateForm from '../../components/ScrapCategories/SCCreateForm';
 
 import SrapCategoryDashboard from './SrapCategoryDashboard';
-import {Switch, useLocation, Router} from 'react-router-dom';
+import {Switch, useLocation} from 'react-router-dom';
 import {GetSCRoutes} from '../../../Infrastucture/routes/SystemRoutes';
 
 //core components
-import Header from "../../components/Headers/Header";
+import ScreenHeader from "../../components/Headers/ScreenHeader";
+
 
 const ScrapCategory = () => {
     const location = useLocation();
@@ -26,7 +27,7 @@ const ScrapCategory = () => {
 
     return (
         <>
-            <Header />
+            <ScreenHeader/>
             {/* Page content */}
             {location.pathname === "/admin/scrap-category" ? (<SrapCategoryDashboard/>) : null}
                 <Switch>

@@ -67,6 +67,24 @@ const UnitSearchForm = () => {
                                                 />
                                         </AvGroup>
                                     </Col>
+                                    <Col lg="4">
+                                        <AvGroup>
+                                            <label
+                                                className="form-control-label"
+                                                htmlFor="input-username"
+                                                >
+                                                Người Tạo
+                                            </label>
+                                            <AvInput
+                                                    className="form-control-alternative"
+                                                    name="createdBy"
+                                                    value={formData.createdBy}
+                                                    onChange={(e) => OnHandleChange(e.target)}
+                                                    type="text"
+                                                />
+                                        </AvGroup>
+                                    </Col>
+                                    <Col lg="4"></Col>
                                     <Col lg="2">
                                         <Button className="my-4" color="primary" 
                                                 type="button" size="lg"

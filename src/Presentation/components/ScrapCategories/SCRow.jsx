@@ -67,29 +67,29 @@ const SCRow = ({id, stt, name, unit, createdBy, createdTime}) => {
                 </Media>
             </td>
             <td className="text-right">
-            <UncontrolledDropdown>
-                <DropdownToggle
-                className="btn-icon-only text-light"
-                role="button"
-                size="sm"
-                color="#49EE86"
-                onClick={(e) => e.preventDefault()}
-                >
-                <i className="fas fa-ellipsis-v" />
-                </DropdownToggle>
-                <DropdownMenu className="dropdown-menu-arrow" right>
-                <DropdownItem
-                    onClick={() => GoToUserDetail()}
-                >
-                    Chi Tiết
-                </DropdownItem>
-                <DropdownItem
-                    onClick={() => RemoveSCAction()}
-                >
-                    Xóa
-                </DropdownItem>
-                </DropdownMenu>
-            </UncontrolledDropdown>
+                <UncontrolledDropdown>
+                    <DropdownToggle
+                    className="btn-icon-only text-light"
+                    role="button"
+                    size="sm"
+                    color="#49EE86"
+                    onClick={(e) => e.preventDefault()}
+                    >
+                    <i className="fas fa-ellipsis-v" />
+                    </DropdownToggle>
+                    <DropdownMenu className="dropdown-menu-arrow" right>
+                    <DropdownItem
+                        onClick={() => GoToUserDetail()}
+                    >
+                        Chi Tiết
+                    </DropdownItem>
+                    <DropdownItem
+                        onClick={() => RemoveSCAction()}
+                    >
+                        Xóa
+                    </DropdownItem>
+                    </DropdownMenu>
+                </UncontrolledDropdown>
             </td>
         </tr>
     );

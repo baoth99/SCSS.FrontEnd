@@ -1,8 +1,43 @@
 import {PAGING} from '../constants/CommonConstants';
 
+export const StatusState = (message, style) => {
+    return {
+        message : message,
+        style : style
+    }
+}
 
 export const initialDataSCTable = {
 
+}
+
+export const initialCSFeedbackSearchFormState = {
+    transactionCode: "",
+    sellerName: "",
+    collectorName: "",
+    rate: -1,
+    page : 1, 
+    pageSize: PAGING
+}
+
+export const initialDCFeedbackSearchFormState = {
+    transactionCode: "",
+    dealerName: "",
+    collectorName: "",
+    rate: -1,
+    page : 1, 
+    pageSize: PAGING
+}
+
+export const initialBookingSearchFormState = {
+    bookingCode: "",
+    bookingBy: "",
+    bookingReceive: "",
+    status: "",
+    fromDate: "",
+    toDate: "",
+    page : 1, 
+    pageSize: PAGING
 }
 
 export const initialDCTransactionSearchFormState = {
@@ -38,6 +73,7 @@ export const initialCSTransactionSearchFormState = {
 
 export const initialUnitSearchFormState = {
     name: "",
+    createdBy: "",
     page : 1, 
     pageSize: PAGING
 }

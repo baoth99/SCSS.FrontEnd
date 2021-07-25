@@ -12,6 +12,8 @@ import DCTransactionRow from './DCTransactionRow';
 import TablePagination from '../../Commons/TablePagination';
 import {SearchDCTransaction} from '../../../../Application/redux/actions/TransactionAction';
 import {ChangeDCTransactionSearchForm} from '../../../../Application/redux/actions/FormAction';
+import {useSelector} from 'react-redux';
+
 const SeedData = [
     {
         id: "6f71d3da-0ee5-4a49-885d-d222c06a5ee7",
@@ -104,6 +106,8 @@ const ShowDCTransactions = (data) => {
 }
 
 const DCTransactionTable = () => {
+    const DCTransactionData = useSelector(state => state.DataDCTransaction);
+
     const formData = state => state.DCTransactionSearchForm;
 
     return (
@@ -120,10 +124,10 @@ const DCTransactionTable = () => {
                     <Table className="align-items-center table-hover" responsive>
                         <TransactionColumn list={DC_TRANSACTION_COLUMN}/>
                         <tbody>
-                            {ShowDCTransactions(SeedData)}
+                            {ShowDCTransactions(DCTransactionData.list)}
                         </tbody>
                     </Table>
-                    <TablePagination total={40} dataState={formData} action={SearchDCTransaction} formAction={ChangeDCTransactionSearchForm}/>
+                    <TablePagination total={DCTransactionData.total} dataState={formData} action={SearchDCTransaction} formAction={ChangeDCTransactionSearchForm}/>
                 </Card>
             </div>
         </Row>

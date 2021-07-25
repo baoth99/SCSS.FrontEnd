@@ -11,10 +11,6 @@ import {
   DropdownToggle,
   Form,
   FormGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Input,
-  InputGroup,
   Navbar,
   Nav,
   Container,
@@ -35,11 +31,11 @@ const AdminNavbar = (props) => {
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
         <Container fluid>
-          <h3
-            className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
+          <h2
+            className="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block"
           >
             {props.brandText}
-          </h3>
+          </h2>
           <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <FormGroup className="mb-0">
               
