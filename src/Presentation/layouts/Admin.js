@@ -1,5 +1,5 @@
-import React from "react";
-import { useLocation, Route, Switch, Redirect, Router } from "react-router-dom";
+import React, {useState} from "react";
+import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
 // core components
@@ -14,6 +14,8 @@ import NoInternetConnection from '../views/errors/NoInternetConnection';
 import BadRequest from '../views/errors/BadRequest';
 // routes
 import {BadRequestRoute,NoInternetConnetionRoute} from '../../Infrastucture/utils/constants/RouteConstants'
+import {HubConnectionContext} from '../../Infrastucture/utils/providers/HubProvider'
+import {BookingHubConnection} from '../../Infrastucture/services/SignalRService';
 
 const Admin = (props) => {
   const mainContent = React.useRef(null);
@@ -41,6 +43,7 @@ const Admin = (props) => {
     });
   };
 
+
   const getBrandText = (path) => {
     for (let i = 0; i < AdminRoutes.length; i++) {
       if (
@@ -53,9 +56,14 @@ const Admin = (props) => {
     return "";
   };
 
+  const [HubConnection] = useState(() => {
+    return {
+      BookingHub : BookingHubConnection()
+    }
+  })
 
   return (
-    <>
+    <HubConnectionContext value={HubConnection}>
       <Sidebar
         {...props}
         routes={AdminRoutes}
@@ -82,7 +90,7 @@ const Admin = (props) => {
         </Container>
       </div>
       <ConfirmDialog/>
-    </>
+    </HubConnectionContext>
   );
 };
 

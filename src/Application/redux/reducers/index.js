@@ -17,7 +17,7 @@ import {UserTableReducer} from './UserReducer';
 import UnitReducer from './UnitReducer';
 import BookingReducer from './BookingReducer';
 import {DCFeedbackListReducer, CSFeedbackListReducer} from './FeedbackReducer';
-import {FetchUnitReducer} from './FetchDataReducer';
+import {FetchUnitReducer, FeatchAmountOfBookingReducer} from './FetchDataReducer';
 import {DCTransactionTableReducer, CSTransactionTableReducer} from './TransactionReducer'
 import { connectRouter } from 'connected-react-router';
 
@@ -44,6 +44,7 @@ const RootReducer = (history) => combineReducers({
     DataBooking: BookingReducer,
     ConfirmDialog: ConfirmDialogReducer,
     FetchUnit: FetchUnitReducer,
+    FeatchAmountOfBooking: FeatchAmountOfBookingReducer,
     router: connectRouter(history),
 });
 

@@ -12,6 +12,5 @@ function* SearchUserSaga({payload}) {
 
 
 export default function* UserSaga() {
-    console.log("User Saga is running !");
     yield takeEvery(SEARCH_USER, SearchUserSaga);
 }

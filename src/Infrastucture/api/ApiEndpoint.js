@@ -14,3 +14,7 @@ export const CreateNewUnitEndpoint = "/unit/create";
 export const SearchUnitEndpoint = "/unit/search";
 export const EditUnitEndpoint = "/unit/edit";
 export const RemoveUnitEndpoint = "/unit/remove";
+
+
+export const AmountBookingHub = "hubs/admin/amount/booking";
+export const AmountTrasactionHub = "hubs/admin/amount/transaction";
