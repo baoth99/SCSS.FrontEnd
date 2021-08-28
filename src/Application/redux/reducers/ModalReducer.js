@@ -1,5 +1,6 @@
 import {HIDE_SCCREATE_MODAL, SHOW_SCCREATE_MODAL,
-        SHOW_CONFIRM_DIALOG, HIDE_CONFIRM_DIALOG} from '../../../Infrastucture/utils/constants/ActionConstants';
+        SHOW_CONFIRM_DIALOG, HIDE_CONFIRM_DIALOG,
+        SHOW_IMAGE_SLIDER_DETAIL_MODAL, HIDE_IMAGE_SLIDER_DETAIL_MODAL} from '../../../Infrastucture/utils/constants/ActionConstants';
 
 const initialState = {
     showModal: false
@@ -47,5 +48,32 @@ export function ConfirmDialogReducer(state = initialConfirmDialogState, action) 
         }
         default:
             return state;
+    }
+}
+
+const initialImageSliderState = {
+    id: '',
+    name: '',
+    createdTime: '',
+    base64String: '',
+    isSelected: '',
+    showModal: false
+}
+
+export function ImageSliderDetailReducer (state = initialImageSliderState, action)  {
+    switch (action.type) {
+        case SHOW_IMAGE_SLIDER_DETAIL_MODAL: {
+            return {
+                ...action.payload
+            }
+        }
+        case HIDE_IMAGE_SLIDER_DETAIL_MODAL: {
+            return {
+                ...initialImageSliderState,
+                showModal: false
+            }
+        }
+        default:
+           return state;
     }
 }

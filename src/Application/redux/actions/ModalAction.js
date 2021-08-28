@@ -1,6 +1,29 @@
 import {SHOW_SCCREATE_MODAL, HIDE_SCCREATE_MODAL,
         ENQUEUE_SNACKBAR, REMOVE_SNACKBAR, 
-        SHOW_CONFIRM_DIALOG, HIDE_CONFIRM_DIALOG} from '../../../Infrastucture/utils/constants/ActionConstants';
+        SHOW_CONFIRM_DIALOG, HIDE_CONFIRM_DIALOG,
+        SHOW_IMAGE_SLIDER_DETAIL_MODAL, HIDE_IMAGE_SLIDER_DETAIL_MODAL} from '../../../Infrastucture/utils/constants/ActionConstants';
+
+
+export const ShowImageSliderDetail = (id, name, createdTime, base64String, isSelected) => {
+    return {
+        type: SHOW_IMAGE_SLIDER_DETAIL_MODAL, 
+        payload: {
+            id: id,
+            name: name,
+            createdTime: createdTime,
+            base64String: base64String,
+            isSelected: isSelected,
+            showModal: true
+        }
+    }
+}
+
+
+export const HideImageSliderDetail = () => {
+    return {
+        type: HIDE_IMAGE_SLIDER_DETAIL_MODAL
+    }
+}
 
 export const ShowSCCreate = () => {
     return {

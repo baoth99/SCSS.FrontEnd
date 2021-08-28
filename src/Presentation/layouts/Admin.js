@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect} from "react";
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
@@ -14,18 +14,27 @@ import NoInternetConnection from '../views/errors/NoInternetConnection';
 import BadRequest from '../views/errors/BadRequest';
 // routes
 import {BadRequestRoute,NoInternetConnetionRoute} from '../../Infrastucture/utils/constants/RouteConstants'
-import {HubConnectionContext} from '../../Infrastucture/utils/providers/HubProvider'
-import {BookingHubConnection} from '../../Infrastucture/services/SignalRService';
+import { useSelector, useDispatch } from 'react-redux';
+
+import {FeatchHubConnection} from '../../Application/redux/actions/FetchDataAction';
 
 const Admin = (props) => {
   const mainContent = React.useRef(null);
   const location = useLocation();
 
-  React.useEffect(() => {
+  const account = useSelector(state => state.Auth.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     mainContent.current.scrollTop = 0;
   }, [location]);
+
+
+  useEffect(() => {
+    dispatch(FeatchHubConnection(account.access_token))
+  }, []);
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
@@ -56,20 +65,15 @@ const Admin = (props) => {
     return "";
   };
 
-  const [HubConnection] = useState(() => {
-    return {
-      BookingHub : BookingHubConnection()
-    }
-  })
 
   return (
-    <HubConnectionContext value={HubConnection}>
+    <>
       <Sidebar
         {...props}
         routes={AdminRoutes}
         logo={{
           innerLink: "/admin/dashboard",
-          imgSrc: require("../../assets/img/brand/argon-react.png").default,
+          imgSrc: require("../../assets/img/brand/vechaixanh.png").default,
           imgAlt: "...",
         }}
       />
@@ -90,7 +94,7 @@ const Admin = (props) => {
         </Container>
       </div>
       <ConfirmDialog/>
-    </HubConnectionContext>
+      </>
   );
 };
 

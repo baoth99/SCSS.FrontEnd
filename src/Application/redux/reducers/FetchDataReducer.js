@@ -1,11 +1,14 @@
-import {FETCH_UNIT, FETCH_UNIT_SUCCESS} from '../../../Infrastucture/utils/constants/ActionConstants';
-import {BookingHubConnection} from '../../../Infrastucture/services/SignalRService';
+import {FETCH_UNIT, FETCH_UNIT_SUCCESS, FETCH_AMOUNT_BOOKING} from '../../../Infrastucture/utils/constants/ActionConstants';
 
-
-
-
-export const FeatchAmountOfBookingReducer = (state = 0) => {
-    return state;
+export const FeatchAmountOfBookingReducer = (state = 0, action) => {
+    switch (action.type) {
+        case FETCH_AMOUNT_BOOKING:{
+            return action.payload           
+        }
+        default: {
+            return state
+        }
+    }
 }
 
 

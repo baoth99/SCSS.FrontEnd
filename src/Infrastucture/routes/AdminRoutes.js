@@ -9,6 +9,7 @@ import Unit from '../../Presentation/views/unit/Unit';
 import Booking from '../../Presentation/views/booking/Booking';
 import Feedback from '../../Presentation/views/feedback/Feedback';
 import Finance from '../../Presentation/views/finance/Finance';
+import ImageSlider from '../../Presentation/views/imageSlider/ImageSlider';
 
 var AdminRoutes = [
     {
@@ -65,6 +66,13 @@ var AdminRoutes = [
       name: "Quản lí tài chính",
       icon: "ni ni-money-coins text-red",
       component: Finance,
+      layout: "/admin",
+    },
+    {
+      path: "/image-slider",
+      name: "Thiết Lập Ảnh Quảng Cáo",
+      icon: "ni ni-image text-green",
+      component: ImageSlider,
       layout: "/admin",
     },
     {

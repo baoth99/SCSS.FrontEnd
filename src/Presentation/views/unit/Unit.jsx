@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 
 //core components
 import ScreenHeader from "../../components/Headers/ScreenHeader";
-//import Header from "../../components/Headers/Header";
+import Header from "../../components/Headers/Header";
 import {Container} from "reactstrap";
 
 import {useDispatch} from 'react-redux';
@@ -24,7 +24,7 @@ const Unit = () => {
 
     return (
         <>
-            <ScreenHeader/>
+            <Header/>
             <Container className="mt--7" fluid>
                 <UnitCreateForm/>
                 <UnitTable/>

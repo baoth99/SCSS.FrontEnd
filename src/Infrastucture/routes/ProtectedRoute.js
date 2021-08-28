@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import AdminLayout from '../../Presentation/layouts/Admin';
 import {SigninRedirect} from '../services/AuthService';
 import {SetAuthHeader} from '../api/AxiosHeader';
-
 const ProtectedRoute = () => {
     const account = useSelector(state => state.Auth.user);
+
     if(account != null) {
         SetAuthHeader(account.access_token, account.profile.sub);
     }

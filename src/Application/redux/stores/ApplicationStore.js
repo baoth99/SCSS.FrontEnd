@@ -8,6 +8,7 @@ import UnitSaga from '../../../Infrastucture/sagas/UnitSaga';
 import TransactionSaga from '../../../Infrastucture/sagas/TransactionSaga';
 import BookingSaga from '../../../Infrastucture/sagas/BookingSaga';
 import FeedbackSaga from '../../../Infrastucture/sagas/FeedbackSaga';
+import ImageSliderSaga from '../../../Infrastucture/sagas/ImageSliderSaga';
 import reducers from '../reducers';
 import { routerMiddleware } from 'connected-react-router'
 import History from '../../../Infrastucture/routes/History';
@@ -18,8 +19,11 @@ const SCSagaMiddleware = createSagaMiddleware();
 const UnitSagaMiddleware = createSagaMiddleware();
 const BookingSagaMiddleware = createSagaMiddleware();
 const FeedbackSagaMiddleware = createSagaMiddleware();
-const fetchDataSagaMiddleware = createSagaMiddleware();
+const FetchDataSagaMiddleware = createSagaMiddleware();
+const ImageSliderSagaMiddleware = createSagaMiddleware();
 const routerMiddelware = routerMiddleware(History);
+
+
 
 
 const middleware = [routerMiddelware, 
@@ -29,7 +33,8 @@ const middleware = [routerMiddelware,
                     UnitSagaMiddleware,
                     BookingSagaMiddleware,
                     FeedbackSagaMiddleware,
-                    fetchDataSagaMiddleware
+                    FetchDataSagaMiddleware,
+                    ImageSliderSagaMiddleware
                     ];
 
 
@@ -45,7 +50,8 @@ SCSagaMiddleware.run(SCSaga);
 UnitSagaMiddleware.run(UnitSaga);
 BookingSagaMiddleware.run(BookingSaga);
 FeedbackSagaMiddleware.run(FeedbackSaga);
-fetchDataSagaMiddleware.run(FetchDataSaga);
+FetchDataSagaMiddleware.run(FetchDataSaga);
+ImageSliderSagaMiddleware.run(ImageSliderSaga);
 TransactionSagaMiddleware.run(TransactionSaga);
 
 export default Store;

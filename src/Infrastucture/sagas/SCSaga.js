@@ -2,16 +2,16 @@ import {SearchSCSuccess, GetSCDetailSuccess, SearchSC} from '../../Application/r
 import {ShowLoading, HideLoading} from '../../Application/redux/actions/LoadingAction';
 import {EnqueSnackBar, HideSCCreate,
         HideConfirmDialog} from '../../Application/redux/actions/ModalAction';
-import {RedirectToNoInternet} from './UtilSaga'
+import {RedirectToNoInternet} from './UtilSaga';
 import {BadRequestRoute} from '../utils/constants/RouteConstants';
 
-import {SEARCH_SC, SEARCH_SC_SUCCESS, 
+import {SEARCH_SC, 
         CREATE_NEW_SC, REMOVE_SC,
         GET_SC_DETAIL, UPDATE_SC } from '../utils/constants/ActionConstants';
 
 import {SCDashboardRoute} from '../utils/constants/RouteConstants';
 
-import { call, put, takeEvery, select, takeLatest, take, delay } from 'redux-saga/effects';
+import { call, put, takeEvery} from 'redux-saga/effects';
 
 import {initialSCSearchFormState} from '../utils/variables/InitialStateData';
 

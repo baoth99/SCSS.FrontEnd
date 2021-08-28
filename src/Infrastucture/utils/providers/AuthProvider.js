@@ -33,7 +33,7 @@ const AuthProvider = ({ userManager: manager, store, children }) => {
         return function cleanUp() {
             userManager.current.events.removeUserLoaded(onUserLoaded);
             userManager.current.events.removeAccessTokenExpired(onAccessTokenExpired)
-            //userManager.current.events.removeUserSignedOut(onUserSignedOut)
+            userManager.current.events.removeUserSignedOut(onUserSignedOut)
         };
     }, [manager, store]);
     

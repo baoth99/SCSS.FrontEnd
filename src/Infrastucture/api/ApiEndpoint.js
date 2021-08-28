@@ -18,3 +18,9 @@ export const RemoveUnitEndpoint = "/unit/remove";
 
 export const AmountBookingHub = "hubs/admin/amount/booking";
 export const AmountTrasactionHub = "hubs/admin/amount/transaction";
+
+export const GetImageList = "/image-slider/list";
+export const GetImageUsing = "/image-slider/images";
+export const GetImageDetail = "/image-slider/detail";
+export const ChangeImages = "/image-slider/change";
+export const CreateImage = "/image-slider/create";

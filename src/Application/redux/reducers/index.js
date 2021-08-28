@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 import AuthReducer from './AuthReducer';
 import LoadingReducer from './LoadingReducer';
 import {SCCreateModalReducer,
-        ConfirmDialogReducer} from './ModalReducer';
+        ConfirmDialogReducer,
+        ImageSliderDetailReducer} from './ModalReducer';
 import NotiStackReducer from './NotiStackReducer';
 import {SCSearchFormReducer,
         UserSearchFormReducer,
@@ -18,8 +19,9 @@ import UnitReducer from './UnitReducer';
 import BookingReducer from './BookingReducer';
 import {DCFeedbackListReducer, CSFeedbackListReducer} from './FeedbackReducer';
 import {FetchUnitReducer, FeatchAmountOfBookingReducer} from './FetchDataReducer';
-import {DCTransactionTableReducer, CSTransactionTableReducer} from './TransactionReducer'
+import {DCTransactionTableReducer, CSTransactionTableReducer} from './TransactionReducer';
 import { connectRouter } from 'connected-react-router';
+import {ImageSliderReducer, ImageUsingListReducer} from './ImageSliderReducer'
 
 const RootReducer = (history) => combineReducers({
     Auth: AuthReducer,
@@ -44,6 +46,9 @@ const RootReducer = (history) => combineReducers({
     DataBooking: BookingReducer,
     ConfirmDialog: ConfirmDialogReducer,
     FetchUnit: FetchUnitReducer,
+    ImageSlider: ImageSliderReducer,
+    ImageUsingList: ImageUsingListReducer,
+    ImageSliderDetail: ImageSliderDetailReducer,
     FeatchAmountOfBooking: FeatchAmountOfBookingReducer,
     router: connectRouter(history),
 });
