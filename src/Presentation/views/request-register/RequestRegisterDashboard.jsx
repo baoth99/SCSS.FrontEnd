@@ -7,30 +7,31 @@ import {
     TabContent, TabPane,
     Container
   } from "reactstrap";
-
 import classnames from 'classnames';
+import CollectorRequestRegisterTab from './CollectorRequestRegisterTab';
+import DealerRequestRegisterTab from './DealerRequestRegisterTab';
+import {FetchAllRequestRegister} from '../../../Application/redux/actions/RequestRegisterAction';
+
 import {useDispatch} from 'react-redux';
-import DCTransactionTab from './DCTransactionTab';
-import CSTransactionTab from './CSTransactionTab';
-import {FetchAllTransaction} from '../../../Application/redux/actions/TransactionAction';
 
-const TransactionDashboard = () => {
-
-    const dispatch = useDispatch();    
+const RequestRegisterDashboard = () => {
     const [activeTab, setActiveTab] = useState('1');
+    const dispatch = useDispatch();    
+
+
     useEffect(() => {
         dispatch(
-            FetchAllTransaction()
-        );
+            FetchAllRequestRegister()
+        )    
     }, []);
+
 
     const toggle = tab => {
         if(activeTab !== tab) setActiveTab(tab);
     }
-    
     return (
         <Container className="mt--7" fluid>
-            <Row className="mt-5">
+             <Row className="mt-5">
                 <div className="col">
                     <Card className="shadow">
                         <CardBody>
@@ -41,7 +42,7 @@ const TransactionDashboard = () => {
                                         onClick={() => { toggle('1'); }}
                                     >
                                          <h5 className="heading-small text-muted mb-3 mt-3">
-                                         Người Thu Mua - Chủ Vựa
+                                            Người Thu Mua
                                          </h5>
                                     </NavLink>
                                 </NavItem>
@@ -51,25 +52,25 @@ const TransactionDashboard = () => {
                                         onClick={() => { toggle('2'); }}
                                     >
                                        <h5 className="heading-small text-muted mb-3 mt-3">
-                                            Người Thu Mua - Người Bán
+                                            Chủ Vựa
                                        </h5>
                                     </NavLink>
                                 </NavItem>
                             </Nav>
                             <TabContent activeTab={activeTab}>
                                 <TabPane tabId="1">
-                                    <DCTransactionTab/>
+                                    <CollectorRequestRegisterTab/>
                                 </TabPane>
                                 <TabPane tabId="2">
-                                    <CSTransactionTab/>
+                                    <DealerRequestRegisterTab/>
                                 </TabPane>
                             </TabContent>
                         </CardBody>
                     </Card>
                 </div>
-            </Row>
+             </Row>
         </Container>
     );
 }
 
-export default TransactionDashboard;
+export default RequestRegisterDashboard;

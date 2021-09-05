@@ -30,7 +30,7 @@ const UserStatus = ({status}) => {
             }
         }
         ChangeStatus();
-    }, [])
+    }, [status])
 
     return (
         <Badge color="" className="badge-dot">

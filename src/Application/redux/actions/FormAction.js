@@ -5,7 +5,9 @@ import {CHANGE_SCSEARCHFORM, CLEAR_SCSEARCHFORM,
         CHANGE_CS_TRANSACTION_SEARCHFORM, CLEAR_CS_TRANSACTION_SEARCHFORM,
         CHANGE_BOOKING_SEARCHFORM, CLEAR_BOOKING_SEARCHFORM,
         CHANGE_DC_FEEDBACK_SEARCHFORM, CLEAR_DC_FEEDBACK_SEARCHFORM,
-        CHANGE_CS_FEEDBACK_SEARCHFORM, CLEAR_CS_FEEDBACK_SEARCHFORM} from '../../../Infrastucture/utils/constants/ActionFormConstant';
+        CHANGE_CS_FEEDBACK_SEARCHFORM, CLEAR_CS_FEEDBACK_SEARCHFORM,
+        CHANGE_COLLECTOR_REQUEST_REGISTER_SEARCHFORM, CLEAR_COLLECTOR_REQUEST_REGISTER_SEARCHFORM,
+        CHANGE_DEALER_REQUEST_REGISTER_SEARCHFORM, CLEAR_DEALER_REQUEST_REGISTER_SEARCHFORM} from '../../../Infrastucture/utils/constants/ActionFormConstant';
 
 // CS Feedback Search Form
 export const ChangeCSFeedbackSearchForm = (data) => {
@@ -119,5 +121,32 @@ export const ChangeUnitSearchForm = (data) => {
 export const ClearUnitSearchForm = () => {
     return {
         type: CLEAR_UNITSEARCHFORM
+    }
+}
+
+// Request Register Form
+export const ChangeCollectorRequestRegisterForm = (data) => {
+    return {
+        type: CHANGE_COLLECTOR_REQUEST_REGISTER_SEARCHFORM,
+        payload: data
+    }
+}
+
+export const ClearCollectorRequestRegisterForm = () => {
+    return {
+        type: CLEAR_COLLECTOR_REQUEST_REGISTER_SEARCHFORM
+    }
+}
+
+export const ChangeDealerRequestRegisterForm = (data) => {
+    return {
+        type: CHANGE_DEALER_REQUEST_REGISTER_SEARCHFORM,
+        payload: data
+    }
+}
+
+export const ClearDealerRequestRegisterForm = () => {
+    return {
+        type: CLEAR_DEALER_REQUEST_REGISTER_SEARCHFORM
     }
 }

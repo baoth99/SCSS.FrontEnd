@@ -24,3 +24,8 @@ export const GetImageUsing = "/image-slider/images";
 export const GetImageDetail = "/image-slider/detail";
 export const ChangeImages = "/image-slider/change";
 export const CreateImage = "/image-slider/create";
+
+export const GetCollectorRR = "/request-register/collectors";
+export const GetCollectorRRDetail = "/request-register/collector-detail"
+export const GetDealerRR = "/request-register/dealers";
+export const GetDealerRRDetail = "/request-register/dealers";

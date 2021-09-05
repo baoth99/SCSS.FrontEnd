@@ -10,6 +10,7 @@ import Booking from '../../Presentation/views/booking/Booking';
 import Feedback from '../../Presentation/views/feedback/Feedback';
 import Finance from '../../Presentation/views/finance/Finance';
 import ImageSlider from '../../Presentation/views/imageSlider/ImageSlider';
+import RequestRegister from '../../Presentation/views/request-register/RequestRegister';
 
 var AdminRoutes = [
     {
@@ -24,6 +25,13 @@ var AdminRoutes = [
       name: "Quản lí người dùng",
       icon: "ni ni-badge text-orange",
       component: User,
+      layout: "/admin",
+    },
+    {
+      path: "/request-register",
+      name: "Quản lí yêu cầu đăng kí",
+      icon: "ni ni-single-copy-04 text-purple",
+      component: RequestRegister,
       layout: "/admin",
     },
     {
@@ -71,7 +79,7 @@ var AdminRoutes = [
     {
       path: "/image-slider",
       name: "Thiết Lập Ảnh Quảng Cáo",
-      icon: "ni ni-image text-green",
+      icon: "ni ni-album-2 text-green",
       component: ImageSlider,
       layout: "/admin",
     },

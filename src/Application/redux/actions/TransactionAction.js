@@ -1,7 +1,13 @@
 import {SEARCH_DC_TRANSACTION, SEARCH_DC_TRANSACTION_SUCCESS,
-        GET_DC_TRANSACTION_DETAIL, GET_DC_TRANSACTION_DETAIL_SUCCESS,
+        GET_DC_TRANSACTION_DETAIL,
         SEARCH_CS_TRANSACTION, SEARCH_CS_TRANSACTION_SUCCESS,
-        GET_CS_TRANSACTION_DETAIL, GET_CS_TRANSACTION_DETAIL_SUCCESS} from '../../../Infrastucture/utils/constants/ActionConstants';
+        GET_CS_TRANSACTION_DETAIL, FETCH_ALL_TRASACTION} from '../../../Infrastucture/utils/constants/ActionConstants';
+
+export const FetchAllTransaction = () => {
+    return {
+        type: FETCH_ALL_TRASACTION
+    }
+}
 
 export const SearchDCTransaction = ({transactionCode, dealerName,dealerPhone, dealAddress, collectorName, collectorPhone, fromDate, toDate, fromTime, toTime, page, pageSize}) => {
     return {

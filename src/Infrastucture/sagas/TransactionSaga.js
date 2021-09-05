@@ -1,7 +1,7 @@
 import { call, put, takeEvery, select, takeLatest, take, delay } from 'redux-saga/effects';
 import {ShowLoading, HideLoading} from '../../Application/redux/actions/LoadingAction';
 
-import {SEARCH_DC_TRANSACTION, SEARCH_CS_TRANSACTION } from '../utils/constants/ActionConstants';
+import {SEARCH_DC_TRANSACTION, SEARCH_CS_TRANSACTION, FETCH_ALL_TRASACTION } from '../utils/constants/ActionConstants';
 import {SearchDCTransactionSuccess, SearchCSTransactionSuccess} from '../../Application/redux/actions/TransactionAction';
 
 
@@ -138,6 +138,15 @@ const SeedCSData = [
 ]
 
 
+function* FetchAllTransactionSaga() {
+    yield put(ShowLoading());
+    yield put(SearchDCTransactionSuccess(SeedDCData, SeedDCData.length))
+    yield put(SearchCSTransactionSuccess(SeedCSData, SeedCSData.length))
+
+    yield delay(1000);
+
+    yield put(HideLoading());
+}
 
 function* SearchDCTransactionSaga({payload}) {
     yield put(ShowLoading());
@@ -159,6 +168,7 @@ function* SearchCSTransactionSaga({payload}) {
 }
 
 export default function* TransactionSaga () {
+    yield takeEvery(FETCH_ALL_TRASACTION, FetchAllTransactionSaga);   
     yield takeEvery(SEARCH_DC_TRANSACTION, SearchDCTransactionSaga);   
     yield takeEvery(SEARCH_CS_TRANSACTION, SearchCSTransactionSaga);
     

@@ -12,7 +12,10 @@ import {SCSearchFormReducer,
         CSTransactionSearchFormReducer,
         BookingSearchFormReducer,
         DCFeedbackSearchFormReducer,
-        CSFeedbackSearchFormReducer} from './FormReducer';
+        CSFeedbackSearchFormReducer,
+        CollectorRequestRegisterSearchFormReducer,
+        DealerRequestRegisterSearchFormReducer} from './FormReducer';
+import {CollectorRegisterRequestDataReducer, DealerRegisterRequestDataReducer} from './RequestRegisterReducer'
 import {SCTableReducer} from './SCReducer';
 import {UserTableReducer} from './UserReducer';
 import UnitReducer from './UnitReducer';
@@ -36,6 +39,8 @@ const RootReducer = (history) => combineReducers({
     BookingSearchForm: BookingSearchFormReducer,
     DCFeedbackSearchForm: DCFeedbackSearchFormReducer,
     CSFeedbackSearchForm: CSFeedbackSearchFormReducer,
+    CollectorRequestRegisterSearchForm: CollectorRequestRegisterSearchFormReducer,
+    DealerRequestRegisterSearchForm: DealerRequestRegisterSearchFormReducer,
     DataSC: SCTableReducer,
     DataUser: UserTableReducer,
     DataUnit: UnitReducer,
@@ -43,6 +48,8 @@ const RootReducer = (history) => combineReducers({
     DataCSTransaction: CSTransactionTableReducer,
     DataDCFeedback :DCFeedbackListReducer,
     DataCSFeedback: CSFeedbackListReducer,
+    DataCollectorRegisterRequest: CollectorRegisterRequestDataReducer,
+    DataDealerRegisterRequest: DealerRegisterRequestDataReducer,
     DataBooking: BookingReducer,
     ConfirmDialog: ConfirmDialogReducer,
     FetchUnit: FetchUnitReducer,

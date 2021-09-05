@@ -106,3 +106,20 @@ export const initialSCSearchFormState = {
     page : 1, 
     pageSize: PAGING
 }
+
+export const initialCollectorRRSearchFormState = {
+    phone: "",
+    name: "",
+    status: 0,
+    page : 1, 
+    pageSize: PAGING
+}
+
+export const initialDealerRRSearchFormState = {
+    phone: "",
+    name: "",
+    dealerName: "",
+    status: 0,
+    page : 1, 
+    pageSize: PAGING
+}

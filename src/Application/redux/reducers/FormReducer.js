@@ -5,13 +5,17 @@ import {CHANGE_SCSEARCHFORM, CLEAR_SCSEARCHFORM,
         CHANGE_CS_TRANSACTION_SEARCHFORM, CLEAR_CS_TRANSACTION_SEARCHFORM,
         CHANGE_BOOKING_SEARCHFORM, CLEAR_BOOKING_SEARCHFORM,
         CHANGE_DC_FEEDBACK_SEARCHFORM, CLEAR_DC_FEEDBACK_SEARCHFORM,
-        CHANGE_CS_FEEDBACK_SEARCHFORM, CLEAR_CS_FEEDBACK_SEARCHFORM} from '../../../Infrastucture/utils/constants/ActionFormConstant';
+        CHANGE_CS_FEEDBACK_SEARCHFORM, CLEAR_CS_FEEDBACK_SEARCHFORM,
+        CHANGE_COLLECTOR_REQUEST_REGISTER_SEARCHFORM, CLEAR_COLLECTOR_REQUEST_REGISTER_SEARCHFORM,
+        CHANGE_DEALER_REQUEST_REGISTER_SEARCHFORM, CLEAR_DEALER_REQUEST_REGISTER_SEARCHFORM} from '../../../Infrastucture/utils/constants/ActionFormConstant';
 import {initialSCSearchFormState, initialUserFormState, 
         initialUnitSearchFormState, initialDCTransactionSearchFormState,
         initialCSTransactionSearchFormState, 
         initialBookingSearchFormState,
         initialDCFeedbackSearchFormState,
-        initialCSFeedbackSearchFormState} from '../../../Infrastucture/utils/variables/InitialStateData';
+        initialCSFeedbackSearchFormState,
+        initialCollectorRRSearchFormState,
+        initialDealerRRSearchFormState} from '../../../Infrastucture/utils/variables/InitialStateData';
 
 
 export const DCFeedbackSearchFormReducer = (state = initialDCFeedbackSearchFormState, action) => {
@@ -155,5 +159,39 @@ export const UnitSearchFormReducer = (state = initialUnitSearchFormState, action
         }
         default:
            return state; 
+    }
+}
+
+export const CollectorRequestRegisterSearchFormReducer = (state = initialCollectorRRSearchFormState, action) => {
+    switch (action.type) {
+        case CHANGE_COLLECTOR_REQUEST_REGISTER_SEARCHFORM: {
+            return {
+                ...action.payload
+            }
+        }
+        case CLEAR_COLLECTOR_REQUEST_REGISTER_SEARCHFORM: {
+            return  {
+                ...initialCollectorRRSearchFormState
+            }
+        }
+        default:
+            return state;
+    }
+}
+
+export const DealerRequestRegisterSearchFormReducer = (state = initialDealerRRSearchFormState, action) => {
+    switch (action.type) {
+        case CHANGE_DEALER_REQUEST_REGISTER_SEARCHFORM: {
+            return {
+                ...action.payload
+            }
+        }
+        case CLEAR_DEALER_REQUEST_REGISTER_SEARCHFORM: {
+            return  {
+                ...initialDealerRRSearchFormState
+            }
+        }
+        default:
+            return state;
     }
 }

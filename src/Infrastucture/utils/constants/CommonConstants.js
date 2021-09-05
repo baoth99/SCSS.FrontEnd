@@ -12,6 +12,7 @@ export const COMPLETED_BOOKING = 5;
 export const NOT_APPROVE_NUM = 1;
 export const ACTIVE_NUM = 2;
 export const BANNING_NUM = 3;
+export const REJECT_NUM = 4;
 
 export const SELLER_NUM = 2;
 export const DEALER_NUM = 3;
@@ -60,6 +61,25 @@ export const CS_TRANSACTION_COLUMN = [
     'Tổng Đơn Giá',
 ]
 
+export const COLLECTOR_REQUEST_REGISTER_COLUMN = [
+    'STT',
+    'Số Điện Thoại',
+    'Tên Người Thu Gom',
+    'Giới Tính',
+    'Thời Điểm Đăng Kí',
+    'Trạng Thái'
+]
+
+export const DEALER_REQUEST_REGISTER_COLUMN = [
+    'STT',
+    'Số Điện Thoại',
+    'Tên Chủ Vựa',
+    'Tên Vựa',
+    'Giới Tính',
+    'Thời Điểm Đăng Kí',
+    'Trạng Thái'
+]
+
 export const GENDER = [
     {
         key: MALE_NUM,
@@ -94,6 +114,18 @@ export const BOOKING_STATUS = [
         val: "Đã Hoàn Thành"
     }
 ];
+
+
+export const STATUS_REQUEST = [
+    {
+        key: NOT_APPROVE_NUM,
+        val: "Đợi Chấp Thuận"
+    },
+    {
+        key: REJECT_NUM,
+        val :"Từ Chối"
+    },
+]
 
 
 export const STATUS = [

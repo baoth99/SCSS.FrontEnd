@@ -24,10 +24,8 @@ import {push} from 'connected-react-router';
 
 
 function* SearchSCSaga({payload}) {
-    console.log("SearchSCSaga");
     yield put(ShowLoading());
     const data = payload;
-    console.log(data);
     try {
         const response = yield call(ApiGet, SearchSCEndpoint, data);
         const resData = response.data.resData;

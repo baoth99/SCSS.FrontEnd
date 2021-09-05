@@ -5,7 +5,8 @@ import DCTransactionDetail from '../../Presentation/views/transactions/DCTransac
 import CSTransactionDetail from '../../Presentation/views/transactions/CSTransactionDetail';
 import BookingDetail from '../../Presentation/views/booking/BookingDetail';
 
-
+import CollectorRequestRegisterDetail from '../../Presentation/views/request-register/CollectorRequestRegisterDetail';
+import DealerRequestRegisterDetail from '../../Presentation/views/request-register/DealerRequestRegisterDetail';
 
 export const GetBookingRoutes = () => {
   let baseUrl = "/admin/booking/:id"
@@ -43,6 +44,27 @@ export const GetCSTransactionRoutes = () => {
     <Route
       path={baseUrl}
       component={CSTransactionDetail}
+    />
+  );
+};
+
+
+export const GetCollectorRequestRegisterRoutes = () => {
+  let baseUrl = "/admin/request-register/collector/:id"
+  return (
+    <Route
+      path={baseUrl}
+      component={CollectorRequestRegisterDetail}
+    />
+  );
+};
+
+export const GetDealerRequestRegisterRoutes = () => {
+  let baseUrl = "/admin/request-register/dealer/:id"
+  return (
+    <Route
+      path={baseUrl}
+      component={DealerRequestRegisterDetail}
     />
   );
 };
