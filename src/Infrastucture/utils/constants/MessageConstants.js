@@ -21,6 +21,7 @@ export const BANNING = "Đang Bị Khóa";
 
 export const SELLER = "Người Bán";
 export const DEALER = "Chủ Vựa";
+export const DEALER_MEM = "Chủ Vựa (Chi Nhánh)";
 export const COLLECTOR = "Người Thu Gom";
 
 export const BLOCK_BUTTON = "Khóa Tài Khoản";

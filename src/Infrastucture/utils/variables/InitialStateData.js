@@ -71,13 +71,6 @@ export const initialCSTransactionSearchFormState = {
 }
 
 
-export const initialUnitSearchFormState = {
-    name: "",
-    createdBy: "",
-    page : 1, 
-    pageSize: PAGING
-}
-
 export const initialUserFormState = {
     phone: "",
     name: "",
@@ -91,21 +84,28 @@ export const initialUserFormState = {
     pageSize: PAGING
 };
 
-export const initialSCCreateFormState = {
-    name: "",
-    unit: "",
-    image: null,
-    description: ""
-}
 
 export const initialSCSearchFormState = {
     name: "",
-    unit: "",
+    status: 0,
     createdBy: "" ,
-    description: "",
+    phoneCreatedBy: "",
+    role: 0,
     page : 1, 
     pageSize: PAGING
 }
+
+export const initialDealerSearchFormState = {
+    dealerName: "",
+    managedBy: "",
+    dealerPhone: "",
+    dealerAddress: "",
+    status: 'null',
+    dealerType: 0,
+    page : 1, 
+    pageSize: PAGING
+}
+
 
 export const initialCollectorRRSearchFormState = {
     phone: "",
@@ -120,6 +120,7 @@ export const initialDealerRRSearchFormState = {
     name: "",
     dealerName: "",
     status: 0,
+    dealerType: 0,
     page : 1, 
     pageSize: PAGING
 }

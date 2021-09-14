@@ -1,5 +1,4 @@
-import {SHOW_SCCREATE_MODAL, HIDE_SCCREATE_MODAL,
-        ENQUEUE_SNACKBAR, REMOVE_SNACKBAR, 
+import {ENQUEUE_SNACKBAR, REMOVE_SNACKBAR, 
         SHOW_CONFIRM_DIALOG, HIDE_CONFIRM_DIALOG,
         SHOW_IMAGE_SLIDER_DETAIL_MODAL, HIDE_IMAGE_SLIDER_DETAIL_MODAL} from '../../../Infrastucture/utils/constants/ActionConstants';
 
@@ -25,17 +24,6 @@ export const HideImageSliderDetail = () => {
     }
 }
 
-export const ShowSCCreate = () => {
-    return {
-        type : SHOW_SCCREATE_MODAL
-    }
-}
-
-export const HideSCCreate = () => {
-    return {
-        type : HIDE_SCCREATE_MODAL
-    }
-}
 
 export const ShowConfirmDialog = (title, message, action) => {
     return {

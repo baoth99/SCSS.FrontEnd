@@ -6,9 +6,10 @@ const SCColumn = () => {
             <tr>
                 <th scope="col">Số Thứ Tự</th>
                 <th scope="col">Tên Phế Liệu</th>
-                <th scope="col">Đơn Vị</th>
-                <th scope="col">Người Tạ0</th>
-                <th scope="col">Ngày Tạo</th>               
+                <th scope="col">Người Tạo</th>
+                <th scope="col">Vai Trò</th>
+                <th scope="col">Ngày Tạo</th>    
+                <th scope="col">Trạng Thái</th>
                 <th scope="col" />
             </tr>
         </thead>

@@ -1,39 +1,16 @@
 import {SEARCH_SC, SEARCH_SC_SUCCESS,
-        GET_SC_DETAIL, GET_SC_DETAIL_SUCCESS,
-        CREATE_NEW_SC, REMOVE_SC, UPDATE_SC} from '../../../Infrastucture/utils/constants/ActionConstants';
+        GET_SC_DETAIL, GET_SC_DETAIL_SUCCESS} from '../../../Infrastucture/utils/constants/ActionConstants';
 
-export const RemoveSC= (id, detail) => {
-    return {
-        type: REMOVE_SC,
-        payload: {
-            id: id,
-            detail: detail
-        }
-    }
-}
 
-export const UpdateSC = ({id, name, unit, image, isDeleteImg, description}) => {
-    return {
-        type: UPDATE_SC,
-        payload: {
-            id: id,
-            name: name,
-            unit: unit,
-            image: image,
-            isDeleteImg: isDeleteImg,
-            description: description
-        }
-    }
-}
-
-export const SearchSC = ({name, description, unit, createdBy , page, pageSize}) => {
+export const SearchSC = ({name, status, phoneCreatedBy, createdBy, role, page, pageSize}) => {
     return {
         type: SEARCH_SC,
         payload: {
             name: name,
-            description: description,
-            unit: unit,
+            status: status,
+            phoneCreatedBy: phoneCreatedBy,
             createdBy: createdBy,
+            role: role,
             page: page,
             pageSize: pageSize
         }
@@ -50,18 +27,6 @@ export const SearchSCSuccess = (list, total) => {
     }
 }
 
-export const CreateNewSC = ({name, unit, image, description}) => {
-    return {
-        type: CREATE_NEW_SC,
-        payload: {
-            name: name,
-            unit: unit,
-            image: image,
-            description: description
-        }
-    }
-}
-
 
 export const GetSCDetail = (id) => {
     return {
@@ -73,17 +38,20 @@ export const GetSCDetail = (id) => {
 }
 
 
-export const GetSCDetailSuccess = ({id, name, image, unitId, description, createdBy, createdTime}) => {
+export const GetSCDetailSuccess = ({name, dealerName, manageBy, createdBy, status, imageUrl, role, createdTime, updatedTime, items}) => {
     return {
         type: GET_SC_DETAIL_SUCCESS,
         payload: {
-            id: id,
             name: name,
-            image: image,
-            unit: unitId,
-            description: description,
+            dealerName: dealerName,
+            manageBy: manageBy,
             createdBy: createdBy,
-            createdTime: createdTime
+            status: status,
+            imageUrl: imageUrl,
+            role: role,
+            createdTime: createdTime,
+            updatedTime: updatedTime,
+            items: items
         }
     }
 }

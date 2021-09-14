@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {
     Card,
@@ -12,17 +12,25 @@ import {
     Col,
   } from "reactstrap";
 
+import {useDispatch, useSelector} from 'react-redux';
+
 import {useParams} from "react-router-dom";
 import Gender from '../../components/Commons/Gender';
 import Role from '../../components/Commons/Role';
 import UserStatus from '../../components/Users/UserStatus';
 import UserStatusButton from '../../components/Users/UserStatusButton';
+import {GetUserDetail} from '../../../Application/redux/actions/UserAction';
 
 
 const UserDetail = () => {
-    console.log("UserDetail");
     let { id } = useParams();
-    console.log(id);
+    const dispatch = useDispatch();
+    let userData = useSelector(state => state.DataUser);
+
+    useEffect(() => {
+        dispatch(GetUserDetail(id));
+    }, []);
+
     return (
         <>
             <Container className="mt--7" fluid>
@@ -56,16 +64,16 @@ const UserDetail = () => {
                         </Row>
                         <div className="text-center">
                         <h2>
-                            Demo User
+                            {userData.name}
                         </h2>
                         <div className="h5 mt-1">
                             <div className="d-inline-flex p-2">
-                                <UserStatus status={1}/>                               
+                                <UserStatus status={userData.status}/>                               
                             </div>
                         </div>
                         <div className="h5 mt-1">
                             <div className="d-inline-flex p-2">
-                                <Role role={2}/>                               
+                                <Role role={userData.roleKey}/>                               
                             </div>
                         </div>
                         <div>
@@ -73,7 +81,7 @@ const UserDetail = () => {
                             Scrap Collecting Suport System
                         </div>
                         <hr className="my-4" />
-                            <UserStatusButton id={id} status={1}/>
+                            <UserStatusButton id={id} status={userData.status} name={userData.name} phone={userData.phone}/>
                         </div>
                     </CardBody>
                     </Card>
@@ -93,17 +101,13 @@ const UserDetail = () => {
                                     <Row>
                                         <Col lg="6">
                                             <FormGroup>
-                                                <label
-                                                    className="form-control-label"
-                                                    htmlFor="input-username"
-                                                >
+                                                <label className="form-control-label" >
                                                     Họ Và Tên
                                                 </label>
                                                 <Input
                                                     className="form-control-alternative"
-                                                    defaultValue={id}
+                                                    defaultValue={userData.name}
                                                     id="input-username"
-                                                    placeholder="Username"
                                                     disabled={true}
                                                     type="text"
                                                 />
@@ -111,17 +115,13 @@ const UserDetail = () => {
                                         </Col>
                                         <Col lg="3">
                                             <FormGroup>
-                                                <label
-                                                    className="form-control-label"
-                                                    htmlFor="input-username"
-                                                >
+                                                <label className="form-control-label" >
                                                     Sinh Nhật
                                                 </label>
                                                 <Input
                                                     className="form-control-alternative"
-                                                    defaultValue={"20/07/1999"}
+                                                    defaultValue={userData.birthDate}
                                                     id="input-username"
-                                                    placeholder="Số Điện Thoại"
                                                     disabled={true}
                                                     type="text"
                                                 />
@@ -129,32 +129,25 @@ const UserDetail = () => {
                                         </Col>
                                         <Col lg="3">
                                             <FormGroup>
-                                                <label
-                                                    className="form-control-label"
-                                                    htmlFor="input-username"
-                                                >
+                                                <label className="form-control-label" >
                                                     Giới Tính
                                                 </label>
                                                 <div className="form-control-alternative disabled"
                                                     style={{paddingTop: 10, paddingBottom: 10, borderRadius: 5, backgroundColor: "#eee"}}
                                                 >
-                                                    <Gender gender={1}/>
+                                                    <Gender gender={userData.gender}/>
                                                 </div>
                                             </FormGroup>
                                         </Col>
                                         <Col lg="9">
                                             <FormGroup>
-                                                <label
-                                                    className="form-control-label"
-                                                    htmlFor="input-username"
-                                                >
+                                                <label className="form-control-label">
                                                     Địa Chỉ
                                                 </label>
                                                 <Input
                                                     className="form-control-alternative"
-                                                    defaultValue={"Đường 160, Phường Tăng Nhơn Phú, QUận 9"}
+                                                    defaultValue={userData.address}
                                                     id="input-username"
-                                                    placeholder="Địa chỉ"
                                                     disabled={true}
                                                     type="text"
                                                 />
@@ -162,17 +155,13 @@ const UserDetail = () => {
                                         </Col>
                                         <Col lg="5">
                                             <FormGroup>
-                                                <label
-                                                    className="form-control-label"
-                                                    htmlFor="input-username"
-                                                >
+                                                <label className="form-control-label">
                                                     Địa Chỉ Email
                                                 </label>
                                                 <Input
                                                     className="form-control-alternative"
-                                                    defaultValue={"BaothSE130731@fpt.edu.vn"}
+                                                    defaultValue={userData.email}
                                                     id="input-username"
-                                                    placeholder="Địa chỉ"
                                                     disabled={true}
                                                     type="text"
                                                 />
@@ -180,17 +169,13 @@ const UserDetail = () => {
                                         </Col>
                                         <Col lg="5">
                                             <FormGroup>
-                                                <label
-                                                    className="form-control-label"
-                                                    htmlFor="input-username"
-                                                >
+                                                <label className="form-control-label" >
                                                     Số Điện Thoại
                                                 </label>
                                                 <Input
                                                     className="form-control-alternative"
-                                                    defaultValue={"0939872902"}
+                                                    defaultValue={userData.phone}
                                                     id="input-username"
-                                                    placeholder="Địa chỉ"
                                                     disabled={true}
                                                     type="text"
                                                 />
@@ -198,15 +183,12 @@ const UserDetail = () => {
                                         </Col>
                                         <Col lg="5">
                                             <FormGroup>
-                                                <label
-                                                    className="form-control-label"
-                                                    htmlFor="input-username"
-                                                >
+                                                <label className="form-control-label">
                                                     Số Chứng Minh Nhân Dân
                                                 </label>
                                                 <Input
                                                     className="form-control-alternative"
-                                                    defaultValue={"0939872902"}
+                                                    defaultValue={userData.idCard}
                                                     disabled={true}
                                                     type="text"
                                                 />
@@ -214,15 +196,12 @@ const UserDetail = () => {
                                         </Col>
                                         <Col lg="5">
                                             <FormGroup>
-                                                <label
-                                                    className="form-control-label"
-                                                    htmlFor="input-username"
-                                                >
+                                                <label className="form-control-label">
                                                     Ngày Bắt Đầu
                                                 </label>
                                                 <Input
                                                     className="form-control-alternative"
-                                                    defaultValue={"20/08/2020"}
+                                                    defaultValue={userData.createdTime}
                                                     disabled={true}
                                                     type="text"
                                                 />

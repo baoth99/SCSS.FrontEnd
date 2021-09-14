@@ -5,16 +5,14 @@ import { AvForm, AvField, AvGroup, AvInput } from 'availity-reactstrap-validatio
 import {RenderComboBox} from '../../../Infrastucture/helpers/CommonHelper';
 
 import { BsArrowClockwise, BsSearch, BsXCircle } from "react-icons/bs";
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {ChangeSCSearchForm, ClearSCSearchForm} from '../../../Application/redux/actions/FormAction';
 import {initialSCSearchFormState} from '../../../Infrastucture/utils/variables/InitialStateData';
 import {SearchSC} from '../../../Application/redux/actions/SCAction';
-
-
+import {ScrapCategoryStatus, SCRAP_CATEGORY_ROLE} from '../../../Infrastucture/utils/constants/CommonConstants';
 
 const SCSearchForm = () => {
     const dispatch = useDispatch();
-    const unitList = useSelector(state => state.FetchUnit);
 
     const [formData, setFormData] = useState(() => initialSCSearchFormState)
 
@@ -62,12 +60,9 @@ const SCSearchForm = () => {
                         <CardBody>
                                 <div className="pl-lg-4">
                                     <Row>
-                                        <Col lg="4">
+                                        <Col lg="3">
                                             <AvGroup>
-                                                <label
-                                                    className="form-control-label"
-                                                    htmlFor="input-username"
-                                                >
+                                                <label className="form-control-label" >
                                                     Tên Loại Phế Liệu
                                                 </label>
                                                 <AvInput
@@ -79,7 +74,7 @@ const SCSearchForm = () => {
                                                 />
                                             </AvGroup>
                                         </Col>
-                                        <Col lg="4">
+                                        <Col lg="3">
                                             <AvGroup>
                                                 <label
                                                     className="form-control-label"
@@ -102,38 +97,54 @@ const SCSearchForm = () => {
                                                     className="form-control-label"
                                                     htmlFor="input-username"
                                                 >
-                                                    Đơn vị
+                                                    Số Điện Thoại Người Tạo
                                                 </label>
-                                                <div className="alternative">
-                                                    <AvField type="select" 
-                                                            name="unit" 
-                                                            className="form-control-alternative"
-                                                            value={formData.unit}
-                                                            onChange={(e) => OnHandleChange(e.target)}>
-                                                                <option value=''>----------</option>
-                                                                {RenderComboBox(unitList)}
-                                                    </AvField>
-                                                </div>   
+                                                <AvInput
+                                                    className="form-control-alternative"
+                                                    name="phoneCreatedBy"
+                                                    type="number"
+                                                    value={formData.phoneCreatedBy}
+                                                    onChange={(e) => OnHandleChange(e.target)}
+                                                />
                                             </AvGroup>
                                         </Col>
-                                        <Col lg="5">
+                                        <Col lg="3">
                                             <AvGroup>
                                                 <label
                                                     className="form-control-label"
                                                     htmlFor="input-username"
                                                 >
-                                                    Miêu Tả
+                                                    Trạng Thái
                                                 </label>
-                                                <AvInput
-                                                    className="form-control-alternative"
-                                                    name="description"
-                                                    value={formData.description}
-                                                    onChange={(e) => OnHandleChange(e.target)}
-                                                    type="textarea"
-                                                />
+                                                <div className="alternative">
+                                                    <AvField type="select" 
+                                                            name="status" 
+                                                            className="form-control-alternative"
+                                                            value={formData.status}
+                                                            onChange={(e) => OnHandleChange(e.target)}>
+                                                                <option value={0}>----------</option>
+                                                                {RenderComboBox(ScrapCategoryStatus)}
+                                                    </AvField>
+                                                </div>   
                                             </AvGroup>
                                         </Col>
-                                        
+                                        <Col lg="3">
+                                            <AvGroup>
+                                                <label className="form-control-label">
+                                                    Vai Trò
+                                                </label>
+                                                <div className="alternative">
+                                                    <AvField type="select" 
+                                                            name="role" 
+                                                            className="form-control-alternative"
+                                                            value={formData.role}
+                                                            onChange={(e) => OnHandleChange(e.target)}>
+                                                                <option value={0}>----------</option>
+                                                                {RenderComboBox(SCRAP_CATEGORY_ROLE)}
+                                                    </AvField>
+                                                </div>   
+                                            </AvGroup>
+                                        </Col>
                                     </Row>
                                 </div>
                         </CardBody>

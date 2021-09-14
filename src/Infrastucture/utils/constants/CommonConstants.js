@@ -1,13 +1,15 @@
 export const PAGING = 7;
 
-
 export const PENDING_BOOKING = 1;
 export const CANCELBYSELLER_BOOKING = 2;
 export const NOBODY_APPROVE_BOOKING = 3;
 export const APPROVED_BOOKING = 4;
 export const COMPLETED_BOOKING = 5;
 
-
+export const SCRAP_CATEGORY_ACTIVE = 1;
+export const SCRAP_CATEGORY_DE_ACTIVE = 2;
+export const SCRAP_CATEGORY_ACTIVE_MESSAGE = "Đang Sử Dụng";
+export const SCRAP_CATEGORY_DE_ACTIVE_MESSAGE = "Thôi Sử Dụng";
 
 export const NOT_APPROVE_NUM = 1;
 export const ACTIVE_NUM = 2;
@@ -17,6 +19,7 @@ export const REJECT_NUM = 4;
 export const SELLER_NUM = 2;
 export const DEALER_NUM = 3;
 export const COLLECTOR_NUM = 4;
+export const DEALER_MEM_NUM = 5;
 
 export const NOT_APPROVE_STYLE = "bg-info";
 export const ACTIVE_STYLE = "bg-success";
@@ -91,6 +94,42 @@ export const GENDER = [
     }
 ]
 
+export const ScrapCategoryStatus = [
+    {
+        key: SCRAP_CATEGORY_ACTIVE,
+        val: 'Đang Sử Dụng'
+    },
+    {
+        key: SCRAP_CATEGORY_DE_ACTIVE,
+        val: 'Thôi Sử Dụng'
+    }
+]
+
+export const DEALER_STATUS = [
+    {
+        key: true,
+        val: 'Đang Hoạt Động'
+    },
+    {
+        key: false,
+        val: 'Tạm Dừng'
+    }
+]
+export const DEALER_LEADER = 1;
+export const DEALER_MEMBER = 2;
+export const DEALER_LEADER_MESSAGE = 'Vựa Chủ';
+export const DEALER_MEMBER_MESSAGE = 'Vựa Chi Nhánh';
+
+export const DEALER_TYPE = [
+    {
+        key: DEALER_LEADER,
+        val: DEALER_LEADER_MESSAGE
+    },
+    {
+        key: DEALER_MEMBER,
+        val: DEALER_MEMBER_MESSAGE
+    }
+]
 
 export const BOOKING_STATUS = [
     {
@@ -130,10 +169,6 @@ export const STATUS_REQUEST = [
 
 export const STATUS = [
     {
-        key: NOT_APPROVE_NUM,
-        val: "Đợi Chấp Thuận"
-    },
-    {
         key: ACTIVE_NUM,
         val :"Đang Hoạt Động"
     },
@@ -158,3 +193,13 @@ export const ROLE = [
     }
 ]
 
+export const SCRAP_CATEGORY_ROLE = [
+    {
+        key: DEALER_NUM,
+        val :"Chủ Vựa"
+    },
+    {
+        key: COLLECTOR_NUM,
+        val :"Người Thu Gom"
+    }
+]

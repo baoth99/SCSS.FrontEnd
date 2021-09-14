@@ -1,29 +1,5 @@
-import {HIDE_SCCREATE_MODAL, SHOW_SCCREATE_MODAL,
-        SHOW_CONFIRM_DIALOG, HIDE_CONFIRM_DIALOG,
+import {SHOW_CONFIRM_DIALOG, HIDE_CONFIRM_DIALOG,
         SHOW_IMAGE_SLIDER_DETAIL_MODAL, HIDE_IMAGE_SLIDER_DETAIL_MODAL} from '../../../Infrastucture/utils/constants/ActionConstants';
-
-const initialState = {
-    showModal: false
-}
-
-export function SCCreateModalReducer(state = initialState, action)  {
-    switch (action.type) {
-        case SHOW_SCCREATE_MODAL: {
-            return {
-                ...state,
-                showModal: true
-            }
-        }
-        case HIDE_SCCREATE_MODAL: {
-            return {
-                ...state,
-                showModal: false
-            }
-        }    
-        default:
-            return state;
-    }
-}
 
 const initialConfirmDialogState = {
     showModal: false,
@@ -36,8 +12,6 @@ export function ConfirmDialogReducer(state = initialConfirmDialogState, action) 
         case SHOW_CONFIRM_DIALOG: {
             return {
                 ...action.payload,
-                //showModal: true
-
             }
         }
         case HIDE_CONFIRM_DIALOG: {

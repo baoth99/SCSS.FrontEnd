@@ -4,9 +4,10 @@ import ScrapCategoryDetail from '../../Presentation/views/scrap-categorys/ScrapC
 import DCTransactionDetail from '../../Presentation/views/transactions/DCTransactionDetail';
 import CSTransactionDetail from '../../Presentation/views/transactions/CSTransactionDetail';
 import BookingDetail from '../../Presentation/views/booking/BookingDetail';
-
 import CollectorRequestRegisterDetail from '../../Presentation/views/request-register/CollectorRequestRegisterDetail';
 import DealerRequestRegisterDetail from '../../Presentation/views/request-register/DealerRequestRegisterDetail';
+import DealerDetail from '../../Presentation/views/dealers/DealerDetail';
+
 
 export const GetBookingRoutes = () => {
   let baseUrl = "/admin/booking/:id"
@@ -75,6 +76,16 @@ export const GetSCRoutes = () => {
       <Route
         path={baseUrl}
         component={ScrapCategoryDetail}
+        />
+  );
+};
+
+export const GetDealerInfoRoutes = () => {
+  let baseUrl = "/admin/dealers/:id"
+  return (
+      <Route
+        path={baseUrl}
+        component={DealerDetail}
         />
   );
 };

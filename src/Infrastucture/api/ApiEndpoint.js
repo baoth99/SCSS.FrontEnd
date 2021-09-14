@@ -1,11 +1,5 @@
-export const Unit = "/data/units";
-
-
-export const CreateNewSC = "/admin-category/create";
-export const SearchSCEndpoint = "/admin-category/search";
-export const GetSCDetailEndpoint = "/admin-category/detail";
-export const RemoveSCEndpoint = "/admin-category/remove";
-export const EditSCEndpoint = "/admin-category/edit";
+export const SearchSCEndpoint = "/scrap-category/search";
+export const GetSCDetailEndpoint = "/scrap-category/detail";
 
 export const GetImage = "/data/image";
 
@@ -28,4 +22,12 @@ export const CreateImage = "/image-slider/create";
 export const GetCollectorRR = "/request-register/collectors";
 export const GetCollectorRRDetail = "/request-register/collector-detail"
 export const GetDealerRR = "/request-register/dealers";
-export const GetDealerRRDetail = "/request-register/dealers";
+export const GetDealerRRDetail = "/request-register/dealer-detail";
+
+export const ChangeAccountStatus = "/account/admin/change-status";
+
+export const SearchUserEndpoint = "/account/admin/search";
+export const GetUserDetailEndpoint = "/account/admin/detail";
+
+export const SearchDealerInfoEndpoint = "/dealer-information/search";
+export const GetDealerInfoDetailEndpoint = "/dealer-information/detail";

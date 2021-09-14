@@ -9,7 +9,7 @@ import {
   } from "reactstrap";
 import {useDispatch} from 'react-redux';
 import { AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
-import {STATUS_REQUEST} from '../../../../Infrastucture/utils/constants/CommonConstants';
+import {STATUS_REQUEST, DEALER_TYPE} from '../../../../Infrastucture/utils/constants/CommonConstants';
 import { BsArrowClockwise, BsSearch, BsXCircle } from "react-icons/bs";
 import {initialDealerRRSearchFormState} from '../../../../Infrastucture/utils/variables/InitialStateData'
 import {RenderComboBox} from '../../../../Infrastucture/helpers/CommonHelper';
@@ -133,6 +133,22 @@ const DealerRequestRegisterSearchForm = () => {
                                                             {RenderComboBox(STATUS_REQUEST)}
                                                 </AvField>
                                             </div>   
+                                        </AvGroup>
+                                    </Col>
+                                    <Col lg="3">
+                                        <AvGroup>
+                                            <label className="form-control-label" >
+                                                Loại Vựa
+                                            </label>
+                                            <AvField type="select" 
+                                                    name="dealerType" 
+                                                    className="form-control-alternative"
+                                                    value={FormData.dealerType}
+                                                    onChange={(e) => OnHandleChange(e.target)}
+                                                    >
+                                                        <option value={0}>----------</option>
+                                                        {RenderComboBox(DEALER_TYPE)}
+                                            </AvField>
                                         </AvGroup>
                                     </Col>
                                 </Row>

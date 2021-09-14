@@ -10,7 +10,6 @@ import {
 import SCColumn from './SCColumn';
 import SCRow from './SCRow';
 import { useDispatch, useSelector } from 'react-redux';
-import {ShowSCCreate} from '../../../Application/redux/actions/ModalAction';
 import TablePagination from '../Commons/TablePagination';
 import {ChangeSCSearchForm} from '../../../Application/redux/actions/FormAction';
 import {SearchSC} from '../../../Application/redux/actions/SCAction';
@@ -25,9 +24,10 @@ const ShowScrapCategories = (data) => {
         result = data.map((val, index) => {
             return (
                 <SCRow key={index} stt={index} id={val.id}
-                        name={val.name} unit={val.unit}
+                        name={val.name} status={val.status}
                         createdBy={val.createdBy} 
-                        createdTime={val.createdTime}/>
+                        createdTime={val.createdTime}
+                        role={val.role}/>
             )
         });
     }
@@ -35,11 +35,7 @@ const ShowScrapCategories = (data) => {
 }
 
 const SCTable = () => {
-
     const SCData = useSelector(state => state.DataSC);
-    
-    const dispatch = useDispatch();
-
     const formData = state => state.SCSearchForm;
 
     return (
@@ -51,13 +47,6 @@ const SCTable = () => {
                         <Row className="align-items-center">
                             <Col lg="9">
                                 <h3 className="mb-0">Bảng Loại Phế Liệu</h3>
-                            </Col>
-                            <Col lg="3">
-                                <button type="button" className="btn btn-primary" 
-                                    style={{float: 'right'}} 
-                                    onClick={() => dispatch(ShowSCCreate())}>
-                                    Tạo Mới Loại Phế Liệu
-                                </button>
                             </Col>
                         </Row>
                     </CardHeader>

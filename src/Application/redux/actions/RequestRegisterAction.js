@@ -4,7 +4,8 @@ import {SEARCH_COLLECTOR_REQUEST_REGISTER, SEARCH_COLLECTOR_REQUEST_REGISTER_SUC
         GET_COLLECTOR_REQUEST_REGISTER_SUCCESS,
         GET_DEALER_REQUEST_REGISTER,
         GET_DEALER_REQUEST_REGISTER_SUCCESS,
-        FEATCH_ALL_REQUEST_REGISTER} from '../../../Infrastucture/utils/constants/ActionConstants';
+        FEATCH_ALL_REQUEST_REGISTER,
+        CHANGE_REQUEST_REGISTER_STATUS} from '../../../Infrastucture/utils/constants/ActionConstants';
 
 
 export const FetchAllRequestRegister = () => {
@@ -63,7 +64,7 @@ export const GetCollectorRequestRegisterSuccess = ({id, name, address, birthDate
 }
 
 
-export const SearchDealerRequestRegister = ({phone, name, dealerName, status, page, pageSize}) => {
+export const SearchDealerRequestRegister = ({phone, name, dealerName, status, dealerType, page, pageSize}) => {
     return {
         type: SEARCH_DEALER_REQUEST_REGISTER,
         payload: {
@@ -71,6 +72,7 @@ export const SearchDealerRequestRegister = ({phone, name, dealerName, status, pa
             name: name,
             dealerName: dealerName,
             status: status,
+            dealerType: dealerType,
             page: page,
             pageSize: pageSize
         }
@@ -92,6 +94,50 @@ export const GetDealerRequestRegister = (id) => {
         type: GET_DEALER_REQUEST_REGISTER,
         payload: {
             id: id
+        }
+    }
+}
+
+export const GetDealerRequestRegisterSuccess = ({id, accountName, accountPhone, accountAddress, 
+                                                accountStatus, birthDate, dealerType, gender, idCard,
+                                                dealerName, dealerPhone, dealerAddress, dealerImageUrl, dealerLatitude, dealerLongitude,
+                                                dealerLeaderName, dealerLeaderId, managerLeaderId, managerName, managerPhone}) => {
+    return {
+        type: GET_DEALER_REQUEST_REGISTER_SUCCESS,
+        payload: {
+            id: id,
+            accountName: accountName,
+            accountPhone: accountPhone,
+            accountAddress: accountAddress,
+            accountStatus: accountStatus,
+            birthDate: birthDate,
+            dealerType: dealerType,
+            gender: gender,
+            idCard: idCard,
+            //Dealer Info
+            dealerName: dealerName,
+            dealerPhone: dealerPhone,
+            dealerAddress: dealerAddress,
+            dealerImageUrl: dealerImageUrl,
+            dealerLatitude: dealerLatitude,
+            dealerLongitude: dealerLongitude,
+            // Dealer Leader Info
+            dealerLeaderName: dealerLeaderName,
+            dealerLeaderId: dealerLeaderId,
+            managerLeaderId: managerLeaderId,
+            managerName: managerName,
+            managerPhone: managerPhone
+        }
+    }
+}
+
+
+export const ChangeRequestRegisterStatus = (id, status) => {
+    return {
+        type: CHANGE_REQUEST_REGISTER_STATUS,
+        payload: {
+            id: id,
+            status: status
         }
     }
 }

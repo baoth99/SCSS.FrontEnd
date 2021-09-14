@@ -46,7 +46,7 @@ const DealerRequestRegisterTable = () => {
                     <CardHeader className="border-0">
                         <Row className="align-items-center">
                             <Col lg="9">
-                                <h3 className="mb-0">Chủ Vựa</h3>
+                                <h3 className="mb-0">Đăng Kí Vựa</h3>
                             </Col>
                         </Row>
                     </CardHeader>

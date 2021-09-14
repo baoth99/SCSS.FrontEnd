@@ -3,8 +3,10 @@ import {Card, CardHeader, CardBody, Container, Row, Col, Input, FormGroup, CardF
 import {useParams} from "react-router-dom";
 import Gender from '../../components/Commons/Gender';
 import UserStatus from '../../components/Users/UserStatus';
-import {useDispatch, useSelector} from 'react-redux'
-import {GetCollectorRequestRegister} from '../../../Application/redux/actions/RequestRegisterAction';
+import {useDispatch, useSelector} from 'react-redux';
+import {GetCollectorRequestRegister,ChangeRequestRegisterStatus} from '../../../Application/redux/actions/RequestRegisterAction';
+import {ACTIVE_NUM, REJECT_NUM} from '../../../Infrastucture/utils/constants/CommonConstants'
+import {ShowConfirmDialog} from '../../../Application/redux/actions/ModalAction';
 
 const CheckUndefine= (val) => {
     return val == 'undefined' ? '' : val;
@@ -14,8 +16,6 @@ const CollectorRequestRegisterDetail = () => {
     let { id } = useParams();
     const dispatch = useDispatch();
     let dataCollector = useSelector(state => state.DataCollectorRegisterRequest);
-
-    //const {name, address, gender, birthDate, idCard, phone, registerTime, status } = dataCollector;
 
     const collectorRRState = {
         name: dataCollector.name,
@@ -33,17 +33,26 @@ const CollectorRequestRegisterDetail = () => {
         dispatch(GetCollectorRequestRegister(id));
     }, []);
 
+
+    const OnChangeStatus = (status) => {
+        const title = status == 2 ? `Xác Nhận Chấp Thuận Tài Khoản` : `Xác Nhận Từ Chối`;
+        const statusMess = status == 2 ? `Chấp Thuận ` : `Từ Chối`;
+        const message = statusMess + ` Tài Khoản ${dataCollector.name} Với Số ĐT ${dataCollector.phone}`;
+        dispatch(
+            ShowConfirmDialog(title, message, ChangeRequestRegisterStatus(id, status)) 
+        );
+    }
+
     return (
         <Container className="mt--7" fluid>
             <Row className="mt-5">
                 <div className="col">
-                    <Form>
                     <Card className="bg-secondary shadow">
                         <CardHeader className="bg-white border-0">
                             <Row>
                                 <Col xs="9">
                                     <h3 className="mb-0">
-                                        Thông Tin Chi Tiết Vựa Yêu Cầu Đăng Kí
+                                        Thông Tin Chi Tiết Người Thu Gom Yêu Cầu Đăng Kí
                                     </h3>
                                 </Col>
                             </Row>
@@ -58,7 +67,7 @@ const CollectorRequestRegisterDetail = () => {
                                             </label>
                                             <Input
                                                 className="form-control-alternative"
-                                                value={CheckUndefine(collectorRRState.phone)}
+                                                defaultValue={CheckUndefine(collectorRRState.phone)}
                                                 disabled={true}
                                                 type="text"
                                             />
@@ -71,7 +80,7 @@ const CollectorRequestRegisterDetail = () => {
                                             </label>
                                             <Input
                                                 className="form-control-alternative"
-                                                value={CheckUndefine(collectorRRState.name)}
+                                                defaultValue={CheckUndefine(collectorRRState.name)}
                                                 disabled={true}
                                                 type="text"
                                             />
@@ -84,7 +93,7 @@ const CollectorRequestRegisterDetail = () => {
                                             </label>
                                             <Input
                                                 className="form-control-alternative"
-                                                value={CheckUndefine(collectorRRState.birthDate)}
+                                                defaultValue={CheckUndefine(collectorRRState.birthDate)}
                                                 disabled={true}
                                                 type="text"
                                             />
@@ -118,7 +127,7 @@ const CollectorRequestRegisterDetail = () => {
                                             <Input
                                                 className="form-control-alternative"
                                                 style={{height: 100}}
-                                                value={CheckUndefine(collectorRRState.address)}
+                                                defaultValue={CheckUndefine(collectorRRState.address)}
                                                 disabled={true}
                                                 type="textarea"
                                             />
@@ -131,7 +140,7 @@ const CollectorRequestRegisterDetail = () => {
                                             </label>
                                             <Input
                                                 className="form-control-alternative"
-                                                value={CheckUndefine(collectorRRState.idCard)}
+                                                defaultValue={CheckUndefine(collectorRRState.idCard)}
                                                 disabled={true}
                                                 type="text"
                                             />
@@ -144,7 +153,7 @@ const CollectorRequestRegisterDetail = () => {
                                             </label>
                                             <Input
                                                 className="form-control-alternative"
-                                                value={CheckUndefine(collectorRRState.registerTime)}
+                                                defaultValue={CheckUndefine(collectorRRState.registerTime)}
                                                 disabled={true}
                                                 type="text"
                                             />
@@ -158,13 +167,17 @@ const CollectorRequestRegisterDetail = () => {
                                 <Row>
                                     <Col lg="3">
                                         <Button className="my-4" color="primary" 
-                                        type="button" size="lg" block>
+                                        type="button" size="lg" 
+                                        onClick = {() => OnChangeStatus(ACTIVE_NUM)}
+                                        block>
                                             Chấp Thuận
                                         </Button>
                                     </Col>
                                     <Col lg="3">
                                         <Button className="my-4" color="danger" 
-                                        type="button" size="lg" block>
+                                        type="button" size="lg" 
+                                        onClick = {() => OnChangeStatus(REJECT_NUM)}
+                                        block>
                                             Từ Chối
                                         </Button>
                                     </Col>
@@ -172,7 +185,6 @@ const CollectorRequestRegisterDetail = () => {
                             </div>
                         </CardFooter>
                     </Card>
-                    </Form>
                 </div>
             </Row>
         </Container>

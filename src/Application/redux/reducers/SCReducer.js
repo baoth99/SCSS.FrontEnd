@@ -1,6 +1,5 @@
 import {SEARCH_SC_SUCCESS, SEARCH_SC,
-        GET_SC_DETAIL, GET_SC_DETAIL_SUCCESS,
-        CREATE_NEW_SC, REMOVE_SC, UPDATE_SC} from '../../../Infrastucture/utils/constants/ActionConstants';
+        GET_SC_DETAIL, GET_SC_DETAIL_SUCCESS} from '../../../Infrastucture/utils/constants/ActionConstants';
 
 import {initialDataSCTable} from '../../../Infrastucture/utils/variables/InitialStateData';
 
@@ -17,16 +16,6 @@ export const SCTableReducer = (state = initialDataSCTable, action) => {
                 total: action.payload.total
             }
         } 
-        case CREATE_NEW_SC: {
-            return {
-                ...state
-            }
-        }
-        case UPDATE_SC: {
-            return {
-                ...state
-            }
-        }
         case GET_SC_DETAIL: {
             return {
                 ...state
@@ -35,11 +24,6 @@ export const SCTableReducer = (state = initialDataSCTable, action) => {
         case GET_SC_DETAIL_SUCCESS: {
             return {
                 ...action.payload
-            }
-        }
-        case REMOVE_SC: {
-            return {
-                ...state
             }
         }
         default:{

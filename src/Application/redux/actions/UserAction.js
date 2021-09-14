@@ -1,4 +1,4 @@
-import {SEARCH_USER, SEARCH_USER_SUCCESS, GET_USER_DETAIL, GET_USER_DETAIL_SUCCESS} from '../../../Infrastucture/utils/constants/ActionConstants';
+import {SEARCH_USER, SEARCH_USER_SUCCESS, GET_USER_DETAIL, GET_USER_DETAIL_SUCCESS, CHANGE_ACCOUNT_STATUS} from '../../../Infrastucture/utils/constants/ActionConstants';
 
 export const SearchUser = ({phone, name, email, address, idCard, gender, role, status, page, pageSize}) => {
     return {
@@ -12,15 +12,18 @@ export const SearchUser = ({phone, name, email, address, idCard, gender, role, s
             gender: gender,
             role: role, status,
             page: page,
-            page: pageSize
+            pageSize: pageSize
         }
     }
 }
 
-export const SearchUserSuccess = (data) => {
+export const SearchUserSuccess = (list, total) => {
     return {
         type: SEARCH_USER_SUCCESS,
-        payload: data
+        payload: {
+            list: list,
+            total: total
+        }
     }
 }
 
@@ -38,5 +41,15 @@ export const GetUserDetailSuccess = (data) => {
     return {
         type: GET_USER_DETAIL_SUCCESS,
         payload: data
+    }
+}
+
+export const ChangeAccountStatus = (id, status) => {
+    return {
+        type: CHANGE_ACCOUNT_STATUS,
+        payload: {
+            id: id,
+            status: status
+        }
     }
 }

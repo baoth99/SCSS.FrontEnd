@@ -5,12 +5,12 @@ import Icons from "../../Presentation/views/examples/Icons";
 import ScrapCategory from '../../Presentation/views/scrap-categorys/ScrapCategory';
 import User from '../../Presentation/views/users/User';
 import Transaction from '../../Presentation/views/transactions/Transaction';
-import Unit from '../../Presentation/views/unit/Unit';
 import Booking from '../../Presentation/views/booking/Booking';
 import Feedback from '../../Presentation/views/feedback/Feedback';
 import Finance from '../../Presentation/views/finance/Finance';
 import ImageSlider from '../../Presentation/views/imageSlider/ImageSlider';
 import RequestRegister from '../../Presentation/views/request-register/RequestRegister';
+import Dealer from '../../Presentation/views/dealers/Dealer';
 
 var AdminRoutes = [
     {
@@ -25,6 +25,13 @@ var AdminRoutes = [
       name: "Quản lí người dùng",
       icon: "ni ni-badge text-orange",
       component: User,
+      layout: "/admin",
+    },
+    {
+      path: "/dealers",
+      name: "Quản lí Vựa Ve Chai",
+      icon: "ni ni-basket text-gray",
+      component: Dealer,
       layout: "/admin",
     },
     {
@@ -60,13 +67,6 @@ var AdminRoutes = [
       name: "Ý kiến phản hồi",
       icon: "ni ni-chat-round text-yellow",
       component: Feedback,
-      layout: "/admin",
-    },
-    {
-      path: "/unit",
-      name: "Quản lí đơn vị",
-      icon: "ni ni-ungroup text-black",
-      component: Unit,
       layout: "/admin",
     },
     {

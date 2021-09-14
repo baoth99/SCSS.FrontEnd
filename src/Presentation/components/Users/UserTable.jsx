@@ -6,6 +6,7 @@ import {
     Table,
     Row,
   } from "reactstrap";
+import {useSelector} from 'react-redux'
 
 import UserColumn from './UserColumn';
 import TablePagination from '../Commons/TablePagination';
@@ -13,56 +14,12 @@ import {SearchUser} from '../../../Application/redux/actions/UserAction';
 import {ChangeUserSearchForm} from '../../../Application/redux/actions/FormAction';
 import UserRow from './UserRow';
 
-const SeedData = [
-    {
-        id: "5c8d1031-851b-4c33-85f0-2bb2b558841d",
-        name: "Trần Hoài Bảo",
-        phone: "0939872902",
-        gender: 1,
-        status: 1,
-        role: 2,
-        totalPoint: 43
-    },
-    {
-        id: "5e5b319b-f5f0-4cd3-9da3-b888200a0638",
-        name: "Trần Đức Tiến",
-        phone: "0939872902",
-        gender: 1,
-        status: 2,
-        role: 3,
-        totalPoint: 43
-    },
-    {
-        id: "2d6a1280-e752-416b-9b4a-a9f1430c3ab9",
-        name: "Phạm Trung Hiếu",
-        phone: "0939872902",
-        gender: 1,
-        status: 3,
-        role: 3,
-        totalPoint: 43
-    },
-    {
-        id: "5c50e1d8-0e05-4c3f-8730-70ce3ec46772",
-        name: "Vũ Xuân Thiên",
-        phone: "0939872902",
-        gender: 1,
-        status: 1,
-        role: 4,
-        totalPoint: 43
-    },
-    {
-        id: "70d0fdb9-ebe9-41a7-87ca-8898c34e1ffa",
-        name: "Trần Đức Bo",
-        phone: "0939872902",
-        gender: 2,
-        status: 1,
-        role: 2,
-        totalPoint: 43
-    }
-]
 
 const ShowUser = (data) => {
-    let result = null
+    let result = null;
+    if(!Array.isArray(data)) {
+        return result;
+    }
     if (data.length > 0) {
         result = data.map((val, index) => {
             return (
@@ -73,11 +30,13 @@ const ShowUser = (data) => {
         })
     }
     return result;
-
 }
 
 const UserTable = () => {
+    const UserData = useSelector(state => state.DataUser);
     const formData = state => state.UserSearchForm;
+
+
     return (
         <Row className="mt-5">
                 <div className="col">
@@ -88,10 +47,10 @@ const UserTable = () => {
                     <Table className="align-items-center table-hover" responsive>
                         <UserColumn/>
                         <tbody>                                
-                            {ShowUser(SeedData)}
+                            {ShowUser(UserData.list)}
                         </tbody>
                     </Table>
-                    <TablePagination total={30} dataState={formData} action={SearchUser} formAction={ChangeUserSearchForm}/>
+                    <TablePagination total={UserData.total} dataState={formData} action={SearchUser} formAction={ChangeUserSearchForm}/>
                     </Card>
                 </div>
         </Row>

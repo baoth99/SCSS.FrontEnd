@@ -1,6 +1,4 @@
 import React from 'react';
-
-
 import {
     DropdownMenu,
     DropdownItem,
@@ -16,8 +14,6 @@ import { BsPersonLinesFill } from "react-icons/bs";
 import Gender from '../Commons/Gender';
 import UserStatus from './UserStatus';
 import Role from '../Commons/Role';
-import UserStatusButton from './UserStatusButton';
-
 
 const UserRow = ({stt, id, name, phone, gender, status, role, totalPoint}) => {
 
@@ -70,28 +66,15 @@ const UserRow = ({stt, id, name, phone, gender, status, role, totalPoint}) => {
             </td>
             <td className="text-right">
             <UncontrolledDropdown>
-                <DropdownToggle
-                className="btn-icon-only text-light"
-                role="button"
-                size="sm"
-                color="#49EE86"
-                onClick={(e) => e.preventDefault()}
-                >
-                <i className="fas fa-ellipsis-v" />
+                <DropdownToggle className="btn-icon-only text-light" role="button" size="sm" onClick={(e) => e.preventDefault()}>
+                    <i className="fas fa-ellipsis-v" />
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu-arrow" right>
-                <DropdownItem
-                    onClick={() => GoToUserDetail()}
-                >
-                    <BsPersonLinesFill/>
-                    &nbsp;
-                    Chi Tiết
-                </DropdownItem>
-                <DropdownItem
-                    onClick={(e) => e.preventDefault()}
-                >
-                    Action
-                </DropdownItem>
+                    <DropdownItem onClick={() => GoToUserDetail()}>
+                        <BsPersonLinesFill/>
+                        &nbsp;
+                        Chi Tiết
+                    </DropdownItem>              
                 </DropdownMenu>
             </UncontrolledDropdown>
             </td>

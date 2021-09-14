@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-    Badge
-  } from "reactstrap";
+import {Badge} from "reactstrap";
 
 import {ACTIVE_NUM, BANNING_NUM,NOT_APPROVE_NUM,
           ACTIVE_STYLE, BANNING_STYLE, NOT_APPROVE_STYLE} from '../../../Infrastucture/utils/constants/CommonConstants';

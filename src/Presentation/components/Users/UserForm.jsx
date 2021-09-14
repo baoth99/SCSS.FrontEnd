@@ -30,7 +30,7 @@ const UserForm = () => {
         })
     }
 
-    const OnHandleSearch = () => {
+    const OnHandleSearch = () => {       
         dispatch(
             ChangeUserSearchForm({...UserFormState})
         );

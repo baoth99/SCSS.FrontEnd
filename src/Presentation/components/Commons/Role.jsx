@@ -7,8 +7,8 @@ import { BiStreetView } from "react-icons/bi";
 import { MdFace, MdHelpOutline } from "react-icons/md";
 import { GrUserWorker } from "react-icons/gr";
 
-import {SELLER_NUM, COLLECTOR_NUM,DEALER_NUM} from '../../../Infrastucture/utils/constants/CommonConstants';
-import {COLLECTOR,DEALER,SELLER} from '../../../Infrastucture/utils/constants/MessageConstants'
+import {SELLER_NUM, COLLECTOR_NUM,DEALER_NUM, DEALER_MEM_NUM} from '../../../Infrastucture/utils/constants/CommonConstants';
+import {COLLECTOR,DEALER,DEALER_MEM,SELLER} from '../../../Infrastucture/utils/constants/MessageConstants'
 
 const RoleState = (message, icon) => {
     return {
@@ -31,13 +31,16 @@ const Role = ({role}) => {
                     break;
                 case COLLECTOR_NUM:
                     setAccountRole(RoleState(COLLECTOR, <GrUserWorker/>));
-                    break
+                    break;
+                case DEALER_MEM_NUM:
+                    setAccountRole(RoleState(DEALER_MEM,<BiStreetView/>));
+                    break;
                 default:
                     break;
             }
         }
         ChangeRole();
-    }, [])
+    }, [role])
     
     return (
         <Media>
