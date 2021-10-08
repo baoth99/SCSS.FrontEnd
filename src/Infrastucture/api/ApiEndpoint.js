@@ -10,7 +10,7 @@ export const EditUnitEndpoint = "/unit/edit";
 export const RemoveUnitEndpoint = "/unit/remove";
 
 
-export const AmountBookingHub = "hubs/admin/amount/booking";
+export const AmountBookingHub = "hubs/admin/amount/collecting-request";
 export const AmountTrasactionHub = "hubs/admin/amount/transaction";
 
 export const GetImageList = "/image-slider/list";
@@ -31,3 +31,6 @@ export const GetUserDetailEndpoint = "/account/admin/detail";
 
 export const SearchDealerInfoEndpoint = "/dealer-information/search";
 export const GetDealerInfoDetailEndpoint = "/dealer-information/detail";
+
+export const SearchCollectingRequestEndpoint = "/collecting-request/search";
+export const GetCollectingRequestDetailEndpoint = "/collecting-request/detail";

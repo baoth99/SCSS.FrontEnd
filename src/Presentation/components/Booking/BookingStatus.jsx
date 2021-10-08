@@ -3,10 +3,11 @@ import {
     Badge
   } from "reactstrap";
 
-import {PENDING_BOOKING, CANCELBYSELLER_BOOKING, NOBODY_APPROVE_BOOKING, APPROVED_BOOKING, COMPLETED_BOOKING,
+import {PENDING_BOOKING, CANCELBYSELLER_BOOKING, CANCELBYCOLLECTOR_BOOKING, APPROVED_BOOKING, COMPLETED_BOOKING, CANCELBYSYSTEM_BOOKING,
         PENDING_BOOKING_STYLE, CANCELBYSELLER_BOOKING_STYLE, NOBODY_APPROVE_BOOKING_STYLE, APPROVED_BOOKING_STYLE, COMPLETED_BOOKING_STYLE} from '../../../Infrastucture/utils/constants/CommonConstants';
 
-import {PENDING_BOOKING_MESSAGE, CANCELBYSELLER_BOOKING_MESSAGE, NOBODY_APPROVE_BOOKING_MESSAGE, APPROVED_BOOKING_MESSAGE, COMPLETED_BOOKING_MESSAGE} from '../../../Infrastucture/utils/constants/MessageConstants';
+import {PENDING_BOOKING_MESSAGE, CANCELBYSELLER_BOOKING_MESSAGE, NOBODY_APPROVE_BOOKING_MESSAGE, APPROVED_BOOKING_MESSAGE, COMPLETED_BOOKING_MESSAGE,
+        CANCELBYSYSTEM_MESSAGE} from '../../../Infrastucture/utils/constants/MessageConstants';
 import {StatusState} from '../../../Infrastucture/utils/variables/InitialStateData';
 
 const BookingStatus = ({status}) => {
@@ -21,7 +22,7 @@ const BookingStatus = ({status}) => {
                 case CANCELBYSELLER_BOOKING: 
                     setBookingStatus(StatusState(CANCELBYSELLER_BOOKING_MESSAGE, CANCELBYSELLER_BOOKING_STYLE))
                     break;
-                case NOBODY_APPROVE_BOOKING: 
+                case CANCELBYCOLLECTOR_BOOKING: 
                     setBookingStatus(StatusState(NOBODY_APPROVE_BOOKING_MESSAGE, NOBODY_APPROVE_BOOKING_STYLE))
                     break;
                 case APPROVED_BOOKING: 
@@ -30,12 +31,15 @@ const BookingStatus = ({status}) => {
                 case COMPLETED_BOOKING: 
                     setBookingStatus(StatusState(COMPLETED_BOOKING_MESSAGE, COMPLETED_BOOKING_STYLE))
                     break;
+                case CANCELBYSYSTEM_BOOKING: 
+                    setBookingStatus(StatusState(CANCELBYSYSTEM_MESSAGE, NOBODY_APPROVE_BOOKING_STYLE))
+                    break;
                 default:
                     break;
             }
         }
         ChangeStatus()
-    }, []);
+    }, [status]);
 
 
     return (

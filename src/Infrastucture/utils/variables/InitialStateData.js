@@ -30,10 +30,10 @@ export const initialDCFeedbackSearchFormState = {
 }
 
 export const initialBookingSearchFormState = {
-    bookingCode: "",
-    bookingBy: "",
-    bookingReceive: "",
-    status: "",
+    collectingRequestCode: "",
+    requestedBy: "",
+    receivedBy: "",
+    status: 0,
     fromDate: "",
     toDate: "",
     page : 1, 

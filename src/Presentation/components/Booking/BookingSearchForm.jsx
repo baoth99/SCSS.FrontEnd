@@ -69,8 +69,8 @@ const BookingSearchForm = () => {
                                             <AvInput
                                                 className="form-control-alternative"
                                                 type="text"
-                                                name="bookingCode"
-                                                value={FormData.bookingCode}
+                                                name="collectingRequestCode"
+                                                value={FormData.collectingRequestCode}
                                                 onChange={(e) => OnHandleChange(e.target)}
                                             />
                                         </AvGroup>
@@ -86,8 +86,8 @@ const BookingSearchForm = () => {
                                             <AvInput
                                                 className="form-control-alternative"
                                                 type="text"
-                                                name="bookingBy"
-                                                value={FormData.bookingBy}
+                                                name="requestedBy"
+                                                value={FormData.requestedBy}
                                                 onChange={(e) => OnHandleChange(e.target)}
                                             />
                                         </AvGroup>
@@ -103,8 +103,8 @@ const BookingSearchForm = () => {
                                             <AvInput
                                                 className="form-control-alternative"
                                                 type="text"
-                                                name="bookingReceive"
-                                                value={FormData.bookingReceive}
+                                                name="receivedBy"
+                                                value={FormData.receivedBy}
                                                 onChange={(e) => OnHandleChange(e.target)}
                                             />
                                         </AvGroup>

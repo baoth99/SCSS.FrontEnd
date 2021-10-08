@@ -10,7 +10,7 @@ import {
 
 import BookingStatus from './BookingStatus';
 
-const BookingRow = ({stt, id, bookingCode, bookingDate, bookingRangeTime, bookingBy, bookingReceive, status}) => {
+const BookingRow = ({stt, id, collectingRequestCode, collectingRequestDate, collectingRequestRangeTime, requestedBy, recevicedBy, status}) => {
     const history = useHistory();
 
     const path = "/admin/booking/" + id;
@@ -31,35 +31,35 @@ const BookingRow = ({stt, id, bookingCode, bookingDate, bookingRangeTime, bookin
             <td>
                 <Media>
                     <span className="mb-0 text-sm">
-                        {bookingCode}
+                        {collectingRequestCode}
                     </span>
                 </Media>
             </td>           
             <td>
                 <Media>
                     <span className="mb-0 text-sm">
-                        {bookingDate}
+                        {collectingRequestDate}
                     </span>
                 </Media>
             </td>
             <td>
                 <Media>
                     <span className="mb-0 text-sm">
-                        {bookingRangeTime}
+                        {collectingRequestRangeTime}
                     </span>
                 </Media>
             </td>
             <td>
                 <Media>
                     <span className="mb-0 text-sm">
-                        {bookingBy}
+                        {requestedBy}
                     </span>
                 </Media>
             </td>
             <td>
                 <Media>
                     <span className="mb-0 text-sm">
-                        {bookingReceive}
+                        {recevicedBy}
                     </span>
                 </Media>
             </td>

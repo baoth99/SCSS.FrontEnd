@@ -24,9 +24,9 @@ const ShowBooking = (data) => {
         result = data.map((val, index) => {
             return (
                 <BookingRow key={index} stt={index} id={val.id}
-                            bookingCode={val.bookingCode} bookingDate={val.bookingDate}
-                            bookingRangeTime={val.bookingRangeTime}
-                            bookingBy={val.bookingBy} bookingReceive={val.bookingReceive} status={val.status}/>
+                            collectingRequestCode={val.collectingRequestCode} collectingRequestDate={val.collectingRequestDate}
+                            collectingRequestRangeTime={val.collectingRequestRangeTime}
+                            requestedBy={val.requestedBy} recevicedBy={val.recevicedBy} status={val.status}/>
             )
         });
     }

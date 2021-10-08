@@ -2,9 +2,10 @@ export const PAGING = 7;
 
 export const PENDING_BOOKING = 1;
 export const CANCELBYSELLER_BOOKING = 2;
-export const NOBODY_APPROVE_BOOKING = 3;
+export const CANCELBYCOLLECTOR_BOOKING = 3;
 export const APPROVED_BOOKING = 4;
 export const COMPLETED_BOOKING = 5;
+export const CANCELBYSYSTEM_BOOKING = 6;
 
 export const SCRAP_CATEGORY_ACTIVE = 1;
 export const SCRAP_CATEGORY_DE_ACTIVE = 2;
@@ -141,8 +142,8 @@ export const BOOKING_STATUS = [
         val: "Người Bán Hủy"
     },
     {
-        key: NOBODY_APPROVE_BOOKING,
-        val: "Không Ai Chấp Nhận"
+        key: CANCELBYCOLLECTOR_BOOKING,
+        val: "Người Thu Gom Hủy"
     },
     {
         key: APPROVED_BOOKING,
@@ -151,6 +152,10 @@ export const BOOKING_STATUS = [
     {
         key: COMPLETED_BOOKING,
         val: "Đã Hoàn Thành"
+    },
+    {
+        key: CANCELBYSYSTEM_BOOKING,
+        val: "Hệ Thống Hủy"
     }
 ];
 

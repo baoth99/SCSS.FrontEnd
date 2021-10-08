@@ -30,7 +30,7 @@ export const BookingHubMiddleware = (accessToken) => {
         console.log(err);
     });
 
-    hubConnection.on("GetAmountOfBookingInDay", (data) => {
+    hubConnection.on("GetAmountOfCollectingRequestInDay", (data) => {
         ApplicationStore.dispatch(FeatchAmountOfBooking(data));
     });
 }

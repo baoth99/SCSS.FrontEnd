@@ -1,12 +1,12 @@
 import {SEARCH_BOOKING, SEARCH_BOOKING_SUCCESS, GET_BOOKING_DETAIL, GET_BOOKING_DETAIL_SUCCESS} from '../../../Infrastucture/utils/constants/ActionConstants';
 
-export const SearchBooking = ({bookingCode, bookingBy, bookingReceive, status, fromDate, toDate, page, pageSize}) => {
+export const SearchBooking = ({collectingRequestCode, requestedBy, receivedBy, status, fromDate, toDate, page, pageSize}) => {
     return {
         type: SEARCH_BOOKING,
         payload: {
-            bookingCode: bookingCode,
-            bookingBy: bookingBy,
-            bookingReceive: bookingReceive,
+            collectingRequestCode: collectingRequestCode,
+            requestedBy: requestedBy,
+            receivedBy: receivedBy,
             status: status,
             fromDate: fromDate,
             toDate: toDate,
