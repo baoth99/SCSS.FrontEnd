@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import {SearchDCFeedback,SearchCSFeedback} from '../../../Application/redux/actions/FeedbackAction';
-import {initialDCFeedbackSearchFormState, initialCSFeedbackSearchFormState} from '../../../Infrastucture/utils/variables/InitialStateData';
+import {GetAllFeedback} from '../../../Application/redux/actions/FeedbackAction';
 import ScreenHeader from "../../components/Headers/ScreenHeader";
 import {
     Card,
@@ -21,8 +20,7 @@ const Feedback = () => {
     
     useEffect(() => {
         dispatch(
-            SearchDCFeedback({...initialDCFeedbackSearchFormState}),
-            SearchCSFeedback({...initialCSFeedbackSearchFormState})
+            GetAllFeedback()
         )
     }, []);
 

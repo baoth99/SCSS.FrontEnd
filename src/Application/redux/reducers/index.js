@@ -24,6 +24,12 @@ import {DCTransactionTableReducer, CSTransactionTableReducer} from './Transactio
 import { connectRouter } from 'connected-react-router';
 import {ImageSliderReducer, ImageUsingListReducer} from './ImageSliderReducer';
 import DealerReducer from './DealerReducer';
+import {SysConfigReducer} from './SysConfigReducer';
+import CancelReasonReducer from './CancelReasonReducer';
+import {SellCollectTransFeeReducer,
+        CollectDealTransFeeReducer,
+        SellerAwardPointReducer,
+        CollectorAwardPointReducer} from './TransactionServiceReducer'
 
 const RootReducer = (history) => combineReducers({
     Auth: AuthReducer,
@@ -54,6 +60,12 @@ const RootReducer = (history) => combineReducers({
     ImageUsingList: ImageUsingListReducer,
     ImageSliderDetail: ImageSliderDetailReducer,
     FeatchAmountOfBooking: FeatchAmountOfBookingReducer,
+    SysConfig: SysConfigReducer,
+    SellCollectTransFee: SellCollectTransFeeReducer,
+    CollectDealTransFee: CollectDealTransFeeReducer,
+    SellerAwardPoint: SellerAwardPointReducer,
+    CollectorAwardPoint: CollectorAwardPointReducer,
+    CancelReason: CancelReasonReducer,
     router: connectRouter(history),
 });
 

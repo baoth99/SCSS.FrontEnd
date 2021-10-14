@@ -1,35 +1,51 @@
 import React from 'react';
 import { ListGroupItem, ListGroupItemText, Badge } from 'reactstrap';
-import Rating from '@material-ui/lab/Rating';
+import ReplyFeedback from '../ReplyFeedback';
+import {ReplySellerFeedback} from '../../../../Application/redux/actions/FeedbackAction';
 
-const DCFeedbackItem = ({transactionCode, sellerName, sellerFeedback, collectorName, collectorFeedback, sellerRate, feedbackDateTime}) => {
+
+const CSFeedbackItem = ({id, collectingRequestCode, feedbackContent, feedbackTime, repliedContent, sellingInfo, buyingInfo, wasReplied}) => {
+
     return (
-        <ListGroupItem>
+        <ListGroupItem style={{backgroundColor: wasReplied ? '#FFFFFF' : '#D9E9C8'}}>
             <h2>
-                Phản hồi của giao dịch <Badge color="success">{transactionCode}</Badge>
+                Phản hồi của yêu cầu thu gom <Badge color="success">{collectingRequestCode}</Badge>  
             </h2>
             <ListGroupItemText>
-                <Badge color="info" pill>
-                    Phản hồi từ người Bán "{sellerName}": 
-                </Badge>
-                &nbsp; {sellerFeedback}
-            </ListGroupItemText>
-            <ListGroupItemText>
                 <Badge color="warning" pill>
-                    Phản hồi từ người thu mua "{collectorName}": 
+                    Phản hồi từ người bán "{sellingInfo}" : 
                 </Badge>
-                &nbsp; {collectorFeedback}
+                &nbsp; {feedbackContent}
                 <br/> 
             </ListGroupItemText>
-            <ListGroupItemText>
-                <Badge color="danger" pill>
-                    Đánh Giá Vựa: 
-                </Badge>
-                &nbsp; <Rating name="read-only" value={sellerRate} max={10} readOnly />
-            </ListGroupItemText>      
-            <small className="text-muted">{feedbackDateTime}</small>                  
+            {
+                buyingInfo != "-" ? ( <ListGroupItemText>
+                                        <Badge color="primary" pill>
+                                            Người Thu Gom "{buyingInfo}"
+                                        </Badge>
+                                </ListGroupItemText>) : null
+            }    
+            {
+                wasReplied ? (<RepliedContent repliedContent={repliedContent}/>) :
+                                (<ReplyFeedback feedbackId={id} action={ReplySellerFeedback}/>)
+            }   
+               
+            <small className="text-muted">{feedbackTime}</small>                  
         </ListGroupItem>
     );
 }
+export default CSFeedbackItem;
 
-export default DCFeedbackItem;
+const RepliedContent = ({repliedContent}) => {
+    return (
+        <ListGroupItemText>
+            <Badge color="info" pill>
+                Phản hồi từ người quản trị : 
+            </Badge>
+            &nbsp; {repliedContent}
+        </ListGroupItemText>
+    );
+}
+
+
+

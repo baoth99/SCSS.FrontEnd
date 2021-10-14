@@ -208,3 +208,8 @@ export const SCRAP_CATEGORY_ROLE = [
         val :"Người Thu Gom"
     }
 ]
+
+export const TransactionType = {
+    SELL_COLLECT : 1,
+    COLLECT_DEAL: 2
+}

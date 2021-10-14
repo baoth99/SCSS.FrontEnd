@@ -10,6 +10,9 @@ import FeedbackSaga from '../../../Infrastucture/sagas/FeedbackSaga';
 import ImageSliderSaga from '../../../Infrastucture/sagas/ImageSliderSaga';
 import RequestRegisterSaga from '../../../Infrastucture/sagas/RequestRegisterSaga';
 import DealerSaga from '../../../Infrastucture/sagas/DealerSaga';
+import SysConfigSaga from '../../../Infrastucture/sagas/SysConfigSaga';
+import TransactionServiceSaga from '../../../Infrastucture/sagas/TransactionServiceSaga';
+import CancelReasonSaga from '../../../Infrastucture/sagas/CancelReasonSaga';
 import reducers from '../reducers';
 import { routerMiddleware } from 'connected-react-router'
 import History from '../../../Infrastucture/routes/History';
@@ -23,10 +26,10 @@ const FetchDataSagaMiddleware = createSagaMiddleware();
 const ImageSliderSagaMiddleware = createSagaMiddleware();
 const RequestRegisterSagaMiddleware = createSagaMiddleware();
 const DealerSagaMiddleware = createSagaMiddleware();
+const SysConfigSagaMiddleware = createSagaMiddleware();
+const TransactionServiceSagaMiddleware = createSagaMiddleware();
+const CancelReasonSagaMiddleware = createSagaMiddleware();
 const routerMiddelware = routerMiddleware(History);
-
-
-
 
 const middleware = [routerMiddelware, 
                     UserSagaMiddleware,
@@ -37,9 +40,11 @@ const middleware = [routerMiddelware,
                     FetchDataSagaMiddleware,
                     ImageSliderSagaMiddleware,
                     RequestRegisterSagaMiddleware,
-                    DealerSagaMiddleware
+                    DealerSagaMiddleware,
+                    SysConfigSagaMiddleware,
+                    TransactionServiceSagaMiddleware,
+                    CancelReasonSagaMiddleware
                     ];
-
 
 const Store = createStore(
     reducers(History),
@@ -57,5 +62,8 @@ ImageSliderSagaMiddleware.run(ImageSliderSaga);
 TransactionSagaMiddleware.run(TransactionSaga);
 RequestRegisterSagaMiddleware.run(RequestRegisterSaga);
 DealerSagaMiddleware.run(DealerSaga);
+SysConfigSagaMiddleware.run(SysConfigSaga);
+TransactionServiceSagaMiddleware.run(TransactionServiceSaga);
+CancelReasonSagaMiddleware.run(CancelReasonSaga);
 
 export default Store;

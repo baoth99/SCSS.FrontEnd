@@ -14,10 +14,15 @@ const ShowCSFeedback = (data) => {
     if (data.length > 0) {
         result = data.map((val, index) => {
             return (
-                <CSFeedbackItem key={index} transactionCode={val.transactionCode} sellerName={val.sellerName}
-                                sellerFeedback={val.sellerFeedback} collectorName={val.collectorName}
-                                collectorFeedback={val.collectorFeedback} sellerRate={val.sellerRate}
-                                feedbackDateTime={val.feedbackDateTime}/>
+                <CSFeedbackItem key={index} 
+                                id={val.id}
+                                collectingRequestCode={val.collectingRequestCode}
+                                feedbackContent={val.feedbackContent}
+                                feedbackTime={val.feedbackTime}
+                                repliedContent={val.repliedContent}
+                                sellingInfo={val.sellingInfo}
+                                buyingInfo={val.buyingInfo}
+                                wasReplied={val.wasReplied}/>
             )
         });
     }
@@ -42,7 +47,7 @@ const CSFeedbackList = () => {
                     <ListGroup>
                         {ShowCSFeedback(CSFeedbackData.list)}
                     </ListGroup>
-                    <TablePagination total={20} dataState={formData} action={SearchCSFeedback} formAction={ChangeCSFeedbackSearchForm}/>
+                    <TablePagination total={CSFeedbackData.total} dataState={formData} action={SearchCSFeedback} formAction={ChangeCSFeedbackSearchForm}/>
                 </Card>
              </div>
         </Row>

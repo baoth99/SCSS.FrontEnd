@@ -11,6 +11,9 @@ import Finance from '../../Presentation/views/finance/Finance';
 import ImageSlider from '../../Presentation/views/imageSlider/ImageSlider';
 import RequestRegister from '../../Presentation/views/request-register/RequestRegister';
 import Dealer from '../../Presentation/views/dealers/Dealer';
+import SystemConfig from '../../Presentation/views/system-config/SystemConfig';
+import TransactionService from '../../Presentation/views/transaction-service/TransactionService';
+import CollectorCancelReason from '../../Presentation/views/collector-cancel-reason/CollectorCancelReason';
 
 var AdminRoutes = [
     {
@@ -81,6 +84,27 @@ var AdminRoutes = [
       name: "Thiết Lập Ảnh Quảng Cáo",
       icon: "ni ni-album-2 text-green",
       component: ImageSlider,
+      layout: "/admin",
+    },
+    {
+      path: "/transaction-service",
+      name: "Quản Lí Phí Dịch Vụ",
+      icon: "ni ni-credit-card text-grey",
+      component: TransactionService,
+      layout: "/admin",
+    },
+    {
+      path: "/system-config",
+      name: "Cài Đặt Hệ Thống",
+      icon: "ni ni-ui-04 text-black",
+      component: SystemConfig,
+      layout: "/admin",
+    },
+    {
+      path: "/cancel-reason",
+      name: "Lí Do Hủy",
+      icon: "ni ni-books text-red",
+      component: CollectorCancelReason,
       layout: "/admin",
     },
     {

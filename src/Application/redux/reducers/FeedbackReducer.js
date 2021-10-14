@@ -1,7 +1,12 @@
 import {SEARCH_DC_FEEDBACK, SEARCH_DC_FEEDBACK_SUCCESS,
     SEARCH_CS_FEEDBACK, SEARCH_CS_FEEDBACK_SUCCESS} from '../../../Infrastucture/utils/constants/ActionConstants';
 
-export const DCFeedbackListReducer = (state = {}, action) => {
+const feedbackState = {
+    list: [],
+    total: 0
+}
+
+export const DCFeedbackListReducer = (state = feedbackState, action) => {
     switch (action.type) {
         case SEARCH_DC_FEEDBACK: {
             return {

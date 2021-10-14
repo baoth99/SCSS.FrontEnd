@@ -92,6 +92,20 @@ const DCFeedbackSearchForm = () => {
                                     </Col>
                                     <Col lg="3">
                                         <AvGroup>
+                                            <label className="form-control-label">
+                                                Số Điện Thoại Vựa
+                                            </label>
+                                            <AvInput
+                                                className="form-control-alternative"
+                                                type="number"
+                                                name="dealerPhone"
+                                                value={FormData.dealerPhone}
+                                                onChange={(e) => OnHandleChange(e.target)}
+                                            />   
+                                        </AvGroup>
+                                    </Col>
+                                    <Col lg="3">
+                                        <AvGroup>
                                             <label
                                                 className="form-control-label"
                                                 htmlFor="input-username"
@@ -107,29 +121,7 @@ const DCFeedbackSearchForm = () => {
                                             />
                                         </AvGroup>
                                     </Col>
-                                    <Col lg="3">
-                                        <AvGroup>
-                                            <label
-                                                className="form-control-label"
-                                                htmlFor="input-username"
-                                            >
-                                                Đánh Giá
-                                            </label>
-                                            <div className="alternative">
-                                                <AvField type="select" name="rate" 
-                                                        className="form-control-alternative"
-                                                        value={FormData.rate}
-                                                        onChange={(e) => OnHandleChange(e.target)}>
-                                                            <option value={-1}>----------</option>
-                                                            <option value={1}>1</option>
-                                                            <option value={2}>2</option>
-                                                            <option value={3}>3</option>
-                                                            <option value={4}>4</option>
-                                                            {/* {RenderComboBox(unitList)} */}
-                                                </AvField>
-                                            </div>   
-                                        </AvGroup>
-                                    </Col>                                   
+                                                                      
                                 </Row>
                             </AvForm>
                         </div>

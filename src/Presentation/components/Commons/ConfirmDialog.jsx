@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap';
-
 import {useDispatch, useSelector} from 'react-redux';
 import {HideConfirmDialog} from '../../../Application/redux/actions/ModalAction';
 
@@ -8,7 +7,6 @@ const ConfirmDialog = () => {
     const confirmDialogState = useSelector(state => state.ConfirmDialog);
     const dispatch = useDispatch();
     const {showModal, title, message, action} = confirmDialogState
-
 
     const Agree = () => {
         dispatch(action);

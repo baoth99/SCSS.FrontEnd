@@ -41,7 +41,7 @@ const DCFeedbackList = () => {
                   <ListGroup>
                     {ShowDCFeedback(DCFeedbackData.list)}
                   </ListGroup>
-                  <TablePagination total={20} dataState={formData} action={SearchDCFeedback} formAction={ChangeDCFeedbackSearchForm}/>
+                  <TablePagination total={DCFeedbackData.total} dataState={formData} action={SearchDCFeedback} formAction={ChangeDCFeedbackSearchForm}/>
                 </Card>
             </div>
         </Row>

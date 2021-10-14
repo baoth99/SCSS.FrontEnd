@@ -1,13 +1,42 @@
-import {SEARCH_DC_FEEDBACK, SEARCH_DC_FEEDBACK_SUCCESS, SEARCH_CS_FEEDBACK, SEARCH_CS_FEEDBACK_SUCCESS} from '../../../Infrastucture/utils/constants/ActionConstants';
+import {GET_FEEDBACK, SEARCH_DC_FEEDBACK, SEARCH_DC_FEEDBACK_SUCCESS, SEARCH_CS_FEEDBACK, SEARCH_CS_FEEDBACK_SUCCESS, REPLY_COLLECTOR_FEEDBACK, REPLY_SELLER_FEEDBACK} from '../../../Infrastucture/utils/constants/ActionConstants';
 
-export const SearchDCFeedback = ({transactionCode, dealerName, collectorName, rate, page, pageSize}) => {
+
+
+export const GetAllFeedback = () => {
+    return {
+        type: GET_FEEDBACK
+    }
+}
+
+export const ReplySellerFeedback = ({feedbackId, repliedContent}) => {
+    return {
+        type: REPLY_SELLER_FEEDBACK,
+        payload: {
+            feedbackId: feedbackId,
+            repliedContent: repliedContent,
+        }
+    }
+}
+
+export const ReplyCollectorFeedback = ({feedbackId, repliedContent}) => {
+    return {
+        type: REPLY_COLLECTOR_FEEDBACK,
+        payload: {
+            feedbackId: feedbackId,
+            repliedContent: repliedContent,
+        }
+    }
+}
+
+// Modify here
+export const SearchDCFeedback = ({transactionCode, dealerName, dealerPhone, collectorName, page, pageSize}) => {
     return {
         type: SEARCH_DC_FEEDBACK,
         payload: {
             transactionCode: transactionCode,
             dealerName: dealerName,
+            dealerPhone: dealerPhone,
             collectorName: collectorName,
-            rate: rate,
             page: page,
             pageSize: pageSize
         }
@@ -25,14 +54,14 @@ export const SearchDCFeedbackSuccess = (list, total) => {
 }
 
 
-export const SearchCSFeedback = ({transactionCode, sellerName, collectorName, rate, page, pageSize}) => {
+export const SearchCSFeedback = ({transactionCode, sellerName, collectorName, collectorPhone, page, pageSize}) => {
     return {
         type: SEARCH_CS_FEEDBACK,
         payload: {
             transactionCode: transactionCode,
             sellerName: sellerName,
             collectorName: collectorName,
-            rate: rate,
+            collectorPhone: collectorPhone,
             page: page,
             pageSize: pageSize
         }

@@ -15,16 +15,17 @@ export const initialCSFeedbackSearchFormState = {
     transactionCode: "",
     sellerName: "",
     collectorName: "",
-    rate: -1,
+    collectorPhone: "",
     page : 1, 
     pageSize: PAGING
 }
 
+// Modify here
 export const initialDCFeedbackSearchFormState = {
     transactionCode: "",
     dealerName: "",
+    dealerPhone: "",
     collectorName: "",
-    rate: -1,
     page : 1, 
     pageSize: PAGING
 }
@@ -123,4 +124,39 @@ export const initialDealerRRSearchFormState = {
     dealerType: 0,
     page : 1, 
     pageSize: PAGING
+}
+
+export const ConfigIsUsing = {
+    cancelTimeRange: 0,
+    timeRangeRequestNow: 0,
+    requestQuantity :0,
+    maxNumberOfRequestDays: 0,
+    receiveQuantity: 0,
+    feedbackDeadline: 0,
+    operatingTimeFrom: "00:00",
+    operatingTimeTo: "00:00"
+};
+
+export const initialSysConfigState = {
+    configIsUsing : ConfigIsUsing,
+    histories: []
+}
+
+/////////////
+export const TransFeeUsing = 1;
+
+export const TransFee = {
+    percent: TransFeeUsing,
+    histories: []
+}
+
+////////////
+export const AwardPointUsing = {
+    appliedAmount: 1,
+    amount: 1
+}
+
+export const AwardPoint = {
+    awardPointUsing: AwardPointUsing,
+    histories: []
 }
