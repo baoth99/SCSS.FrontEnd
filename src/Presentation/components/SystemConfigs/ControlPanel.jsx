@@ -15,7 +15,6 @@ const Controlpanel = () => {
 
     const [ControlPanelState, setControlPanelState] = useState({...ConfigIsUsing})
 
-    
     useEffect(() => {
         function SetSysConfig() {
             setControlPanelState(configIsUsing);
