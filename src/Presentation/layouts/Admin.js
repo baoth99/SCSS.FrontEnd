@@ -14,16 +14,12 @@ import NoInternetConnection from '../views/errors/NoInternetConnection';
 import BadRequest from '../views/errors/BadRequest';
 // routes
 import {BadRequestRoute,NoInternetConnetionRoute} from '../../Infrastucture/utils/constants/RouteConstants'
-import { useSelector, useDispatch } from 'react-redux';
 
-import {FeatchHubConnection} from '../../Application/redux/actions/FetchDataAction';
 
 const Admin = (props) => {
   const mainContent = React.useRef(null);
   const location = useLocation();
 
-  const account = useSelector(state => state.Auth.user);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -32,9 +28,8 @@ const Admin = (props) => {
   }, [location]);
 
 
-  useEffect(() => {
-    dispatch(FeatchHubConnection(account.access_token))
-  }, []);
+  
+
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {

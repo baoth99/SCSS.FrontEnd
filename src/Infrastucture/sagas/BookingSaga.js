@@ -7,6 +7,7 @@ import {BadRequestRoute} from '../utils/constants/RouteConstants';
 import {ApiGet} from '../api/ApiCaller';
 import {SearchCollectingRequestEndpoint, GetCollectingRequestDetailEndpoint} from '../api/ApiEndpoint';
 import {push} from 'connected-react-router';
+import {BookingRoute} from '../utils/constants/RouteConstants';
 
 
 function* SearchBookingSaga({payload}) {
@@ -27,8 +28,25 @@ function* SearchBookingSaga({payload}) {
 
 function* GetBookingDetail({payload}) {
     yield put(ShowLoading());
-    console.log(payload.id);
-    yield delay(1000);
+   
+    try {
+        const response = yield call(ApiGet, GetCollectingRequestDetailEndpoint, payload);
+        const data = response.data;
+        if (!data.isSuccess) {
+            throw "Invalid";
+        }
+        const resData = data.resData;
+        yield put (GetBookingDetailSuccess(resData));
+    } catch (error) {
+        if (error == 'Invalid' || error.response.status == 404) {
+            yield put(push(BookingRoute));
+        } 
+        else
+        {
+            yield RedirectToNoInternet(error);
+        }
+    }
+
     yield put(HideLoading());
 
 }

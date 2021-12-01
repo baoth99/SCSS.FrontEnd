@@ -6,13 +6,15 @@ import UserSaga from '../../../Infrastucture/sagas/UserSaga';
 import SCSaga from '../../../Infrastucture/sagas/SCSaga';
 import TransactionSaga from '../../../Infrastucture/sagas/TransactionSaga';
 import BookingSaga from '../../../Infrastucture/sagas/BookingSaga';
-import FeedbackSaga from '../../../Infrastucture/sagas/FeedbackSaga';
 import ImageSliderSaga from '../../../Infrastucture/sagas/ImageSliderSaga';
 import RequestRegisterSaga from '../../../Infrastucture/sagas/RequestRegisterSaga';
 import DealerSaga from '../../../Infrastucture/sagas/DealerSaga';
 import SysConfigSaga from '../../../Infrastucture/sagas/SysConfigSaga';
 import TransactionServiceSaga from '../../../Infrastucture/sagas/TransactionServiceSaga';
 import CancelReasonSaga from '../../../Infrastucture/sagas/CancelReasonSaga';
+import ComplaintSaga from '../../../Infrastucture/sagas/ComplaintSaga';
+import RegisterSaga from '../../../Infrastucture/sagas/RegisterSaga';
+import DashboardSaga from '../../../Infrastucture/sagas/DashboardSaga';
 import reducers from '../reducers';
 import { routerMiddleware } from 'connected-react-router'
 import History from '../../../Infrastucture/routes/History';
@@ -21,7 +23,6 @@ const UserSagaMiddleware = createSagaMiddleware();
 const TransactionSagaMiddleware = createSagaMiddleware();
 const SCSagaMiddleware = createSagaMiddleware();
 const BookingSagaMiddleware = createSagaMiddleware();
-const FeedbackSagaMiddleware = createSagaMiddleware();
 const FetchDataSagaMiddleware = createSagaMiddleware();
 const ImageSliderSagaMiddleware = createSagaMiddleware();
 const RequestRegisterSagaMiddleware = createSagaMiddleware();
@@ -29,6 +30,11 @@ const DealerSagaMiddleware = createSagaMiddleware();
 const SysConfigSagaMiddleware = createSagaMiddleware();
 const TransactionServiceSagaMiddleware = createSagaMiddleware();
 const CancelReasonSagaMiddleware = createSagaMiddleware();
+const ComplaintSagaMiddleware = createSagaMiddleware();
+const RegisterSagaMiddleware = createSagaMiddleware();
+
+const DashboardSagaMiddleware = createSagaMiddleware();
+
 const routerMiddelware = routerMiddleware(History);
 
 const middleware = [routerMiddelware, 
@@ -36,14 +42,16 @@ const middleware = [routerMiddelware,
                     SCSagaMiddleware, 
                     TransactionSagaMiddleware,
                     BookingSagaMiddleware,
-                    FeedbackSagaMiddleware,
                     FetchDataSagaMiddleware,
                     ImageSliderSagaMiddleware,
                     RequestRegisterSagaMiddleware,
                     DealerSagaMiddleware,
                     SysConfigSagaMiddleware,
                     TransactionServiceSagaMiddleware,
-                    CancelReasonSagaMiddleware
+                    CancelReasonSagaMiddleware,
+                    ComplaintSagaMiddleware,
+                    RegisterSagaMiddleware,
+                    DashboardSagaMiddleware
                     ];
 
 const Store = createStore(
@@ -56,7 +64,6 @@ const Store = createStore(
 UserSagaMiddleware.run(UserSaga);
 SCSagaMiddleware.run(SCSaga);
 BookingSagaMiddleware.run(BookingSaga);
-FeedbackSagaMiddleware.run(FeedbackSaga);
 FetchDataSagaMiddleware.run(FetchDataSaga);
 ImageSliderSagaMiddleware.run(ImageSliderSaga);
 TransactionSagaMiddleware.run(TransactionSaga);
@@ -65,5 +72,7 @@ DealerSagaMiddleware.run(DealerSaga);
 SysConfigSagaMiddleware.run(SysConfigSaga);
 TransactionServiceSagaMiddleware.run(TransactionServiceSaga);
 CancelReasonSagaMiddleware.run(CancelReasonSaga);
-
+ComplaintSagaMiddleware.run(ComplaintSaga);
+RegisterSagaMiddleware.run(RegisterSaga);
+DashboardSagaMiddleware.run(DashboardSaga);
 export default Store;

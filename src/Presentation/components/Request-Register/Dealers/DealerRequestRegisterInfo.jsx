@@ -113,7 +113,7 @@ const DealerRequestRegisterInfo = ({id, accountName, accountPhone, dealerName, d
                                             </label>
                                             <div className="form-control-alternative mt-1">
                                                 <ImageComponent style={{width: '100%', height: '300px'}} className="rounded"
-                                                                image={dealerImageUrl}/>
+                                                                image={dealerImageUrl} isFromAPI={true}/>
                                             </div>                                          
                                         </FormGroup>
                                     </Col>

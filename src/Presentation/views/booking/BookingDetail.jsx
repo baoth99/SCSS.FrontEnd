@@ -6,41 +6,17 @@ import {useDispatch, useSelector} from 'react-redux';
 import BookingStatus from '../../components/Booking/BookingStatus';
 import { BsArrowClockwise } from "react-icons/bs";
 import BookingStatusDetail from '../../components/Booking/BookingStatusDetail';
-import BookingRejectedList from '../../components/Booking/BookingRejectedList';
-
-
-const SeedData = [
-    {
-        info: "Trần Hoài Bảo - 0939872902",
-        content: "Bố mày đéo thích nhận được không lào ????"
-    },
-    {
-        info: "Trần Đức Tiến - 0939872902",
-        content: "Bố mày đéo thích nhận được không lào ????"
-    },
-    {
-        info: "Trần Đức Bo - 0939872902",
-        content: "Bố mày đéo thích nhận được không lào ????"
-    },
-    {
-        info: "Trần Hoài Bảo - 0939872902",
-        content: "Bố mày đéo thích nhận được không lào ????"
-    },
-    {
-        info: "Trần Hoài Bảo - 0939872902",
-        content: "Bố mày đéo thích nhận được không lào ????"
-    }
-]
+import ImageComponent from '../../components/Commons/ImageComponent';
 
 const BookingDetail = () => {
+    const collectingRequestDetail = useSelector(state => state.BookingDetail);
+
     let { id } = useParams();
     const dispatch = useDispatch();
-
-    const dataBooking = useSelector(state => state.DataBooking);
-    
     useEffect(() => {
         dispatch(GetBookingDetail(id));
     }, []);
+
 
     const Refresh = () => {
         dispatch(GetBookingDetail(id));
@@ -80,7 +56,7 @@ const BookingDetail = () => {
                                             >
                                                 Mã Đặt Lịch : 
                                             </label>
-                                            <h4 className="mb-0">BC1707202111230003</h4>
+                                            <h4 className="mb-0">{collectingRequestDetail.collectingRequestCode}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -92,7 +68,7 @@ const BookingDetail = () => {
                                                 Người Đặt :
                                             </label>
                                             <h4 className="mb-0">
-                                                Trần Văn A - 0932678943
+                                                {collectingRequestDetail.requestedBy}
                                             </h4>
                                         </FormGroup>
                                     </Col>
@@ -105,21 +81,8 @@ const BookingDetail = () => {
                                                 Người Nhận : 
                                             </label>
                                             <h4 className="mb-0">
-                                                Lê Thị B - 0934567893
+                                            {collectingRequestDetail.receivedBy}
                                             </h4>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col lg="3">
-                                        <FormGroup>
-                                                <label
-                                                    className="form-control-label"
-                                                    htmlFor="input-username"
-                                                >
-                                                    Loại Phế Liệu Muốn Bán :                                                  
-                                                </label>
-                                                <h4>
-                                                    Nặng, sắt 
-                                                </h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -130,7 +93,7 @@ const BookingDetail = () => {
                                             >
                                                 Ngày Đặt Lịch : 
                                             </label>
-                                            <h4 className="mb-0">21/07/2021</h4>
+                                            <h4 className="mb-0">{collectingRequestDetail.collectingRequestDate}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -142,7 +105,7 @@ const BookingDetail = () => {
                                                 Khoảng Thời Gian : 
                                             </label>
                                             <h4 className="mb-0">
-                                                12:30 - 16:50
+                                               {collectingRequestDetail.collectingRequestRangeTime}
                                             </h4>
                                         </FormGroup>
                                     </Col>
@@ -155,15 +118,27 @@ const BookingDetail = () => {
                                                 Tình Trạng :
                                             </label>
                                             <div>
-                                                <BookingStatus status={2}/>
+                                                <BookingStatus status={collectingRequestDetail.status}/>
                                             </div>
                                         </FormGroup>                                        
                                     </Col>
                                     <Col lg="3">
-                                        <BookingStatusDetail status={2} content={{message: "Không Muốn Đặt Nữa" , id: "djbasdj,ksad"}}/>                                       
+                                        <BookingStatusDetail status={collectingRequestDetail.status} content={{message: "" , id: ""}}/>                                       
                                     </Col>
-                                    
-                                    
+                                    <Col lg="4">
+                                        <FormGroup>
+                                                <label
+                                                    className="form-control-label"
+                                                    htmlFor="input-username"
+                                                >
+                                                    Loại Phế Liệu Muốn Bán :                                                  
+                                                </label>
+                                                <div className="form-control-alternative mt-1">
+                                                        <ImageComponent style={{width: '100%', height: '300px'}} className="rounded"
+                                                                        image={collectingRequestDetail.scrapImageUrl} isFromAPI={true}/>
+                                                </div>
+                                        </FormGroup>
+                                    </Col>
                                     <Col lg="4">
                                         <FormGroup>
                                                 <label
@@ -173,7 +148,7 @@ const BookingDetail = () => {
                                                     Địa chỉ :                                                   
                                                 </label>
                                                 <h4>
-                                                    Đường D1, Khu Công Nghệ Cao, Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh 
+                                                    {collectingRequestDetail.address}
                                                 </h4>
                                         </FormGroup>
                                     </Col>                                  
@@ -189,22 +164,10 @@ const BookingDetail = () => {
                                                         className="form-control-alternative"
                                                         disabled={true}
                                                         style={{height: '100px'}}
-                                                        value={"N/A"}
+                                                        value={collectingRequestDetail.note}
                                                         type="textarea"
                                                     />
                                         </FormGroup>
-                                    </Col>
-                                    <Col lg="4">
-
-                                    </Col>
-                                    <Col lg="8">
-                                        <label
-                                            className="form-control-label"
-                                            htmlFor="input-username"
-                                        >
-                                            Người Từ Chối :                                                  
-                                        </label>
-                                        <BookingRejectedList rejectedList={SeedData}/>
                                     </Col>
                                 </Row>
                             </div>

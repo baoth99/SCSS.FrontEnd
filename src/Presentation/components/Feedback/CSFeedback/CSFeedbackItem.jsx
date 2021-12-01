@@ -29,8 +29,7 @@ const CSFeedbackItem = ({id, collectingRequestCode, feedbackContent, feedbackTim
                 wasReplied ? (<RepliedContent repliedContent={repliedContent}/>) :
                                 (<ReplyFeedback feedbackId={id} action={ReplySellerFeedback}/>)
             }   
-               
-            <small className="text-muted">{feedbackTime}</small>                  
+            
         </ListGroupItem>
     );
 }

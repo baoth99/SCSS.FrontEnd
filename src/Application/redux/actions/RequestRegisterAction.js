@@ -5,7 +5,26 @@ import {SEARCH_COLLECTOR_REQUEST_REGISTER, SEARCH_COLLECTOR_REQUEST_REGISTER_SUC
         GET_DEALER_REQUEST_REGISTER,
         GET_DEALER_REQUEST_REGISTER_SUCCESS,
         FEATCH_ALL_REQUEST_REGISTER,
-        CHANGE_REQUEST_REGISTER_STATUS} from '../../../Infrastucture/utils/constants/ActionConstants';
+        CHANGE_REQUEST_REGISTER_STATUS,
+        UPDATE_COLLECTOR_REGISTER} from '../../../Infrastucture/utils/constants/ActionConstants';
+
+        
+
+export const UpdateCollectorRegister = ({id, name, address, gender, birthDate, idCard, imageFile}) => {
+    return {
+        type: UPDATE_COLLECTOR_REGISTER,
+        payload: {
+            id: id,
+            name: name,
+            address: address,
+            gender: gender,
+            birthDate: birthDate,
+            idCard: idCard,
+            imageFile: imageFile
+        }
+    }
+}
+
 
 
 export const FetchAllRequestRegister = () => {

@@ -3,6 +3,8 @@ import {SEARCH_DC_TRANSACTION, SEARCH_DC_TRANSACTION_SUCCESS,
         GET_DC_TRANSACTION_DETAIL, GET_DC_TRANSACTION_DETAIL_SUCCESS,
         GET_CS_TRANSACTION_DETAIL, GET_CS_TRANSACTION_DETAIL_SUCCESS} from '../../../Infrastucture/utils/constants/ActionConstants';
 
+import {SCTransactionDetailState, DCTransactionDetailState} from '../../../Infrastucture/utils/variables/InitialStateData'
+
 export const DCTransactionTableReducer = (state = {}, action) => {
     switch (action.type) {
         case SEARCH_DC_TRANSACTION: {
@@ -16,6 +18,14 @@ export const DCTransactionTableReducer = (state = {}, action) => {
                 total: action.payload.total
             }
         }
+        default: {
+            return state;
+        }   
+    }
+}
+
+export const DCTransactionDetailReducer = (state = DCTransactionDetailState, action) => {
+    switch (action.type) {
         case GET_DC_TRANSACTION_DETAIL: {
             return {
                 ...state
@@ -28,7 +38,7 @@ export const DCTransactionTableReducer = (state = {}, action) => {
         }
         default: {
             return state;
-        }   
+        }
     }
 }
 
@@ -46,6 +56,15 @@ export const CSTransactionTableReducer = (state = {}, action) => {
                 total: action.payload.total
             }
         }
+        default: {
+            return state;
+        }   
+    }
+}
+
+
+export const CSTransactionDetailReducer = (state = SCTransactionDetailState, action) => {
+    switch (action.type) {
         case GET_CS_TRANSACTION_DETAIL: {
             return {
                 ...state

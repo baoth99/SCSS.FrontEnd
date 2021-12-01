@@ -1,12 +1,41 @@
-import React from 'react';
+import React,  {useEffect} from 'react';
 import {Card, CardHeader, CardBody, Container, Row, Col, Input, FormGroup, CardFooter, Button} from "reactstrap";
+import {GetCSTransactionDetail} from '../../../Application/redux/actions/TransactionAction';
+
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 
 
+export const RenderTransDetailList = (data) => {
+    let result = null;
+    if(!Array.isArray(data)) {
+        return result;
+    }
+    if (data.length > 0) {
+        result = data.map((val, index) => {
+            return (
+                <tr key={index}>
+                    <td>{val.scrapCategoryName}</td>
+                    <td>{val.quantity}</td>
+                    <td>{val.total} VND</td>
+                </tr>
+            )
+        });
+    }
+    return result;
+}
+
+
+
 const CSTransactionDetail = () => {
     const dispatch = useDispatch();
+    const CSTransactionDetail = useSelector(state => state.CSTransactionDetail);
     let { id } = useParams();
+
+    useEffect(() => {
+        dispatch(GetCSTransactionDetail(id));
+    }, []);
+
     return (
         <Container className="mt--7" fluid>
             <Row className="mt-5">
@@ -32,7 +61,7 @@ const CSTransactionDetail = () => {
                                             >
                                                 Mã Giao Dịch : 
                                             </label>
-                                            <h4 className="mb-0">BC1707202111230003</h4>
+                                            <h4 className="mb-0">{CSTransactionDetail.transactionCode}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -43,7 +72,7 @@ const CSTransactionDetail = () => {
                                             >
                                                 Thời Điểm Giao Dịch : 
                                             </label>
-                                            <h4 className="mb-0">23/07/2021 12:34:56</h4>
+                                            <h4 className="mb-0">{CSTransactionDetail.transactionDate}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="6">
@@ -54,7 +83,7 @@ const CSTransactionDetail = () => {
                                             >
                                                 Địa Chỉ Giao Dịch : 
                                             </label>
-                                            <h4 className="mb-0">Đường D1, Khu Công Nghệ Cao, Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh </h4>
+                                            <h4 className="mb-0">{CSTransactionDetail.address}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -65,7 +94,7 @@ const CSTransactionDetail = () => {
                                             >
                                                 Tên Người Bán : 
                                             </label>
-                                            <h4 className="mb-0">Huỳnh Văn Bánh</h4>
+                                            <h4 className="mb-0">{CSTransactionDetail.sellerName}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -76,7 +105,7 @@ const CSTransactionDetail = () => {
                                             >
                                                 Số Điện Thoại Người Bán : 
                                             </label>
-                                            <h4 className="mb-0">0943789321</h4>
+                                            <h4 className="mb-0">{CSTransactionDetail.sellerPhone}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -87,7 +116,7 @@ const CSTransactionDetail = () => {
                                             >
                                                 Tên Người Thu Mua : 
                                             </label>
-                                            <h4 className="mb-0">Lê Thị A</h4>
+                                            <h4 className="mb-0">{CSTransactionDetail.collectorName}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -98,7 +127,7 @@ const CSTransactionDetail = () => {
                                             >
                                                 Số Điện Thoại Người Thu Mua : 
                                             </label>
-                                            <h4 className="mb-0">0943784321</h4>
+                                            <h4 className="mb-0">{CSTransactionDetail.collectorPhone}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -107,9 +136,9 @@ const CSTransactionDetail = () => {
                                                 className="form-control-label"
                                                 htmlFor="input-username"
                                             >
-                                                Thời Điểm Đặt Lịch : 
+                                                Thời Điểm Thu Mua : 
                                             </label>
-                                            <h4 className="mb-0">23/07/2021 12:34:56</h4>
+                                            <h4 className="mb-0">{CSTransactionDetail.collectingRequestDate}</h4>
                                         </FormGroup>
                                     </Col>  
                                     <Col lg="3">
@@ -120,10 +149,20 @@ const CSTransactionDetail = () => {
                                             >
                                                 Điểm thưởng : 
                                             </label>
-                                            <h4 className="mb-0">19</h4>
+                                            <h4 className="mb-0">{CSTransactionDetail.awardPoint}</h4>
                                         </FormGroup>
                                     </Col>
-                                    <Col lg="6"></Col>
+                                    <Col lg="6">
+                                        <FormGroup>
+                                            <label
+                                                className="form-control-label"
+                                                htmlFor="input-username"
+                                            >
+                                                Đánh giá : 
+                                            </label>
+                                            <h4 className="mb-0">{CSTransactionDetail.feedback}</h4>
+                                        </FormGroup>
+                                    </Col>
                                     <Col lg="8">
                                         <label
                                             className="form-control-label"
@@ -140,21 +179,7 @@ const CSTransactionDetail = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>Sắt</td>
-                                                    <td>5kg</td>
-                                                    <td>120.000 VND</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Sắt</td>
-                                                    <td>5kg</td>
-                                                    <td>120.000 VND</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Sắt</td>
-                                                    <td>5kg</td>
-                                                    <td>120.000 VND</td>
-                                                </tr>
+                                               {RenderTransDetailList(CSTransactionDetail.transDetails)}
                                                 <tr>
                                                     <td></td>
                                                     <td>
@@ -165,7 +190,7 @@ const CSTransactionDetail = () => {
                                                         </label>
                                                     </td>
                                                     <td>
-                                                        <h4>340.000 VND</h4>
+                                                        <h4>{CSTransactionDetail.total} VND</h4>
                                                     </td>
                                                 </tr>
                                             </tbody>

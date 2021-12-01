@@ -5,7 +5,8 @@ import {RedirectToNoInternet} from './UtilSaga';
 import {BadRequestRoute} from '../utils/constants/RouteConstants';
 
 import {SEARCH_COLLECTOR_REQUEST_REGISTER, SEARCH_DEALER_REQUEST_REGISTER, FEATCH_ALL_REQUEST_REGISTER, 
-        GET_COLLECTOR_REQUEST_REGISTER, GET_DEALER_REQUEST_REGISTER, CHANGE_REQUEST_REGISTER_STATUS} from '../utils/constants/ActionConstants';
+        GET_COLLECTOR_REQUEST_REGISTER, GET_DEALER_REQUEST_REGISTER, CHANGE_REQUEST_REGISTER_STATUS,
+        UPDATE_COLLECTOR_REGISTER} from '../utils/constants/ActionConstants';
 import {SearchCollectorRequestRegisterSuccess, SearchDealerRequestRegisterSuccess,
         GetCollectorRequestRegisterSuccess, GetDealerRequestRegisterSuccess} from '../../Application/redux/actions/RequestRegisterAction';
 import {initialCollectorRRSearchFormState, initialDealerRRSearchFormState} from '../utils/variables/InitialStateData';
@@ -150,6 +151,13 @@ function* ChangeStatusSaga({payload}) {
     yield put(push(RequestRegisterRoute));
 }
 
+
+function* UpdateCollectorProfileSaga({payload}) {
+    yield put(HideConfirmDialog());
+
+    console.log(payload);
+}
+
 export default function* RequestRegisterSaga() {
     yield takeEvery(FEATCH_ALL_REQUEST_REGISTER, FetchAll);
     yield takeEvery(SEARCH_COLLECTOR_REQUEST_REGISTER, SearchCollectorRequestRegisterSaga);
@@ -157,4 +165,5 @@ export default function* RequestRegisterSaga() {
     yield takeEvery(GET_COLLECTOR_REQUEST_REGISTER, GetCollectorRequestRegisterSaga);
     yield takeEvery(GET_DEALER_REQUEST_REGISTER, GetDealerRequestRegisterSaga);
     yield takeEvery(CHANGE_REQUEST_REGISTER_STATUS, ChangeStatusSaga);
+    yield takeEvery(UPDATE_COLLECTOR_REGISTER, UpdateCollectorProfileSaga);
 }

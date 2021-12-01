@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Route  } from "react-router-dom";
 import UserDetail from '../../Presentation/views/users/UserDetail';
 import ScrapCategoryDetail from '../../Presentation/views/scrap-categorys/ScrapCategoryDetail'
 import DCTransactionDetail from '../../Presentation/views/transactions/DCTransactionDetail';
@@ -7,6 +7,25 @@ import BookingDetail from '../../Presentation/views/booking/BookingDetail';
 import CollectorRequestRegisterDetail from '../../Presentation/views/request-register/CollectorRequestRegisterDetail';
 import DealerRequestRegisterDetail from '../../Presentation/views/request-register/DealerRequestRegisterDetail';
 import DealerDetail from '../../Presentation/views/dealers/DealerDetail';
+
+import CollectorComplaintTab from '../../Presentation/views/complaint/CollectorComplaintTab';
+import SellerComplaintTab from '../../Presentation/views/complaint/SellerComplaintTab';
+import DealerComplaintTab from '../../Presentation/views/complaint/DealerComplaintTab';
+
+export const ComplaintRoute = [
+    {
+      path: "/admin/complaint/seller",
+      component: SellerComplaintTab
+    },
+    {
+      path: "/admin/complaint/collector",
+      component: CollectorComplaintTab
+    },
+    {
+      path: "/admin/complaint/dealer",
+      component: DealerComplaintTab
+    }
+]
 
 
 export const GetBookingRoutes = () => {

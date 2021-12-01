@@ -3,55 +3,79 @@ import {CHANGE_SCSEARCHFORM, CLEAR_SCSEARCHFORM,
         CHANGE_DC_TRANSACTION_SEARCHFORM, CLEAR_DC_TRANSACTION_SEARCHFORM,
         CHANGE_CS_TRANSACTION_SEARCHFORM, CLEAR_CS_TRANSACTION_SEARCHFORM,
         CHANGE_BOOKING_SEARCHFORM, CLEAR_BOOKING_SEARCHFORM,
-        CHANGE_DC_FEEDBACK_SEARCHFORM, CLEAR_DC_FEEDBACK_SEARCHFORM,
-        CHANGE_CS_FEEDBACK_SEARCHFORM, CLEAR_CS_FEEDBACK_SEARCHFORM,
         CHANGE_COLLECTOR_REQUEST_REGISTER_SEARCHFORM, CLEAR_COLLECTOR_REQUEST_REGISTER_SEARCHFORM,
         CHANGE_DEALER_REQUEST_REGISTER_SEARCHFORM, CLEAR_DEALER_REQUEST_REGISTER_SEARCHFORM,
-        CHANGE_DEALER_SEARCHFORM, CLEAR_DEALER_SEARCHFORM} from '../../../Infrastucture/utils/constants/ActionFormConstant';
+        CHANGE_DEALER_SEARCHFORM, CLEAR_DEALER_SEARCHFORM,
+        CHANGE_SELLER_COMPLAINT_SEARCHFORM, CLEAR_SELLER_COMPLAINT_SEARCHFORM,
+        CHANGE_COLLECTOR_COMPLAINT_SEARCHFORM, CLEAR_COLLECTOR_COMPLAINT_SEARCHFORM,
+        CHANGE_DEALER_COMPLAINT_SEARCHFORM, CLEAR_DEALER_COMPLAINT_SEARCHFORM} from '../../../Infrastucture/utils/constants/ActionFormConstant';
 import {initialSCSearchFormState, initialUserFormState, 
         initialDCTransactionSearchFormState,
         initialCSTransactionSearchFormState, 
         initialBookingSearchFormState,
-        initialDCFeedbackSearchFormState,
-        initialCSFeedbackSearchFormState,
         initialCollectorRRSearchFormState,
         initialDealerRRSearchFormState,
-        initialDealerSearchFormState} from '../../../Infrastucture/utils/variables/InitialStateData';
+        initialDealerSearchFormState,
+        initialSellerComplaintSearchFormState,
+        initialCollectorComplaintSearchFormState,
+        initialDealerComplaintSearchFormState} from '../../../Infrastucture/utils/variables/InitialStateData';
 
 
-export const DCFeedbackSearchFormReducer = (state = initialDCFeedbackSearchFormState, action) => {
+export const SellerComplaintSearchFormReducer = (state = initialSellerComplaintSearchFormState, action) => {
     switch (action.type) {
-        case CHANGE_DC_FEEDBACK_SEARCHFORM: {
+        case CHANGE_SELLER_COMPLAINT_SEARCHFORM: {
             return {
                 ...action.payload
             }
         }
-        case CLEAR_DC_FEEDBACK_SEARCHFORM: {
+        case CLEAR_SELLER_COMPLAINT_SEARCHFORM: {
             return {
-                ...initialDCFeedbackSearchFormState
+                ...initialSellerComplaintSearchFormState
             }
         }
-        default:
-            return state;
+        default: {
+            return state
+        }
     }
 }
 
-export const CSFeedbackSearchFormReducer = (state = initialCSFeedbackSearchFormState, action) => {
+export const CollectorComplaintSearchFormReducer = (state = initialCollectorComplaintSearchFormState, action) => {
     switch (action.type) {
-        case CHANGE_CS_FEEDBACK_SEARCHFORM: {
+        case CHANGE_COLLECTOR_COMPLAINT_SEARCHFORM: {
             return {
                 ...action.payload
             }
         }
-        case CLEAR_CS_FEEDBACK_SEARCHFORM: {
+        case CLEAR_COLLECTOR_COMPLAINT_SEARCHFORM: {
             return {
-                ...initialCSFeedbackSearchFormState
+                ...initialCollectorComplaintSearchFormState
             }
         }
-        default:
-            return state;
+        default: {
+            return state
+        }
     }
 }
+
+export const DealerComplaintSearchFormReducer = (state = initialDealerComplaintSearchFormState, action) => {
+    switch (action.type) {
+        case CHANGE_DEALER_COMPLAINT_SEARCHFORM: {
+            return {
+                ...action.payload
+            }
+        }
+        case CLEAR_DEALER_COMPLAINT_SEARCHFORM: {
+            return {
+                ...initialDealerComplaintSearchFormState
+            }
+        }
+        default: {
+            return state
+        }
+    }
+}
+
+
 
 export const BookingSearchFormReducer = (state = initialBookingSearchFormState, action) => {
     switch (action.type) {

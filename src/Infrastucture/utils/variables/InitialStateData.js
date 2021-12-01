@@ -7,28 +7,24 @@ export const StatusState = (message, style) => {
     }
 }
 
+export const StatisticDashboardState = {
+    amountCompletedRequest: 0,
+    amountCancelRequestByUser: 0,
+    amountCancelRequestBySystem: 0,
+    amountCollectDealTransaction: 0
+}
+
+export const registerOTPState = {
+    phone: '',
+    registerToken: '',
+    isDisable: true,
+    isInputOTPDisable: true
+}
+
 export const initialDataSCTable = {
 
 }
 
-export const initialCSFeedbackSearchFormState = {
-    transactionCode: "",
-    sellerName: "",
-    collectorName: "",
-    collectorPhone: "",
-    page : 1, 
-    pageSize: PAGING
-}
-
-// Modify here
-export const initialDCFeedbackSearchFormState = {
-    transactionCode: "",
-    dealerName: "",
-    dealerPhone: "",
-    collectorName: "",
-    page : 1, 
-    pageSize: PAGING
-}
 
 export const initialBookingSearchFormState = {
     collectingRequestCode: "",
@@ -45,7 +41,6 @@ export const initialDCTransactionSearchFormState = {
     transactionCode: "",
     dealerName: "",
     dealerPhone: "",
-    dealAddress: "",
     collectorName: "",
     collectorPhone: "",
     fromDate: "",
@@ -60,7 +55,6 @@ export const initialCSTransactionSearchFormState = {
     transactionCode: "",
     sellerName: "",
     sellerPhone: "",
-    sellerAddress: "",
     collectorName: "",
     collectorPhone: "",
     fromDate: "",
@@ -134,7 +128,12 @@ export const ConfigIsUsing = {
     receiveQuantity: 0,
     feedbackDeadline: 0,
     operatingTimeFrom: "00:00",
-    operatingTimeTo: "00:00"
+    operatingTimeTo: "00:00",
+
+    nearestDistance: 0,
+    nearestDistanceOfAppointment: 0,
+    priorityRating: 0.0,
+    availableRadius: 0
 };
 
 export const initialSysConfigState = {
@@ -159,4 +158,98 @@ export const AwardPointUsing = {
 export const AwardPoint = {
     awardPointUsing: AwardPointUsing,
     histories: []
+}
+
+export const initialSellerComplaintSearchFormState = {
+    sellerPhone: "",
+    sellerName: "",
+    page : 1, 
+    pageSize: PAGING
+}
+
+export const initialCollectorComplaintSearchFormState = {
+    collectorPhone: "",
+    collectorName: "",
+    page : 1, 
+    pageSize: PAGING
+}
+
+export const initialDealerComplaintSearchFormState = {
+    dealerPhone: "",
+    dealerName: "",
+    page : 1, 
+    pageSize: PAGING
+}
+
+export const initialComplaintState = {
+    list: [],
+    total: 0
+}
+
+export const CollectorRequestRegisterDetailState = {
+    id: "",
+    phone: "",
+    registerTime: "",
+    name: "",
+    address: "",
+    gender: 0,
+    birthDate: "",
+    idCard: "",
+    imageFile: null
+}
+
+
+export const SCTransactionDetailState = {
+    transactionCode: "",
+    transactionDate: "",
+    address: "",
+    feedback: "",
+    sellerName: "",
+    sellerPhone: "",
+    collectorName: "",
+    collectorPhone: "",
+    collectingRequestDate: "",
+    awardPoint: "",
+    total: 0,
+    transDetails: []
+}
+
+export const DCTransactionDetailState = {
+    transactionCode: "",
+    transactionDateTime: "",
+    dealerAddress: "",
+    dealerPhone: "",
+    dealerOwnerName: "",
+    collectorName: "",
+    collectorPhone: "",
+    awardPoint: "",
+    collectorFeedback: "",
+    bonusAmountTotal: 0,
+    promotions: "",
+    total: 0,
+    transactionDetails: []
+}
+
+export const CollectingRequestDetailState = {
+    collectingRequestCode: "",
+    collectingRequestDate: "",
+    address: "",
+    collectingRequestRangeTime: "",
+    isBulky: false,
+    note: "",
+    requestedBy: "",
+    status: 0,
+    receivedBy: "",
+    scrapImageUrl: ""
+}
+
+export const CollectorRegisterDefaultState = {
+    phone: "",
+    name: "",
+    birthDate: "",
+    gender: 1,
+    address: "",
+    iDCard: "",
+    email: "",
+    imageFile: null
 }

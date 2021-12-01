@@ -35,6 +35,12 @@ export const GetDealerInfoDetailEndpoint = "/dealer-information/detail";
 export const SearchCollectingRequestEndpoint = "/collecting-request/search";
 export const GetCollectingRequestDetailEndpoint = "/collecting-request/detail";
 
+export const SearchDCTransactionEndpoint = "/transaction/collect-deal/search";
+export const GetDCTransactionEndpoint = "/transaction/collect-deal/detail";
+export const SearchSCTransactionEndpoint = "/transaction/sell-collect/search";
+export const GetSCTransactionEndpoint = "/transaction/sell-collect/detail";
+
+
 export const SystemConfigInfo = "/sys-conf/info";
 export const ModifySystemConfig = "/sys-conf/modify";
 
@@ -51,6 +57,14 @@ export const UpdateCancelReason = "/cancel-reason/update";
 export const DeleteCancelReason = "/cancel-reason/delete";
 export const GetCancelReasons = "/cancel-reason/get";
 
-export const SysSellerFeedback = "/sys-feedback/seller/get";
-export const SysCollectorFeedback = "/sys-feedback/collector/get";
-export const ReplySysFeedback = "/sys-feedback/reply";
+export const GetSellerComplaintEndpoint = "/complaint/seller/get";
+export const GetCollectorComplaintEndpoint = "/complaint/collector/get";
+export const GetDealerComplaintEndpoint = "/complaint/dealer/get";
+
+export const ReplySellerComplaintEndpoint = "/complaint/seller/reply";
+export const ReplyCollectorComplaintEndpoint = "/complaint/collector/reply";
+export const ReplyDealerComplaintEndpoint = "/complaint/dealer/reply";
+
+
+export const CollectorRegisterAccountOTPEndpoint = "/account-register/collector-otp";
+export const DashboardEndpoint = "/dashboard";

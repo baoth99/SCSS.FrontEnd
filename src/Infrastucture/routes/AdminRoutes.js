@@ -6,14 +6,14 @@ import ScrapCategory from '../../Presentation/views/scrap-categorys/ScrapCategor
 import User from '../../Presentation/views/users/User';
 import Transaction from '../../Presentation/views/transactions/Transaction';
 import Booking from '../../Presentation/views/booking/Booking';
-import Feedback from '../../Presentation/views/feedback/Feedback';
-import Finance from '../../Presentation/views/finance/Finance';
 import ImageSlider from '../../Presentation/views/imageSlider/ImageSlider';
-import RequestRegister from '../../Presentation/views/request-register/RequestRegister';
 import Dealer from '../../Presentation/views/dealers/Dealer';
 import SystemConfig from '../../Presentation/views/system-config/SystemConfig';
 import TransactionService from '../../Presentation/views/transaction-service/TransactionService';
 import CollectorCancelReason from '../../Presentation/views/collector-cancel-reason/CollectorCancelReason';
+import Complaint from '../../Presentation/views/complaint/Complaint';
+import Register from '../../Presentation/views/register/Register';
+
 
 var AdminRoutes = [
     {
@@ -21,6 +21,13 @@ var AdminRoutes = [
       name: "Màn Hình Chính",
       icon: "ni ni-tv-2 text-primary",
       component: Index,
+      layout: "/admin",
+    },
+    {
+      path: "/register-user",
+      name: "Đăng kí người dùng",
+      icon: "ni ni-single-copy-04 text-purple",
+      component: Register,
       layout: "/admin",
     },
     {
@@ -35,13 +42,6 @@ var AdminRoutes = [
       name: "Quản lí Vựa Ve Chai",
       icon: "ni ni-basket text-gray",
       component: Dealer,
-      layout: "/admin",
-    },
-    {
-      path: "/request-register",
-      name: "Quản lí yêu cầu đăng kí",
-      icon: "ni ni-single-copy-04 text-purple",
-      component: RequestRegister,
       layout: "/admin",
     },
     {
@@ -66,17 +66,10 @@ var AdminRoutes = [
       layout: "/admin",
     },
     {
-      path: "/feedback",
+      path: "/complaint/seller",
       name: "Ý kiến phản hồi",
       icon: "ni ni-chat-round text-yellow",
-      component: Feedback,
-      layout: "/admin",
-    },
-    {
-      path: "/finance",
-      name: "Quản lí tài chính",
-      icon: "ni ni-money-coins text-red",
-      component: Finance,
+      component: Complaint,
       layout: "/admin",
     },
     {

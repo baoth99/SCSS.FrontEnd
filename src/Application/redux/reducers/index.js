@@ -9,18 +9,17 @@ import {SCSearchFormReducer,
         DCTransactionSearchFormReducer,
         CSTransactionSearchFormReducer,
         BookingSearchFormReducer,
-        DCFeedbackSearchFormReducer,
-        CSFeedbackSearchFormReducer,
         CollectorRequestRegisterSearchFormReducer,
         DealerRequestRegisterSearchFormReducer,
-        DealerSearchFormReducer} from './FormReducer';
+        DealerSearchFormReducer,
+        SellerComplaintSearchFormReducer,
+        CollectorComplaintSearchFormReducer,
+        DealerComplaintSearchFormReducer} from './FormReducer';
 import {CollectorRegisterRequestDataReducer, DealerRegisterRequestDataReducer} from './RequestRegisterReducer'
 import {SCTableReducer} from './SCReducer';
 import {UserTableReducer} from './UserReducer';
-import BookingReducer from './BookingReducer';
-import {DCFeedbackListReducer, CSFeedbackListReducer} from './FeedbackReducer';
-import {FeatchAmountOfBookingReducer} from './FetchDataReducer';
-import {DCTransactionTableReducer, CSTransactionTableReducer} from './TransactionReducer';
+import {BookingReducer, BookingDetailReducer} from './BookingReducer';
+import {DCTransactionTableReducer, DCTransactionDetailReducer, CSTransactionTableReducer, CSTransactionDetailReducer} from './TransactionReducer';
 import { connectRouter } from 'connected-react-router';
 import {ImageSliderReducer, ImageUsingListReducer} from './ImageSliderReducer';
 import DealerReducer from './DealerReducer';
@@ -29,7 +28,12 @@ import CancelReasonReducer from './CancelReasonReducer';
 import {SellCollectTransFeeReducer,
         CollectDealTransFeeReducer,
         SellerAwardPointReducer,
-        CollectorAwardPointReducer} from './TransactionServiceReducer'
+        CollectorAwardPointReducer} from './TransactionServiceReducer';
+
+import {StatisticDasboardReducer} from './DashboardReducer'
+
+import {SellerComplaintReducer, CollectorComplaintReducer, DealerComplaintReducer} from './ComplaintReducer';
+import {CollectorRegisterOTPReducer} from './RegisterReducer'
 
 const RootReducer = (history) => combineReducers({
     Auth: AuthReducer,
@@ -37,29 +41,43 @@ const RootReducer = (history) => combineReducers({
     NotiStack: NotiStackReducer,
     SCSearchForm: SCSearchFormReducer,
     UserSearchForm: UserSearchFormReducer,
+
+    StatisticDasboard: StatisticDasboardReducer,
+
+    CollectorRegisterOTP: CollectorRegisterOTPReducer,
+
     DCTransactionSearchForm: DCTransactionSearchFormReducer,
+    DCTransactionDetail: DCTransactionDetailReducer,
     CSTransactionSearchForm: CSTransactionSearchFormReducer,
+    CSTransactionDetail: CSTransactionDetailReducer,
+
     BookingSearchForm: BookingSearchFormReducer,
-    DCFeedbackSearchForm: DCFeedbackSearchFormReducer,
-    CSFeedbackSearchForm: CSFeedbackSearchFormReducer,
     CollectorRequestRegisterSearchForm: CollectorRequestRegisterSearchFormReducer,
     DealerRequestRegisterSearchForm: DealerRequestRegisterSearchFormReducer,
     DealerSearchForm: DealerSearchFormReducer,
+
+    SellerComplaintSearchForm: SellerComplaintSearchFormReducer,
+    CollectorComplaintSearchForm: CollectorComplaintSearchFormReducer,
+    DealerComplaintSearchForm: DealerComplaintSearchFormReducer,
+    
+    SellerComplaint: SellerComplaintReducer,
+    CollectorComplaint: CollectorComplaintReducer,
+    DealerComplaint: DealerComplaintReducer,
+
     DataSC: SCTableReducer,
     DataUser: UserTableReducer,
     DataDCTransaction: DCTransactionTableReducer,
     DataCSTransaction: CSTransactionTableReducer,
-    DataDCFeedback :DCFeedbackListReducer,
-    DataCSFeedback: CSFeedbackListReducer,
     DataCollectorRegisterRequest: CollectorRegisterRequestDataReducer,
     DataDealerRegisterRequest: DealerRegisterRequestDataReducer,
     DataBooking: BookingReducer,
+    BookingDetail: BookingDetailReducer,
+
     DataDealer: DealerReducer,
     ConfirmDialog: ConfirmDialogReducer,
     ImageSlider: ImageSliderReducer,
     ImageUsingList: ImageUsingListReducer,
     ImageSliderDetail: ImageSliderDetailReducer,
-    FeatchAmountOfBooking: FeatchAmountOfBookingReducer,
     SysConfig: SysConfigReducer,
     SellCollectTransFee: SellCollectTransFeeReducer,
     CollectDealTransFee: CollectDealTransFeeReducer,

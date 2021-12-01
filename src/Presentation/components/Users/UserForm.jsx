@@ -67,10 +67,7 @@ const UserForm = () => {
                                 <Row>
                                 <Col lg="3">
                                         <AvGroup>
-                                            <label
-                                                className="form-control-label"
-                                                htmlFor="input-username"
-                                            >
+                                            <label className="form-control-label">
                                                 Số Điện Thoại
                                             </label>
                                             <AvInput

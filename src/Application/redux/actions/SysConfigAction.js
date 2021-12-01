@@ -29,7 +29,8 @@ export const GetSysConfigInfoSuccess = (configIsUsing, histories) => {
 
 export const ModifySysConfig = ({cancelTimeRange, timeRangeRequestNow, requestQuantity, 
                                 maxNumberOfRequestDays, receiveQuantity, feedbackDeadline, 
-                                operatingTimeFrom, operatingTimeTo }) => {
+                                operatingTimeFrom, operatingTimeTo, availableRadius, priorityRating,
+                                nearestDistance, nearestDistanceOfAppointment }) => {
     return {
         type: MODIFY_SYS_CONFIG,
         payload: {
@@ -40,7 +41,12 @@ export const ModifySysConfig = ({cancelTimeRange, timeRangeRequestNow, requestQu
             receiveQuantity: receiveQuantity,
             feedbackDeadline: feedbackDeadline,
             operatingTimeFrom: operatingTimeFrom,
-            operatingTimeTo: operatingTimeTo
+            operatingTimeTo: operatingTimeTo,
+            
+            availableRadius: availableRadius,
+            priorityRating: priorityRating,
+            nearestDistance: nearestDistance,
+            nearestDistanceOfAppointment: nearestDistanceOfAppointment
         }
     }
 }

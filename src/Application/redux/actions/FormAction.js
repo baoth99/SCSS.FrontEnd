@@ -3,40 +3,55 @@ import {CHANGE_SCSEARCHFORM, CLEAR_SCSEARCHFORM,
         CHANGE_DC_TRANSACTION_SEARCHFORM, CLEAR_DC_TRANSACTION_SEARCHFORM,
         CHANGE_CS_TRANSACTION_SEARCHFORM, CLEAR_CS_TRANSACTION_SEARCHFORM,
         CHANGE_BOOKING_SEARCHFORM, CLEAR_BOOKING_SEARCHFORM,
-        CHANGE_DC_FEEDBACK_SEARCHFORM, CLEAR_DC_FEEDBACK_SEARCHFORM,
-        CHANGE_CS_FEEDBACK_SEARCHFORM, CLEAR_CS_FEEDBACK_SEARCHFORM,
         CHANGE_COLLECTOR_REQUEST_REGISTER_SEARCHFORM, CLEAR_COLLECTOR_REQUEST_REGISTER_SEARCHFORM,
         CHANGE_DEALER_REQUEST_REGISTER_SEARCHFORM, CLEAR_DEALER_REQUEST_REGISTER_SEARCHFORM,
-        CHANGE_DEALER_SEARCHFORM, CLEAR_DEALER_SEARCHFORM} from '../../../Infrastucture/utils/constants/ActionFormConstant';
+        CHANGE_DEALER_SEARCHFORM, CLEAR_DEALER_SEARCHFORM,
+        CHANGE_SELLER_COMPLAINT_SEARCHFORM, CLEAR_SELLER_COMPLAINT_SEARCHFORM,
+        CHANGE_COLLECTOR_COMPLAINT_SEARCHFORM, CLEAR_COLLECTOR_COMPLAINT_SEARCHFORM,
+        CHANGE_DEALER_COMPLAINT_SEARCHFORM, CLEAR_DEALER_COMPLAINT_SEARCHFORM} from '../../../Infrastucture/utils/constants/ActionFormConstant';
 
-// CS Feedback Search Form
-export const ChangeCSFeedbackSearchForm = (data) => {
+// Seller Complaint Search Form
+export const ChangeSellerComplaintSearchForm = (data) => {
     return {
-        type: CHANGE_CS_FEEDBACK_SEARCHFORM,
+        type: CHANGE_SELLER_COMPLAINT_SEARCHFORM,
         payload: data
     }
 }
 
-export const ClearCSFeedbackSearchForm = () => {
+export const ClearSellerComplaintSearchForm = () => {
     return {
-        type: CLEAR_CS_FEEDBACK_SEARCHFORM
+        type: CLEAR_SELLER_COMPLAINT_SEARCHFORM
     }
 }
 
-        
-// DC Feedback Search Form
-export const ChangeDCFeedbackSearchForm = (data) => {
+// Collector Complaint Search Form
+export const ChangeCollectorComplaintSearchForm = (data) => {
     return {
-        type: CHANGE_DC_FEEDBACK_SEARCHFORM,
+        type: CHANGE_COLLECTOR_COMPLAINT_SEARCHFORM,
         payload: data
     }
 }
 
-export const ClearDCFeedbackSearchForm = () => {
+export const ClearCollectorComplaintSearchForm = () => {
     return {
-        type: CLEAR_DC_FEEDBACK_SEARCHFORM
+        type: CLEAR_COLLECTOR_COMPLAINT_SEARCHFORM
     }
 }
+
+// Dealer Complaint Search Form
+export const ChangeDealerComplaintSearchForm = (data) => {
+    return {
+        type: CHANGE_DEALER_COMPLAINT_SEARCHFORM,
+        payload: data
+    }
+}
+
+export const ClearDealerComplaintSearchForm = () => {
+    return {
+        type: CLEAR_DEALER_COMPLAINT_SEARCHFORM
+    }
+}
+
 
 // Booking Search Form
 export const ChangeBookingSearchForm = (data) => {

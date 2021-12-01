@@ -23,7 +23,7 @@ const BookingStatus = ({status}) => {
                     setBookingStatus(StatusState(CANCELBYSELLER_BOOKING_MESSAGE, CANCELBYSELLER_BOOKING_STYLE))
                     break;
                 case CANCELBYCOLLECTOR_BOOKING: 
-                    setBookingStatus(StatusState(NOBODY_APPROVE_BOOKING_MESSAGE, NOBODY_APPROVE_BOOKING_STYLE))
+                    setBookingStatus(StatusState(CANCELBYSELLER_BOOKING_MESSAGE, NOBODY_APPROVE_BOOKING_STYLE))
                     break;
                 case APPROVED_BOOKING: 
                     setBookingStatus(StatusState(APPROVED_BOOKING_MESSAGE, APPROVED_BOOKING_STYLE))

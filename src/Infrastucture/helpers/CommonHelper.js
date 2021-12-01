@@ -2,6 +2,8 @@ import {COLLECTOR_NUM, DEALER_NUM } from '../utils/constants/CommonConstants'
 import {DEALER_LEADER, DEALER_LEADER_MESSAGE, DEALER_MEMBER, DEALER_MEMBER_MESSAGE } from '../utils/constants/CommonConstants'
 import {COLLECTOR,  DEALER } from '../utils/constants/MessageConstants'
 
+import ComplaintItem from '../../Presentation/components/Complaints/ComplaintItem';
+
 export const RenderComboBox = (list) => {
     let result = null;
     if(!Array.isArray(list)) {
@@ -47,4 +49,22 @@ export const GetDealerType = (type) => {
         default:
             return "Không Xác Định";
     }
+}
+
+export const RenderComplaintList = (data, action) => {
+    let result = null;
+    if(!Array.isArray(data)) {
+        return result;
+    }
+    if (data.length > 0) {
+        result = data.map((val, index) => {
+            return (
+                <ComplaintItem key={index} id={val.id} code={val.code} complaintContent={val.complaintContent} 
+                                           ownerInfo={val.ownerInfo} complaintedAccountInfo={val.complaintedAccountInfo}
+                                           repliedContent={val.repliedContent} wasReplied={val.wasReplied} complaintTime={val.complaintTime}
+                                           dealerAccountName={val.dealerAccountName} action={action} />
+            )
+        });
+    }
+    return result;
 }

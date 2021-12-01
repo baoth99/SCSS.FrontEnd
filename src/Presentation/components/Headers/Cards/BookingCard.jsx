@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 import { Card, CardBody, CardTitle, Row, Col, Tooltip, PopoverBody  } from "reactstrap";
-import {useSelector} from 'react-redux';
 
 const BookingCard = () => {
     const [tooltipOpen, setTooltipOpen] = useState(false);
 
     const toggle = () => setTooltipOpen(!tooltipOpen);
 
-    const amountBooking = useSelector(state => state.FeatchAmountOfBooking);
 
     return (
         <Col lg="6" xl="3">
@@ -30,7 +28,7 @@ const BookingCard = () => {
                     >
                         Số Lịch Được Đặt Trong Ngày
                     </CardTitle>
-                    <span className="h2 font-weight-bold mb-0">{amountBooking}</span>
+                    <span className="h2 font-weight-bold mb-0">"sdbfdksfvhuerfncufksdx"</span>
                     </div>
                     <Col className="col-auto">
                     <div className="icon icon-shape bg-warning text-white rounded-circle shadow">

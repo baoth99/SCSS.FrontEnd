@@ -118,23 +118,6 @@ const CSTransactionSearchForm = () => {
                                                 className="form-control-label"
                                                 htmlFor="input-username"
                                             >
-                                                Địa chỉ 
-                                            </label>
-                                            <AvInput
-                                                className="form-control-alternative"
-                                                type="textarea"
-                                                name="sellerAddress"
-                                                onChange={(e) => OnHandleChange(e.target)}
-                                                value={FormData.sellerAddress}
-                                            />
-                                        </AvGroup>
-                                    </Col>
-                                    <Col lg="4">
-                                        <AvGroup>
-                                            <label
-                                                className="form-control-label"
-                                                htmlFor="input-username"
-                                            >
                                                 Tên Người Thu Gom
                                             </label>
                                             <AvInput

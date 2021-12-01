@@ -1,12 +1,44 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Card, CardHeader, CardBody, Container, Row, Col, Input, FormGroup, CardFooter, Button} from "reactstrap";
+import {GetDCTransactionDetail} from '../../../Application/redux/actions/TransactionAction';
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 
 
+
+export const RenderTransDetailList = (data) => {
+    let result = null;
+    if(!Array.isArray(data)) {
+        return result;
+    }
+    if (data.length > 0) {
+        result = data.map((val, index) => {
+            return (
+                <tr key={index}>
+                    <td>{val.scrapCategoryName}</td>
+                    <td>{val.quantity}</td>
+                    <td>{val.bonusAmount}</td>
+                    <td>{val.total} VND</td>
+                </tr>
+            )
+        });
+    }
+    return result;
+}
+
+
+
+
 const TransactionDCDetail = () => {
+    const DCTransactionDetail = useSelector(state => state.DCTransactionDetail);
     const dispatch = useDispatch();
     let { id } = useParams();
+
+
+    useEffect(() => {
+        dispatch(GetDCTransactionDetail(id));
+    }, []);
+
     return (
         <Container className="mt--7" fluid>
             <Row className="mt-5">
@@ -32,7 +64,7 @@ const TransactionDCDetail = () => {
                                             >
                                                 Mã Giao Dịch : 
                                             </label>
-                                            <h4 className="mb-0">BC1707202111230003</h4>
+                                            <h4 className="mb-0">{DCTransactionDetail.transactionCode}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -43,7 +75,7 @@ const TransactionDCDetail = () => {
                                             >
                                                 Thời Điểm Giao Dịch : 
                                             </label>
-                                            <h4 className="mb-0">23/07/2021 12:34:56</h4>
+                                            <h4 className="mb-0">{DCTransactionDetail.transactionDateTime}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="6">
@@ -54,7 +86,7 @@ const TransactionDCDetail = () => {
                                             >
                                                 Địa Chỉ Vựa : 
                                             </label>
-                                            <h4 className="mb-0">Đường D1, Khu Công Nghệ Cao, Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh </h4>
+                                            <h4 className="mb-0">{DCTransactionDetail.dealerAddress}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -65,7 +97,7 @@ const TransactionDCDetail = () => {
                                             >
                                                 Tên Chủ Vựa : 
                                             </label>
-                                            <h4 className="mb-0">Huỳnh Văn Bánh</h4>
+                                            <h4 className="mb-0">{DCTransactionDetail.dealerOwnerName}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -74,9 +106,9 @@ const TransactionDCDetail = () => {
                                                 className="form-control-label"
                                                 htmlFor="input-username"
                                             >
-                                                Số Điện Thoại Chủ Vựa : 
+                                                Số Điện Thoại Vựa : 
                                             </label>
-                                            <h4 className="mb-0">0943789321</h4>
+                                            <h4 className="mb-0">{DCTransactionDetail.dealerPhone}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -87,7 +119,7 @@ const TransactionDCDetail = () => {
                                             >
                                                 Tên Người Thu Mua : 
                                             </label>
-                                            <h4 className="mb-0">Lê Thị A</h4>
+                                            <h4 className="mb-0">{DCTransactionDetail.collectorName}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -98,7 +130,7 @@ const TransactionDCDetail = () => {
                                             >
                                                 Số Điện Thoại Người Thu Mua : 
                                             </label>
-                                            <h4 className="mb-0">0943784321</h4>
+                                            <h4 className="mb-0">{DCTransactionDetail.collectorPhone}</h4>
                                         </FormGroup>
                                     </Col>                                   
                                     <Col lg="3">
@@ -109,18 +141,7 @@ const TransactionDCDetail = () => {
                                             >
                                                 Điểm thưởng : 
                                             </label>
-                                            <h4 className="mb-0">19</h4>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col lg="3">
-                                        <FormGroup>
-                                            <label
-                                                className="form-control-label"
-                                                htmlFor="input-username"
-                                            >
-                                                Tiền thưởng : 
-                                            </label>
-                                            <h4 className="mb-0">20.000 vnd</h4>
+                                            <h4 className="mb-0">{DCTransactionDetail.awardPoint}</h4>
                                         </FormGroup>
                                     </Col>
                                     <Col lg="3">
@@ -131,7 +152,7 @@ const TransactionDCDetail = () => {
                                             >
                                                 Khuyến Mãi Áp Dụng : 
                                             </label>
-                                            <h4 className="mb-0">STK32. YUR78</h4>
+                                            <h4 className="mb-0">{DCTransactionDetail.promotions}</h4>
                                         </FormGroup>
                                     </Col>   
                                     <Col lg="3">
@@ -142,7 +163,7 @@ const TransactionDCDetail = () => {
                                             >
                                                 Phản Hồi : 
                                             </label>
-                                            <h4 className="mb-0">GGGGGGGGGGG</h4>
+                                            <h4 className="mb-0">{DCTransactionDetail.collectorFeedback}</h4>
                                         </FormGroup>
                                     </Col>                                       
                                     <Col lg="8">
@@ -162,40 +183,34 @@ const TransactionDCDetail = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                {RenderTransDetailList(DCTransactionDetail.transactionDetails)}
                                                 <tr>
-                                                    <td>Sắt</td>
-                                                    <td>5kg</td>
-                                                    <td>+(20.000 VND)</td>
-                                                    <td>120.000 VND</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Thép</td>
-                                                    <td>10kg</td>
-                                                    <td>N/A</td>
-                                                    <td>100.000 VND</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nhựa</td>
-                                                    <td>20kg</td>
-                                                    <td>+(20.000 VND)</td>
-                                                    <td>120.000 VND</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
                                                     <td></td>
                                                     <td>
-                                                        <label
-                                                            className="form-control-label"
-                                                        >
-                                                            Tổng Tiền : 
+                                                        <label className="form-control-label">
+                                                            Tổng : 
                                                         </label>
                                                     </td>
                                                     <td>
-                                                        <h4>340.000 VND</h4>
+                                                        <h4>{DCTransactionDetail.bonusAmountTotal} VND</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h4>{DCTransactionDetail.total} VND</h4>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                                                        <label className="form-control-label">
+                                                            Tổng Tiền : 
+                                                        </label>
+                                                    </td>
+                                                    <td></td>
+                                                    <td>
+                                                        <h4>{DCTransactionDetail.total} VND</h4>
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                            
                                         </table>
                                     </Col>
                                 </Row>

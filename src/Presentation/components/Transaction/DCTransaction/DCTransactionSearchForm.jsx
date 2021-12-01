@@ -120,23 +120,6 @@ const DCTransactionSearchForm = () => {
                                             className="form-control-label"
                                             htmlFor="input-username"
                                         >
-                                            Địa chỉ vựa
-                                        </label>
-                                        <AvInput
-                                            className="form-control-alternative"
-                                            type="textarea"
-                                            name="dealAddress"
-                                            onChange={(e) => OnHandleChange(e.target)}
-                                            value={FormData.dealAddress}
-                                        />
-                                    </AvGroup>
-                                </Col>
-                                <Col lg="4">
-                                    <AvGroup>
-                                        <label
-                                            className="form-control-label"
-                                            htmlFor="input-username"
-                                        >
                                             Tên Người Thu Gom
                                         </label>
                                         <AvInput

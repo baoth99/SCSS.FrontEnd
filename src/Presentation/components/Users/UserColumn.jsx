@@ -13,7 +13,7 @@ const UserColumn = () => {
                 <th scope="col">Số Điện Thoại</th>
                 <th scope="col">Giới Tính</th>
                 <th scope="col">Trạng Thái</th>
-                <th scope="col">Quyền</th>
+                <th scope="col">Vai Trò</th>
                 <th scope="col">
                     Tổng Điểm
                 </th>

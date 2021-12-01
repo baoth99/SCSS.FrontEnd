@@ -170,6 +170,58 @@ const Controlpanel = () => {
                                                 </Row>
                                             </AvGroup>
                                         </Row>
+                                        <Row>
+                                            <AvGroup>
+                                                <label className="form-control-label" >
+                                                    Khoảng cách để người thu gom có thể nhận được thông báo 
+                                                    <br/>
+                                                    khi có yêu cầu đến ngay
+                                                </label>
+                                                <Row>
+                                                    <Col lg="7">
+                                                        <AvInput
+                                                            className="form-control-alternative"
+                                                            name="nearestDistance"
+                                                            type="number"
+                                                            min="1"
+                                                            value={ControlPanelState.nearestDistance}
+                                                            onChange={(e) => OnHandleChange(e.target)}
+                                                        />
+                                                    </Col>
+                                                    <Col lg="2">
+                                                        <label className="form-control-label" >
+                                                            (mét)
+                                                        </label>
+                                                    </Col>
+                                                </Row>
+                                            </AvGroup>
+                                        </Row>
+                                        <Row>
+                                            <AvGroup>
+                                                <label className="form-control-label" >
+                                                    Khoảng cách để người thu gom có thể nhận được thông báo 
+                                                    <br/>
+                                                    khi có yêu cầu hẹn
+                                                </label>
+                                                <Row>
+                                                    <Col lg="7">
+                                                        <AvInput
+                                                            className="form-control-alternative"
+                                                            name="nearestDistanceOfAppointment"
+                                                            type="number"
+                                                            min="1"
+                                                            value={ControlPanelState.nearestDistanceOfAppointment}
+                                                            onChange={(e) => OnHandleChange(e.target)}
+                                                        />
+                                                    </Col>
+                                                    <Col lg="2">
+                                                        <label className="form-control-label" >
+                                                            (mét)
+                                                        </label>
+                                                    </Col>
+                                                </Row>
+                                            </AvGroup>
+                                        </Row>
                                     </Col>
                                     <Col lg="6">
                                         <Row>
@@ -259,6 +311,58 @@ const Controlpanel = () => {
                                                             value={ControlPanelState.operatingTimeTo}
                                                             onChange={(e) => OnHandleChange(e.target)}
                                                         />
+                                                    </Col>
+                                                </Row>
+                                            </AvGroup>
+                                        </Row>
+                                        <Row>
+                                            <AvGroup>
+                                                <label className="form-control-label" >
+                                                    Bán kính hoạt động tối đa của người thu gom
+                                                    <br/>
+                                                    có thể thấy đơn
+                                                </label>
+                                                <Row>
+                                                    <Col lg="7">
+                                                        <AvInput
+                                                            className="form-control-alternative"
+                                                            name="availableRadius"
+                                                            type="number"
+                                                            min="1"
+                                                            value={ControlPanelState.availableRadius}
+                                                            onChange={(e) => OnHandleChange(e.target)}
+                                                        />
+                                                    </Col>
+                                                    <Col lg="2">
+                                                        <label className="form-control-label" >
+                                                            (mét)
+                                                        </label>
+                                                    </Col>
+                                                </Row>
+                                            </AvGroup>
+                                        </Row>
+                                        <Row>
+                                            <AvGroup>
+                                                <label className="form-control-label" >
+                                                    Rating tối đa được ưu tiên 
+                                                    <br/>
+                                                    có thể thấy đơn
+                                                </label>
+                                                <Row>
+                                                    <Col lg="7">
+                                                        <AvInput
+                                                            className="form-control-alternative"
+                                                            name="priorityRating"
+                                                            type="number"
+                                                            min="1"
+                                                            value={ControlPanelState.priorityRating}
+                                                            onChange={(e) => OnHandleChange(e.target)}
+                                                        />
+                                                    </Col>
+                                                    <Col lg="2">
+                                                        <label className="form-control-label" >
+                                                            (sao)
+                                                        </label>
                                                     </Col>
                                                 </Row>
                                             </AvGroup>

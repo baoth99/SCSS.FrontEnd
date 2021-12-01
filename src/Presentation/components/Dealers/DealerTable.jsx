@@ -16,7 +16,7 @@ const ShowDealerRow = (data) => {
         result = data.map((val, index) => {
             return (
                 <DealerRow key={index} stt={index} id={val.id} dealerName={val.dealerName}
-                            dealerPhone={val.dealerPhone} managedBy={val.managedBy} isSubcribed={val.isSubcribed}
+                            dealerPhone={val.dealerPhone} managedBy={val.managedBy}
                             dealerType={val.dealerType} dealerStatus={val.status}/>
             )
         });

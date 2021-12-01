@@ -25,7 +25,11 @@ function* GetSysConfigInfoSaga() {
             receiveQuantity: resData.receiveQuantity,
             feedbackDeadline: resData.feedbackDeadline,
             operatingTimeFrom: resData.operatingTimeFrom,
-            operatingTimeTo: resData.operatingTimeTo
+            operatingTimeTo: resData.operatingTimeTo,
+            availableRadius: resData.availableRadius,
+            priorityRating: resData.priorityRating,
+            nearestDistance: resData.nearestDistance,
+            nearestDistanceOfAppointment: resData.nearestDistanceOfAppointment
         };
         var histories = resData.histories;
 
@@ -42,6 +46,7 @@ function* GetSysConfigInfoSaga() {
 
 
 function* ModifySystemConfigSaga({payload}) {
+    console.log(payload);
     yield put(HideConfirmDialog());
     yield put(ShowLoading());
     try {
@@ -53,7 +58,11 @@ function* ModifySystemConfigSaga({payload}) {
             operatingTimeTo: payload.operatingTimeTo,
             receiveQuantity: parseInt(payload.receiveQuantity),
             requestQuantity: parseInt(payload.requestQuantity),
-            timeRangeRequestNow: parseInt(payload.timeRangeRequestNow)
+            timeRangeRequestNow: parseInt(payload.timeRangeRequestNow),
+            availableRadius: parseFloat(payload.availableRadius),
+            priorityRating: parseFloat(payload.priorityRating),
+            nearestDistance: parseFloat(payload.nearestDistance),
+            nearestDistanceOfAppointment: parseFloat(payload.nearestDistanceOfAppointment)
         }
         const response = yield call(ApiPutWithBody, ModifySystemConfig, requestModel);
 

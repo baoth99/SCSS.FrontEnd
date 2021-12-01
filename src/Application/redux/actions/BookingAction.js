@@ -35,11 +35,20 @@ export const GetBookingDetail = (id) => {
     }
 }
 
-export const GetBookingDetailSuccess = (data) => {
+export const GetBookingDetailSuccess = ({collectingRequestCode, collectingRequestDate, address, collectingRequestRangeTime, isBulky, note, requestedBy, status, receivedBy, scrapImageUrl}) => {
     return {
         type: GET_BOOKING_DETAIL_SUCCESS,
         payload: {
-            ...data
+            collectingRequestCode: collectingRequestCode,
+            collectingRequestDate: collectingRequestDate,
+            address: address,
+            collectingRequestRangeTime: collectingRequestRangeTime,
+            isBulky: isBulky,
+            note: note,
+            requestedBy: requestedBy,
+            status: status,
+            receivedBy: receivedBy,
+            scrapImageUrl : scrapImageUrl
         }
     }
 }

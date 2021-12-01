@@ -1,8 +1,9 @@
 import React from 'react';
 import { DropdownMenu, DropdownItem, UncontrolledDropdown, DropdownToggle, Media} from "reactstrap";
+import DealerStatus from './DealerStatus'
 import { useHistory } from 'react-router-dom';
 
-const DealerRow = ({id, stt, dealerName, dealerPhone, managedBy, isSubcribed, dealerType, dealerStatus}) => {
+const DealerRow = ({id, stt, dealerName, dealerPhone, managedBy, dealerType, dealerStatus}) => {
     const history = useHistory();
     const path = "/admin/dealers/" + id;
     const GoToDealerDetail = () => {
@@ -42,23 +43,12 @@ const DealerRow = ({id, stt, dealerName, dealerPhone, managedBy, isSubcribed, de
             <td>
                 <Media>
                     <span className="mb-0 text-sm">
-                        {isSubcribed ? 'Right' : 'Wrong'}
+                        {dealerType == 1 ? 'Vựa chủ' : 'Chi Nhánh'}
                     </span>
                 </Media>
             </td>
             <td>
-                <Media>
-                    <span className="mb-0 text-sm">
-                        {dealerType}
-                    </span>
-                </Media>
-            </td>
-            <td>
-                <Media>
-                    <span className="mb-0 text-sm">
-                        {dealerStatus ? 'Right' : 'Wrong'}
-                    </span>
-                </Media>
+                <DealerStatus status={dealerStatus}/>
             </td>
             <td className="text-right">
                 <UncontrolledDropdown>
